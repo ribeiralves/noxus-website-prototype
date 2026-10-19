@@ -1102,4 +1102,34 @@ html[data-nxpal] #pageroot #lgrid .cell:hover .thumb img,html[data-nxpal] #pager
   window.addEventListener("nx:page", () => requestAnimationFrame(fit)); window.addEventListener("resize", fit); fit();
 })();
 </script>
+<style>/* Topic / step lists beside product screens (Platform tour, Agent execution Ship + Control, Sovereign layer) — Figma
+   comment, round 13: one row rhythm for open and closed rows (20px above and below every title, a hairline between
+   rows), a square marker before each title to guide the eye (hollow grey; solid ink when active), no grey fill. */
+html:not(#nx1):not(#nx2):not(#nx3) :is(#tour .sbi,#pg-agent-execution [role=tablist]>li>button,:is(.s-ma,.s-db) .li){
+  padding-top:20px !important;padding-bottom:20px !important;background:linear-gradient(#E2E0DC,#E2E0DC) 20px 0 / calc(100% - 20px) 1px no-repeat !important}
+html:not(#nx1):not(#nx2):not(#nx3) :is(#tour .sbi,#pg-agent-execution [role=tablist]>li>button,:is(.s-ma,.s-db) .li).on{background:linear-gradient(#E2E0DC,#E2E0DC) 20px 0 / calc(100% - 20px) 1px no-repeat !important}
+html:not(#nx1):not(#nx2):not(#nx3) :is(#tour .sbi:last-child,#pg-agent-execution [role=tablist]>li:last-child>button,:is(.s-ma,.s-db) .li:last-child){
+  background:linear-gradient(#E2E0DC,#E2E0DC) 20px 0 / calc(100% - 20px) 1px no-repeat,linear-gradient(#E2E0DC,#E2E0DC) 20px 100% / calc(100% - 20px) 1px no-repeat !important}
+html:not(#nx1):not(#nx2):not(#nx3) :is(#tour .sbi,#pg-agent-execution [role=tablist]>li>button,:is(.s-ma,.s-db) .li):hover:not(.on){background-color:transparent !important}
+html:not(#nx1):not(#nx2):not(#nx3) :is(.s-ma,.s-db) .li::before,html:not(#nx1):not(#nx2):not(#nx3) #tour .sbi::before,html:not(#nx1):not(#nx2):not(#nx3) #pg-agent-execution [role=tablist]>li>button::before,html:not(#nx1):not(#nx2):not(#nx3) #tour .sbb::before,html:not(#nx1):not(#nx2):not(#nx3) #tour .sbb::after{display:none !important}
+html:not(#nx1):not(#nx2):not(#nx3) #pg-agent-execution [role=tablist]{border:0 !important;background:none !important}
+/* titles step in by the marker's gutter; descriptions follow */
+html:not(#nx1):not(#nx2):not(#nx3) :is(#tour .sbt,#pg-agent-execution [role=tablist] button>span:nth-child(2)>span:first-child,:is(.s-ma,.s-db) .lt){position:relative;display:block;padding-left:24px !important}
+html:not(#nx1):not(#nx2):not(#nx3) :is(#tour .sbd p,#pg-agent-execution [role=tablist] .shd,:is(.s-ma,.s-db) .ld){margin-left:24px !important}
+html:not(#nx1):not(#nx2):not(#nx3) :is(#tour .sbt,#pg-agent-execution [role=tablist] button>span:nth-child(2)>span:first-child,:is(.s-ma,.s-db) .lt)::before{
+  content:"";position:absolute;left:0;top:calc(.5lh - 4px);width:8px;height:8px;box-sizing:border-box;border:1px solid #B9B7B2;background:#FFFFFF;transition:background-color 250ms ease,border-color 250ms ease}
+html:not(#nx1):not(#nx2):not(#nx3) :is(#tour .sbi.on .sbt,#pg-agent-execution [role=tablist] button.on>span:nth-child(2)>span:first-child,:is(.s-ma,.s-db) .li.on .lt)::before{background:#161616;border-color:#161616}
+html:not(#nx1):not(#nx2):not(#nx3) :is(#tour .sbi:hover .sbt,#pg-agent-execution [role=tablist] button:hover>span:nth-child(2)>span:first-child,:is(.s-ma,.s-db) .li:hover .lt)::before{border-color:#161616}
+@media (prefers-reduced-motion: reduce){html:not(#nx1):not(#nx2):not(#nx3) :is(#tour .sbt,#pg-agent-execution [role=tablist] button>span:nth-child(2)>span:first-child,:is(.s-ma,.s-db) .lt)::before{transition:none}}
+/* Agent execution · Control uses its own markup (li > button.ctl + .ctd) */
+html:not(#nx1):not(#nx2):not(#nx3) #pg-agent-execution section.x3 .g3>ul>li:not(.hide){padding-top:20px !important;padding-bottom:20px !important;border:0 !important;
+  background:linear-gradient(#E2E0DC,#E2E0DC) 20px 0 / calc(100% - 20px) 1px no-repeat !important}
+html:not(#nx1):not(#nx2):not(#nx3) #pg-agent-execution section.x3 .g3>ul>li:nth-child(5){background:linear-gradient(#E2E0DC,#E2E0DC) 20px 0 / calc(100% - 20px) 1px no-repeat,linear-gradient(#E2E0DC,#E2E0DC) 20px 100% / calc(100% - 20px) 1px no-repeat !important}
+html:not(#nx1):not(#nx2):not(#nx3) #pg-agent-execution section.x3 li::before{display:none !important}
+html:not(#nx1):not(#nx2):not(#nx3) #pg-agent-execution section.x3 .ctl{position:relative;padding-left:24px !important;background:none !important;border:0 !important}
+html:not(#nx1):not(#nx2):not(#nx3) #pg-agent-execution section.x3 .ctd{margin-left:24px !important}
+html:not(#nx1):not(#nx2):not(#nx3) #pg-agent-execution section.x3 .ctl::before{content:"";position:absolute;left:0;top:calc(50% - 4px);width:8px;height:8px;box-sizing:border-box;border:1px solid #B9B7B2;background:#FFFFFF;transition:background-color 250ms ease,border-color 250ms ease}
+html:not(#nx1):not(#nx2):not(#nx3) #pg-agent-execution section.x3 .ctl.on::before{background:#161616;border-color:#161616}
+html:not(#nx1):not(#nx2):not(#nx3) #pg-agent-execution section.x3 li:hover .ctl::before{border-color:#161616}
+</style>
 </body></html>
