@@ -1172,5 +1172,22 @@ html:not(#nx1):not(#nx2):not(#nx3) #pg-agent-execution section.x3 .ctd{margin-le
 html:not(#nx1):not(#nx2):not(#nx3) #pg-agent-execution section.x3 .ctl::before{content:"";position:absolute;left:0;top:calc(50% - 4px);width:8px;height:8px;box-sizing:border-box;border:1px solid #B9B7B2;background:#FFFFFF;transition:background-color 250ms ease,border-color 250ms ease}
 html:not(#nx1):not(#nx2):not(#nx3) #pg-agent-execution section.x3 .ctl.on::before{background:#161616;border-color:#161616}
 html:not(#nx1):not(#nx2):not(#nx3) #pg-agent-execution section.x3 li:hover .ctl::before{border-color:#161616}
+/* Sovereign layer · Choose the deployment model (.dml): same list as the Platform tour — titles 18px with square
+   markers, hairlines between rows, only the active row shows its sentence, 2px ink edge on the active row */
+html:not(#nx1):not(#nx2):not(#nx3) .dml{border-top:0 !important}
+html:not(#nx1):not(#nx2):not(#nx3) .dml>li:last-child .dmi{background:linear-gradient(#E2E0DC,#E2E0DC) 20px 0 / calc(100% - 20px) 1px no-repeat,linear-gradient(#E2E0DC,#E2E0DC) 20px 100% / calc(100% - 20px) 1px no-repeat !important}
+html:not(#nx1):not(#nx2):not(#nx3) .dmi{gap:0 !important;margin-left:-20px;width:calc(100% + 20px) !important;box-sizing:border-box;padding:20px 20px !important;border:0 !important;
+  background:linear-gradient(#E2E0DC,#E2E0DC) 20px 0 / calc(100% - 20px) 1px no-repeat !important;color:#6B6B69 !important;text-align:left}
+html:not(#nx1):not(#nx2):not(#nx3) .dmi.on{box-shadow:inset 2px 0 0 #161616 !important;color:#161616 !important}
+html:not(#nx1):not(#nx2):not(#nx3) .dmi:hover{color:#161616 !important}
+html:not(#nx1):not(#nx2):not(#nx3) .dmt{position:relative;display:block;padding-left:24px;font-size:18px !important;line-height:1.35}
+html:not(#nx1):not(#nx2):not(#nx3) .dmt::before{content:"";position:absolute;left:0;top:calc(.5lh - 4px);width:8px;height:8px;box-sizing:border-box;border:1px solid #B9B7B2;background:#FFFFFF;transition:background-color 250ms ease,border-color 250ms ease}
+html:not(#nx1):not(#nx2):not(#nx3) .dmi.on .dmt::before{background:#161616;border-color:#161616}
+html:not(#nx1):not(#nx2):not(#nx3) .dmi:hover .dmt::before{border-color:#161616}
+html:not(#nx1):not(#nx2):not(#nx3) .dmd{display:block !important;margin-left:24px;max-height:0;opacity:0;overflow:hidden;font-size:14px !important;line-height:1.5 !important;color:#6B6B69 !important;
+  transition:max-height 450ms cubic-bezier(.2,.7,.2,1),opacity 250ms ease,padding-top 450ms cubic-bezier(.2,.7,.2,1) !important}
+html:not(#nx1):not(#nx2):not(#nx3) .dmi.on .dmd{max-height:6em;opacity:1;padding-top:8px;transition:max-height 450ms cubic-bezier(.2,.7,.2,1),opacity 400ms ease 150ms,padding-top 450ms cubic-bezier(.2,.7,.2,1) !important}
+html:not(#nx1):not(#nx2):not(#nx3) .dmp{display:none !important}
+@media (prefers-reduced-motion: reduce){html:not(#nx1):not(#nx2):not(#nx3) :is(.dmd,.dmt::before){transition:none !important}}
 </style>
 </body></html>
