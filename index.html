@@ -27,7 +27,7 @@ html:not(.nx-before) :is(.metric,dd,td,[class*="num"]){font-variant-numeric:tabu
 <style>html{scroll-behavior:auto}body{margin:0;background:#FFFFFF}.gnav .dim{top:65px}
 /* Home: hero + customer logos fill the first screen exactly; the story banner starts at the fold.
    284px = header offset (65) + stories top padding (40) + logo caption (18 + 14) + two logo rows (147) */
-@media (min-width:900px){#hero{--hero-h:max(340px,calc(100svh / var(--nxz,1) - var(--fold-off,284px)));height:var(--hero-h);box-sizing:border-box}#hero #hv{height:var(--hero-h) !important}}
+@media (min-width:900px){#hero{--hero-h:min(640px,max(340px,calc(100svh / var(--nxz,1) - var(--fold-off,284px))));height:var(--hero-h);box-sizing:border-box}#hero #hv{height:var(--hero-h) !important}}
 #proto-pages{position:fixed;right:16px;bottom:16px;z-index:200;font:12px 'Geist Mono',ui-monospace,Menlo,monospace}
 #proto-pages summary{list-style:none;cursor:pointer;padding:8px 12px;background:#161616;color:#FFFFFF;letter-spacing:.04em;text-transform:uppercase}#proto-pages summary::-webkit-details-marker{display:none}
 #proto-pages nav{position:absolute;right:0;bottom:100%;margin-bottom:6px;min-width:220px;background:#FFFFFF;border:1px solid #E2E0DC;box-shadow:0 12px 32px -16px rgba(22,22,22,.35)}
