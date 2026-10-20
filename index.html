@@ -1496,11 +1496,40 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
   window.addEventListener("nx:page", () => requestAnimationFrame(setup)); setInterval(setup, 1000); setup();
 })();
 </script>
-<script>// Article breadcrumb variants (review): A–D switch, remembered per browser
+<script>// Article breadcrumb variants (review): a dock toggle (‹ name › with a list) like the other design labs, plus the
+// in-page A–D switch (the share build hides the dock). Both set html[data-abv]; remembered per browser.
 (function () {
-  try { const v = localStorage.getItem("nx-abv"); if (v) document.documentElement.setAttribute("data-abv", v); } catch (e) {}
-  document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest(".absw button"); if (!b) return;
-    document.documentElement.setAttribute("data-abv", b.dataset.v); try { localStorage.setItem("nx-abv", b.dataset.v); } catch (er) {} });
+  const V = [
+    { n: "A", v: "a", name: "Centred label", d: "BLOG / GUIDE as a small mono label above the centred title" },
+    { n: "B", v: "b", name: "Centred trail", d: "Home / Blog / title, centred, on a white label over the grid lines" },
+    { n: "C", v: "c", name: "Hairline bar", d: "A bar across the content column: trail left, GUIDE · 24 MIN READ right" },
+    { n: "D", v: "d", name: "Left-aligned", d: "Trail, title, intro and byline all on the content's left edge" },
+  ];
+  const root = document.documentElement;
+  let cur = 0; try { const s = localStorage.getItem("nx-abv"); const i = V.findIndex((x) => x.v === s); if (i >= 0) cur = i; } catch (e) {}
+  const h = (tag, attrs, kids) => { const el = document.createElement(tag); for (const k in attrs || {}) { if (k === "text") el.textContent = attrs[k]; else if (k.startsWith("on")) el.addEventListener(k.slice(2), attrs[k]); else el.setAttribute(k, attrs[k]); } (kids || []).forEach((c) => c != null && el.append(c)); return el; };
+  const set = (i) => { cur = (i + V.length) % V.length; root.setAttribute("data-abv", V[cur].v); try { localStorage.setItem("nx-abv", V[cur].v); } catch (e) {} render(); };
+  document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest(".absw button"); if (!b) return; set(V.findIndex((x) => x.v === b.dataset.v)); });
+  const dock = document.querySelector(".nx-dock") || (() => { const d = h("div", { class: "nx-dock" }); document.body.append(d); return d; })();
+  const wrap = h("div", { class: "nxh" });
+  const btn = h("button", { type: "button", class: "nxh-btn", "aria-expanded": "false", "aria-controls": "nxab-pop" });
+  const pop = h("div", { id: "nxab-pop", class: "nxp-pop nxh-pop", role: "dialog", "aria-label": "Breadcrumb style" });
+  wrap.append(pop, h("div", { class: "nxh-bar" }, [h("button", { type: "button", class: "nxh-a", "aria-label": "Previous", onclick: () => set(cur - 1) }, ["‹"]), btn, h("button", { type: "button", class: "nxh-a", "aria-label": "Next", onclick: () => set(cur + 1) }, ["›"])]));
+  dock.prepend(wrap);
+  let open = false;
+  function render() {
+    const v = V[cur];
+    btn.replaceChildren(h("span", { class: "nxp-l", text: "Breadcrumb" }), h("span", { class: "nxp-n", text: v.n + " " + v.name }));
+    btn.setAttribute("aria-expanded", String(open)); pop.classList.toggle("on", open); if (!open) return;
+    pop.replaceChildren(
+      h("div", { class: "nxp-hd" }, [h("div", {}, [h("p", { class: "nxp-eye", text: "Article · breadcrumb" }), h("p", { class: "nxp-t", text: v.name }), h("p", { class: "nxp-s", text: v.d })]), h("button", { type: "button", class: "nxp-x", "aria-label": "Close", onclick: () => { open = false; render(); } }, ["×"])]),
+      h("div", { class: "nxp-list" }, V.map((x, i) => h("button", { type: "button", class: "nxp-opt", "aria-pressed": String(i === cur), onclick: () => set(i) }, [h("span", { class: "nxh-num", text: x.n }), h("span", { class: "nm", text: x.name })]))));
+  }
+  btn.addEventListener("click", () => { open = !open; render(); });
+  document.addEventListener("click", (e) => { if (open && !wrap.contains(e.target)) { open = false; render(); } });
+  const vis = () => { const p = window.__nx && window.__nx.page && window.__nx.page(); wrap.hidden = !p || p.key !== "article"; if (wrap.hidden && open) { open = false; render(); } };
+  window.addEventListener("nx:page", vis);
+  root.setAttribute("data-abv", V[cur].v); render(); vis();
 })();
 </script>
 <script>// Getting started · photo versions: A/B switch (remembered per browser) and the meters/bar drawing in when the
