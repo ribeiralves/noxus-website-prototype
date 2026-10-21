@@ -1214,6 +1214,8 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
       // at the end of a chapter: the next step (auto-advance), or, once someone has picked a step / there is only one, the same chapter again
       if (!rm && t > durs[i] + HOLD) { if (!manual && steps.length > 1) steps[(i + 1) % steps.length].click(); tA = now; t = 0; tLast = 0; }
       if (rm) t = durs[i];
+      // time left on the open step, for its progress line (0 → 1 over the chapter, full when someone picked a step)
+      { const sb = steps[i]; const li = sb && (sb.closest('li') || sb); if (li) li.style.setProperty('--nxp', manual || rm ? 1 : Math.min(1, Math.max(0, t / (durs[i] + HOLD))).toFixed(4)); }
       if (window.__MT && window.__MT[2] === this._key) { i = window.__MT[0]; t = window.__MT[1]; chs.forEach((c, j) => c.style.display = j === i ? 'block' : 'none'); }
       chs[i].style.opacity = k(t, 0, .3);
       draw(i, Math.min(t, durs[i] + HOLD));
@@ -1614,5 +1616,11 @@ html:not(#nx1):not(#nx2):not(#nx3) .dmd{display:block !important;margin-left:24p
 html:not(#nx1):not(#nx2):not(#nx3) .dmi.on .dmd{max-height:6em;opacity:1;padding-top:8px;transition:max-height 450ms cubic-bezier(.2,.7,.2,1),opacity 400ms ease 150ms,padding-top 450ms cubic-bezier(.2,.7,.2,1) !important}
 html:not(#nx1):not(#nx2):not(#nx3) .dmp{display:none !important}
 @media (prefers-reduced-motion: reduce){html:not(#nx1):not(#nx2):not(#nx3) :is(.dmd,.dmt::before){transition:none !important}}
+/* Platform tour: like the Home platform list — no left edge, no dividers, and a line under the open step that fills
+   with the product screen's own clock; the next step opens when it is full */
+html:not(#nx1):not(#nx2):not(#nx3):not(#nx4) #pageroot #tour :is(.sbi,.sbi.on,.sbi:last-child){background:none !important;box-shadow:none !important;border:0 !important}
+html:not(#nx1):not(#nx2):not(#nx3) #tour .sbi{margin-left:0 !important;width:auto !important;padding-left:0 !important}
+html:not(#nx1):not(#nx2):not(#nx3) #tour .sbd p{padding-bottom:0 !important}
+html:not(#nx1):not(#nx2):not(#nx3) #tour .sbi.on .sbd::after{content:"";display:block;height:1px;margin:20px 0 4px 24px;background:linear-gradient(#161616,#161616) 0 0 / calc(var(--nxp,0) * 100%) 100% no-repeat,#E2E0DC}
 </style>
 </body></html>
