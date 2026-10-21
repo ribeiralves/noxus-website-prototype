@@ -1517,18 +1517,43 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
   tag(); window.addEventListener("nx:page", () => requestAnimationFrame(() => requestAnimationFrame(tag))); setInterval(tag, 1000);
 })();
 </script>
-<script>// Title font (review): switch page titles (h1) and section titles (h2) between BDO Grotesk and Martel (Google Fonts),
-// remembered per browser. Visible in the share build too.
+<script>// Title font (review): page titles (h1) and section titles (h2) in BDO Grotesk or one of several serifs (Google Fonts),
+// stepped through with ‹ › and a weight slider. Remembered per browser; visible in the share build too.
 (function () {
-  const V = [["bdo", "BDO Grotesk"], ["martel", "Martel"], ["martel-l", "Martel Light"]];
-  const root = document.documentElement;
-  const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "https://fonts.googleapis.com/css2?family=Martel:wght@300;400;600&display=swap"; document.head.appendChild(l);
-  let v = "bdo"; try { const s = localStorage.getItem("nx-tf"); if (V.some((x) => x[0] === s)) v = s; } catch (e) {}
-  root.setAttribute("data-tf", v);
+  const F = [
+    ["BDO Grotesk", "'BDO Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif", 300, 600, -0.025, 1.04],
+    ["Martel", "'Martel',Georgia,serif", 200, 900, -0.012, 1.16],
+    ["Newsreader", "'Newsreader',Georgia,serif", 200, 800, -0.02, 1.08],
+    ["Fraunces", "'Fraunces',Georgia,serif", 100, 900, -0.02, 1.06],
+    ["Source Serif 4", "'Source Serif 4',Georgia,serif", 200, 900, -0.015, 1.1],
+    ["Literata", "'Literata',Georgia,serif", 200, 900, -0.015, 1.12],
+    ["Spectral", "'Spectral',Georgia,serif", 200, 800, -0.01, 1.12],
+    ["EB Garamond", "'EB Garamond',Georgia,serif", 400, 800, -0.01, 1.08],
+    ["Playfair Display", "'Playfair Display',Georgia,serif", 400, 900, -0.01, 1.1],
+    ["Instrument Serif", "'Instrument Serif',Georgia,serif", 400, 400, -0.01, 1.05],
+    ["DM Serif Display", "'DM Serif Display',Georgia,serif", 400, 400, -0.01, 1.08],
+    ["Libre Caslon Text", "'Libre Caslon Text',Georgia,serif", 400, 700, -0.015, 1.12],
+  ];
+  const l = document.createElement("link"); l.rel = "stylesheet";
+  l.href = "https://fonts.googleapis.com/css2?family=Martel:wght@200;300;400;600;700;800;900&family=Newsreader:opsz,wght@6..72,200..800&family=Fraunces:opsz,wght@9..144,100..900&family=Source+Serif+4:opsz,wght@8..60,200..900&family=Literata:opsz,wght@7..72,200..900&family=Spectral:wght@200;300;400;500;600;700;800&family=EB+Garamond:wght@400..800&family=Playfair+Display:wght@400..900&family=Instrument+Serif&family=DM+Serif+Display&family=Libre+Caslon+Text:wght@400;700&display=swap";
+  document.head.appendChild(l);
+  const st = document.createElement("style"); document.head.appendChild(st);
+  let fi = 0, w = 400;
+  try { const s = JSON.parse(localStorage.getItem("nx-tf2") || "null"); if (s) { fi = Math.max(0, F.findIndex((f) => f[0] === s.f)); w = s.w || 400; } } catch (e) {}
   const bar = document.createElement("div"); bar.className = "shsw tfsw"; bar.setAttribute("role", "group"); bar.setAttribute("aria-label", "Title font");
-  bar.innerHTML = "<span>Titles</span>" + V.map((x) => '<button type="button" data-v="' + x[0] + '">' + x[1] + "</button>").join("");
-  bar.addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; root.setAttribute("data-tf", b.dataset.v); try { localStorage.setItem("nx-tf", b.dataset.v); } catch (er) {} });
-  document.body.appendChild(bar);
+  bar.innerHTML = '<span>Titles</span><button type="button" data-a="-1" aria-label="Previous font">‹</button><b class="tf-n"></b><button type="button" data-a="1" aria-label="Next font">›</button>' +
+    '<label class="tf-w"><span>Weight</span><input type="range" step="10"><i></i></label>';
+  const nm = bar.querySelector(".tf-n"), rg = bar.querySelector("input"), wv = bar.querySelector("i");
+  const apply = () => {
+    const f = F[fi]; w = Math.min(f[3], Math.max(f[2], w));
+    rg.min = f[2]; rg.max = f[3]; rg.value = w; rg.disabled = f[2] === f[3];
+    nm.textContent = f[0]; wv.textContent = w;
+    st.textContent = 'html:not(#nx1):not(#nx2):not(#nx3) #pageroot :is(h1,h2):not([style*="Geist Mono"]){font-family:' + f[1] + ' !important;font-weight:' + w + ' !important;letter-spacing:' + f[4] + 'em !important;line-height:' + f[5] + ' !important;font-variation-settings:normal}';
+    try { localStorage.setItem("nx-tf2", JSON.stringify({ f: f[0], w })); } catch (e) {}
+  };
+  bar.addEventListener("click", (e) => { const b = e.target.closest("button[data-a]"); if (!b) return; fi = (fi + +b.dataset.a + F.length) % F.length; apply(); });
+  rg.addEventListener("input", () => { w = +rg.value; apply(); });
+  document.body.appendChild(bar); apply();
 })();
 </script>
 <style>/* Section headers · variants (html[data-shv]) */
@@ -1549,12 +1574,16 @@ html[data-shv="stack"] #pageroot .shx > p{margin:24px 0 0 !important;max-width:5
 html[data-shv="cur"] #pageroot .shx{align-items:center !important}
 /* Hero subtitles: the same 18px as the section intros, their own tighter line height */
 html:not(.nx-before):not(#nx1):not(#nx2) body #pageroot :is(h1 + p, h1 ~ p:first-of-type){font-size:18px !important;line-height:26px !important}
-/* Title font switch (html[data-tf]) */
+/* Title font switch */
 .tfsw{bottom:56px}
-html[data-tf="bdo"] .tfsw [data-v="bdo"],html[data-tf="martel"] .tfsw [data-v="martel"],html[data-tf="martel-l"] .tfsw [data-v="martel-l"]{background:#161616;color:#FFFFFF}
-html:is([data-tf="martel"],[data-tf="martel-l"]):not(#nx1):not(#nx2) #pageroot :is(h1,h2):not([style*="Geist Mono"]){font-family:'Martel',Georgia,'Times New Roman',serif !important;letter-spacing:-0.012em !important;line-height:1.16 !important}
-html[data-tf="martel"]:not(#nx1):not(#nx2) #pageroot :is(h1,h2):not([style*="Geist Mono"]){font-weight:400 !important}
-html[data-tf="martel-l"]:not(#nx1):not(#nx2) #pageroot :is(h1,h2):not([style*="Geist Mono"]){font-weight:300 !important}
+.tfsw .tf-n{min-width:150px;padding:0 12px;font-weight:400;text-align:center;color:#161616;border-left:1px solid #161616;border-right:1px solid #161616}
+.tfsw button[data-a]{width:32px;padding:0}
+.tfsw button[data-a="1"]{border-left:0}
+.tfsw .tf-w{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 12px;border-left:1px solid #161616}
+.tfsw .tf-w span{padding:0;color:#6B6B69}
+.tfsw .tf-w input{width:110px;accent-color:#161616}
+.tfsw .tf-w input:disabled{opacity:.3}
+.tfsw .tf-w i{font-style:normal;min-width:28px;color:#161616}
 </style>
 <script>// Getting started · photo versions: A/B switch (remembered per browser) and the meters/bar drawing in when the
 // section first comes into view.
