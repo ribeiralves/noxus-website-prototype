@@ -1445,6 +1445,35 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
   if (document.fonts) document.fonts.ready.then(fit); setInterval(fit, 1500); fit();
 })();
 </script>
+<script>// Review options in one corner: the Hero meters, Timer, Titles and Headers switches are gathered into a small
+// "Options" button beside Pages (bottom right). It opens a panel that stacks them; the choice of open/closed is remembered.
+(function () {
+  const css = `#nx-opts{position:fixed;bottom:16px;right:104px;z-index:205;font:12px 'Geist Mono',ui-monospace,Menlo,monospace}
+#nx-opts > summary{list-style:none;cursor:pointer;padding:8px 12px;background:#FFFFFF;color:#161616;border:1px solid #161616;letter-spacing:.04em;text-transform:uppercase;line-height:14px}
+#nx-opts > summary::-webkit-details-marker{display:none}
+#nx-opts[open] > summary{background:#161616;color:#FFFFFF}
+#nx-opts .nxo-p{position:fixed;right:16px;bottom:56px;display:flex;flex-direction:column;align-items:stretch;gap:8px;width:max-content;max-width:calc(100vw - 32px);max-height:calc(100vh - 100px);overflow:auto;padding:12px;background:#FFFFFF;border:1px solid #E2E0DC;box-shadow:0 12px 32px -16px rgba(22,22,22,.35)}
+#nx-opts .nxo-p > .shsw{position:static !important;transform:none !important;left:auto !important;bottom:auto !important;display:flex !important;width:100%;box-sizing:border-box}
+#nx-opts .nxo-p > .shsw > span:first-child{min-width:72px}
+#nx-opts .nxo-p > .hcm{position:static !important;width:auto !important;max-height:none !important;box-shadow:none !important}
+@media (max-width: 700px){#nx-opts .nxo-p > .tfsw{flex-wrap:wrap}#nx-opts .nxo-p > .tfsw .tf-w{flex:1 0 100%;border-left:0;border-top:1px solid #161616}}`;
+  const st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
+  const d = document.createElement("details"); d.id = "nx-opts";
+  d.innerHTML = '<summary>Options</summary><div class="nxo-p" role="group" aria-label="Review options"></div>';
+  const p = d.querySelector(".nxo-p"); document.body.appendChild(d);
+  try { if (localStorage.getItem("nx-opts") === "1") d.open = true; } catch (e) {}
+  d.addEventListener("toggle", () => { try { localStorage.setItem("nx-opts", d.open ? "1" : "0"); } catch (e) {} });
+  const ORDER = [".hcm", ".tmsw", ".tfsw", ".shsw:not(.tmsw):not(.tfsw)"];
+  const place = () => {
+    const pg = document.getElementById("proto-pages"); if (pg) d.style.right = (16 + pg.querySelector("summary").offsetWidth + 8) + "px";
+    let moved = false;
+    ORDER.forEach((q) => document.querySelectorAll("body > " + q).forEach((el) => { p.appendChild(el); moved = true; }));
+    if (moved) ORDER.forEach((q) => p.querySelectorAll(":scope > " + q).forEach((el) => p.appendChild(el)));
+    d.hidden = !p.children.length;
+  };
+  new MutationObserver(place).observe(document.body, { childList: true }); addEventListener("resize", place); place(); setTimeout(place, 500);
+})();
+</script>
 <script>// Timer style switch (review): the time-left indicator on rotating lists as a horizontal line under the open item or
 // a vertical rail beside it. html[data-tmr]; remembered per browser.
 (function () {
