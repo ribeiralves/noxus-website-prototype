@@ -1514,6 +1514,9 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
   bar.innerHTML = '<span>Headers</span>' + V.map((x) => '<button type="button" data-v="' + x[0] + '">' + x[1] + "</button>").join("");
   bar.addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; root.setAttribute("data-shv", b.dataset.v); try { localStorage.setItem("nx-shv", b.dataset.v); } catch (er) {} });
   document.body.appendChild(bar);
+  // section titles: every h2 drawn at the 40px section size gets .h2s (44px / 1.2 in shx.css)
+  const tagH2 = () => document.querySelectorAll("#pageroot h2:not(.h2s)").forEach((h) => { if (h.__h2 || !h.offsetParent) return; h.__h2 = 1; if (Math.round(parseFloat(getComputedStyle(h).fontSize)) === 40) h.classList.add("h2s"); });
+  tagH2(); setInterval(tagH2, 700); window.addEventListener("nx:page", () => requestAnimationFrame(tagH2));
   tag(); window.addEventListener("nx:page", () => requestAnimationFrame(() => requestAnimationFrame(tag))); setInterval(tag, 1000);
 })();
 </script>
@@ -1548,7 +1551,7 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
     const f = F[fi]; w = Math.min(f[3], Math.max(f[2], w));
     rg.min = f[2]; rg.max = f[3]; rg.value = w; rg.disabled = f[2] === f[3];
     nm.textContent = f[0]; wv.textContent = w;
-    st.textContent = 'html:not(#nx1):not(#nx2):not(#nx3) #pageroot :is(h1,h2):not([style*="Geist Mono"]){font-family:' + f[1] + ' !important;font-weight:' + w + ' !important;letter-spacing:' + f[4] + 'em !important;line-height:' + f[5] + ' !important;font-variation-settings:normal}';
+    st.textContent = 'html:not(#nx1):not(#nx2):not(#nx3) #pageroot :is(h1,h2):not([style*="Geist Mono"]){font-family:' + f[1] + ' !important;font-weight:' + w + ' !important;letter-spacing:' + f[4] + 'em !important;font-variation-settings:normal}html:not(#nx1):not(#nx2):not(#nx3) #pageroot h1{line-height:' + f[5] + ' !important}';
     try { localStorage.setItem("nx-tf2", JSON.stringify({ f: f[0], w })); } catch (e) {}
   };
   bar.addEventListener("click", (e) => { const b = e.target.closest("button[data-a]"); if (!b) return; fi = (fi + +b.dataset.a + F.length) % F.length; apply(); });
@@ -1576,14 +1579,18 @@ html[data-shv="cur"] #pageroot .shx{align-items:center !important}
 html:not(.nx-before):not(#nx1):not(#nx2) body #pageroot :is(h1 + p, h1 ~ p:first-of-type){font-size:18px !important;line-height:26px !important}
 /* Title font switch */
 .tfsw{bottom:56px}
-.tfsw .tf-n{min-width:150px;padding:0 12px;font-weight:400;text-align:center;color:#161616;border-left:1px solid #161616;border-right:1px solid #161616}
+.tfsw .tf-n{min-width:150px;padding:0 12px;font-weight:400;text-align:center;color:#161616}
 .tfsw button[data-a]{width:32px;padding:0}
 .tfsw button[data-a="1"]{border-left:0}
+.tfsw button[data-a="-1"]{border-right:0}
 .tfsw .tf-w{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 12px;border-left:1px solid #161616}
 .tfsw .tf-w span{padding:0;color:#6B6B69}
 .tfsw .tf-w input{width:110px;accent-color:#161616}
 .tfsw .tf-w input:disabled{opacity:.3}
 .tfsw .tf-w i{font-style:normal;min-width:28px;color:#161616}
+
+/* Section titles: 44px / 1.2 on every page */
+html:not(#nx1):not(#nx2):not(#nx3):not(#nx4) #pageroot h2.h2s{font-size:44px !important;line-height:1.2 !important}
 </style>
 <script>// Getting started · photo versions: A/B switch (remembered per browser) and the meters/bar drawing in when the
 // section first comes into view.
