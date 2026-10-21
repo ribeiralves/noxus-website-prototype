@@ -1201,7 +1201,7 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
     let cur = -1, tA = performance.now(), manual = false, vis = false, tLast = 0;
     // starts when the screen scrolls into view and restarts its chapter each time it comes back; frozen while off screen
     if ('IntersectionObserver' in window) (host.__nxio = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting && !vis) { tA = performance.now(); tLast = 0; } vis = e.isIntersecting; }), { threshold: 0.3 })).observe(host); else vis = true;
-    steps.forEach((b) => b.addEventListener('click', (e) => { if (e.isTrusted) manual = true; }));
+    steps.forEach((b) => b.addEventListener('click', (e) => { if (e.isTrusted) { tA = performance.now(); tLast = 0; } }));   // a click restarts that step's clock; rotation carries on
     const isOn = (b) => { const li = b.closest('li'); return b.classList.contains('on') || b.getAttribute('aria-selected') === 'true' || b.getAttribute('aria-pressed') === 'true' || (li && li.classList.contains('on')); };
     const act = () => { for (let j = 0; j < steps.length; j++) if (isOn(steps[j])) return j; return 0; };
     try { const a0 = act(); if (steps[a0]) steps[a0].click(); } catch (e) {}
@@ -1215,7 +1215,7 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
       if (!rm && t > durs[i] + HOLD) { if (!manual && steps.length > 1) steps[(i + 1) % steps.length].click(); tA = now; t = 0; tLast = 0; }
       if (rm) t = durs[i];
       // time left on the open step, for its progress line (0 → 1 over the chapter, full when someone picked a step)
-      { const sb = steps[i]; const li = sb && (sb.closest('li') || sb); if (li) li.style.setProperty('--nxp', manual || rm ? 1 : Math.min(1, Math.max(0, t / (durs[i] + HOLD))).toFixed(4)); }
+      { const sb = steps[i]; const li = sb && (sb.closest('li') || sb); if (li) li.style.setProperty('--nxp', rm ? 1 : Math.min(1, Math.max(0, t / (durs[i] + HOLD))).toFixed(4)); }
       if (window.__MT && window.__MT[2] === this._key) { i = window.__MT[0]; t = window.__MT[1]; chs.forEach((c, j) => c.style.display = j === i ? 'block' : 'none'); }
       chs[i].style.opacity = k(t, 0, .3);
       draw(i, Math.min(t, durs[i] + HOLD));
@@ -1403,13 +1403,30 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
     let a = 0, hold = false;
     const set = (i) => { a = i; list.classList.toggle("held", hold); [...list.children].forEach((li, k) => li.classList.toggle("on", k === i)); [...card.children].forEach((c, k) => c.classList.toggle("on", k === i)); };
     // only a click (or Enter/Space on the button) changes the topic; it then stays there — hover does nothing
-    [...list.children].forEach((li, i) => li.querySelector("button").addEventListener("click", () => { hold = true; set(i); }));
+    // a click opens that topic and restarts its timer; the rotation carries on from there (hover does nothing)
+    [...list.children].forEach((li, i) => li.querySelector("button").addEventListener("click", () => { set(i); const b = li.querySelector(".f14bar i"); if (b) { b.style.animation = "none"; void b.offsetWidth; b.style.animation = ""; } }));
     set(0);
+    // mirror the bar's progress into --nxp on the open topic, so the vertical rail can read it too
+    const mirror = () => { if (!sec.isConnected) return; const li = list.querySelector("li.on"); if (li) { const b = li.querySelector(".f14bar i"); const m = b && getComputedStyle(b).transform; const v = m && m.startsWith("matrix(") ? parseFloat(m.slice(7)) : (m === "none" ? 1 : 0); li.style.setProperty("--nxp", v.toFixed(4)); } requestAnimationFrame(mirror); };
+    requestAnimationFrame(mirror);
     if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     // the open topic's bar fills over 6s; when it is full the next topic opens (a click holds: bar stays full)
     list.addEventListener("animationend", (e) => { if (e.animationName !== "f14fill" || hold) return; set((a + 1) % rows.length); });
   }
   window.addEventListener("nx:page", () => requestAnimationFrame(setup)); setInterval(setup, 800); setup();
+})();
+</script>
+<script>// Timer style switch (review): the time-left indicator on rotating lists as a horizontal line under the open item or
+// a vertical rail beside it. html[data-tmr]; remembered per browser.
+(function () {
+  const V = [["h", "Line"], ["v", "Rail"]];
+  const root = document.documentElement;
+  let v = "h"; try { const s = localStorage.getItem("nx-tmr"); if (s === "h" || s === "v") v = s; } catch (e) {}
+  root.setAttribute("data-tmr", v);
+  const bar = document.createElement("div"); bar.className = "shsw tmsw"; bar.setAttribute("role", "group"); bar.setAttribute("aria-label", "Timer style");
+  bar.innerHTML = "<span>Timer</span>" + V.map((x) => '<button type="button" data-v="' + x[0] + '">' + x[1] + "</button>").join("");
+  bar.addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; root.setAttribute("data-tmr", b.dataset.v); try { localStorage.setItem("nx-tmr", b.dataset.v); } catch (er) {} });
+  document.body.appendChild(bar);
 })();
 </script>
 <style>/* Home · platform section as list + card */
@@ -1465,6 +1482,18 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
 #pageroot section#f14 + section{padding-top:120px !important}
 /* delimit the half-screen section with full-width hairlines above and below, as on the Platform pages */
 #pageroot section#f14{border-top:1px solid #E2E0DC !important;border-bottom:1px solid #E2E0DC !important}
+/* Timer switch */
+.shsw.tmsw{bottom:96px}
+html[data-tmr="h"] .tmsw [data-v="h"],html[data-tmr="v"] .tmsw [data-v="v"]{background:#161616;color:#FFFFFF}
+/* Rail: a vertical line beside the open item that fills top to bottom (Home list + Platform tour) */
+html[data-tmr="v"] #pageroot #f14 .f14bar{visibility:hidden;height:0;margin:0}
+html[data-tmr="v"] #pageroot #f14 .f14l li,html[data-tmr="v"] #pageroot #tour .sbi{position:relative}
+html[data-tmr="v"] #pageroot #f14 .f14l li.on::before,html[data-tmr="v"] #pageroot #tour .sbi.on::after{content:"";position:absolute;left:-20px;top:0;bottom:0;width:2px;display:block !important;
+  background:linear-gradient(#161616,#161616) 0 0 / 100% calc(var(--nxp,0) * 100%) no-repeat,#E2E0DC}
+html:not(#nx1):not(#nx2):not(#nx3) html[data-tmr="v"] #tour .sbi.on .sbd::after{display:none}
+html[data-tmr="v"]:not(#nx1):not(#nx2):not(#nx3) #tour .sbi.on .sbd::after{display:none !important}
+html[data-tmr="v"] #pageroot #tour .sbi{padding-top:14px !important;padding-bottom:14px !important}
+html[data-tmr="v"] #pageroot #f14 .f14l button{padding:16px 0}
 </style>
 <script>// Title font (review): page titles (h1) and section titles (h2) in BDO Grotesk or one of several serifs (Google Fonts),
 // stepped through with ‹ › and a weight slider. Remembered per browser; visible in the share build too.
