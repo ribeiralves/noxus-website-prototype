@@ -1378,7 +1378,7 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
       const t = r.querySelector(".qtext"), h = t.querySelector("h3"), p = t.querySelector("p"), a = t.querySelector("a.qcta");
       const li = document.createElement("li"); li.dataset.i = i;
       const b = document.createElement("button"); b.type = "button";
-      b.innerHTML = '<span class="f14t"></span><span class="f14d"><span class="f14p"></span></span>';
+      b.innerHTML = '<span class="f14t"></span><span class="f14d"><span class="f14p"></span></span><span class="f14bar" aria-hidden="true"><i></i></span>';
       b.querySelector(".f14t").textContent = h.textContent; b.querySelector(".f14p").textContent = p.textContent;
       li.appendChild(b); if (a) { const d = b.querySelector(".f14d"); a.classList.add("f14a"); d.appendChild(a); }
       list.appendChild(li);
@@ -1387,12 +1387,13 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
     });
     box.append(list, card); wrap.insertBefore(box, rows[0]);
     let a = 0, hold = false;
-    const set = (i) => { a = i; [...list.children].forEach((li, k) => li.classList.toggle("on", k === i)); [...card.children].forEach((c, k) => c.classList.toggle("on", k === i)); };
+    const set = (i) => { a = i; list.classList.toggle("held", hold); [...list.children].forEach((li, k) => li.classList.toggle("on", k === i)); [...card.children].forEach((c, k) => c.classList.toggle("on", k === i)); };
     // only a click (or Enter/Space on the button) changes the topic; it then stays there — hover does nothing
     [...list.children].forEach((li, i) => li.querySelector("button").addEventListener("click", () => { hold = true; set(i); }));
     set(0);
     if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const iv = setInterval(() => { if (!sec.isConnected) { clearInterval(iv); return; } if (hold || document.hidden || (window.__nxIn && !window.__nxIn(sec))) return; set((a + 1) % rows.length); }, 6000);
+    // the open topic's bar fills over 6s; when it is full the next topic opens (a click holds: bar stays full)
+    list.addEventListener("animationend", (e) => { if (e.animationName !== "f14fill" || hold) return; set((a + 1) % rows.length); });
   }
   window.addEventListener("nx:page", () => requestAnimationFrame(setup)); setInterval(setup, 800); setup();
 })();
@@ -1419,6 +1420,14 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
 /* Integrations tabs (Platform + solution pages): no 01 / 02 / 03 numbers */
 #pageroot section[aria-label="Integrations"] button.tab > span[style*="Geist Mono"]{display:none !important}
 #pageroot section[aria-label="Integrations"] button.tab > h3{margin-top:0 !important}
+/* time remaining on the open topic: a hairline under its text that fills, then the next topic opens */
+#pageroot #f14 .f14bar{display:none;position:relative;height:1px;margin:24px 0 0 24px;background:#E2E0DC;overflow:hidden}
+#pageroot #f14 li.on .f14bar{display:block}
+#pageroot #f14 .f14bar i{position:absolute;left:0;top:0;bottom:0;width:100%;background:#161616;transform:scaleX(0);transform-origin:left center}
+#pageroot #f14 li.on .f14bar i{animation:f14fill 6s linear forwards}
+#pageroot #f14 .f14l.held li.on .f14bar i{animation:none;transform:none}
+@keyframes f14fill{to{transform:scaleX(1)}}
+@media (prefers-reduced-motion: reduce){#pageroot #f14 li.on .f14bar i{animation:none;transform:none}}
 </style>
 <script>// Title font (review): page titles (h1) and section titles (h2) in BDO Grotesk or one of several serifs (Google Fonts),
 // stepped through with ‹ › and a weight slider. Remembered per browser; visible in the share build too.
