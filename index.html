@@ -1495,6 +1495,8 @@ html:not(#nx1):not(#nx2):not(#nx3):not(#nx4) #pageroot h2.h2s{font-size:44px !im
 html:not(#nx1):not(#nx2):not(#nx3) #pageroot section[aria-label="Workflows"] :is(.shx,div:has(> h2 + p)){display:flex !important;flex-direction:column !important;align-items:center !important;text-align:center !important;gap:0 !important}
 html:not(#nx1):not(#nx2):not(#nx3) #pageroot section[aria-label="Workflows"] :is(.shx,div:has(> h2 + p)) > h2{max-width:820px !important;text-align:center !important;padding-right:0 !important;text-wrap:balance}
 html:not(#nx1):not(#nx2):not(#nx3) #pageroot section[aria-label="Workflows"] :is(.shx,div:has(> h2 + p)) > p{margin:20px auto 0 !important;max-width:560px !important;text-align:center !important;justify-self:auto !important;align-self:center !important}
+/* Section intros never larger than the hero subtitle: every paragraph next to a section title is 16/28 */
+html:not(#nx1):not(#nx2):not(#nx3):not(#nx4) #pageroot h2.h2s ~ p{font-size:16px !important;line-height:28px !important}
 </style>
 <script>// Getting started · photo versions: A/B switch (remembered per browser) and the meters/bar drawing in when the
 // section first comes into view.
