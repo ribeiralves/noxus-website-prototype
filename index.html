@@ -1429,6 +1429,12 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
 @keyframes f14fill{to{transform:scaleX(1)}}
 @media (prefers-reduced-motion: reduce){#pageroot #f14 li.on .f14bar i{animation:none;transform:none}}
 #pageroot #f14 a.f14a{border-bottom:0 !important;box-shadow:none !important;text-decoration:none !important}
+/* one box around list + visual (like the original platform cards): list on the left, visual panel flush right */
+#pageroot #f14 .f14x{gap:0 !important;border:1px solid #E2E0DC;background:#FFFFFF;align-items:stretch}
+#pageroot #f14 .f14l{padding:48px 48px 40px}
+#pageroot #f14 .f14c{border:0;border-left:1px solid #E2E0DC;align-content:center}
+@media (max-width: 1000px){#pageroot #f14 .f14l{padding:28px 20px}#pageroot #f14 .f14c{margin-top:0;border-left:0;border-top:1px solid #E2E0DC}}
+#pageroot #f14 .f14l{align-self:center}
 </style>
 <script>// Title font (review): page titles (h1) and section titles (h2) in BDO Grotesk or one of several serifs (Google Fonts),
 // stepped through with ‹ › and a weight slider. Remembered per browser; visible in the share build too.
