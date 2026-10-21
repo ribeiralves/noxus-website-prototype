@@ -955,7 +955,7 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
 (function () {
   const NS = "http://www.w3.org/2000/svg";
   const rm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const DEF = { band: 100, mode: "process", amb: 4, pspeed: 220, ppause: 0.7, phold: 2.5, psize: 1, pphoto: 1, lines: 18, rate: 3.5, speed: 280, turns: 3, linger: 3, fine: 2, photos: 4, chance: 75, size: 4, irregular: 60, hold: 3, span: 3, clear: 1 };
+  const DEF = { band: 100, mode: "centered", amb: 4, pspeed: 220, ppause: 0.7, phold: 2.5, psize: 1, pphoto: 1, lines: 18, rate: 3.5, speed: 280, turns: 3, linger: 3, fine: 2, photos: 4, chance: 75, size: 4, irregular: 60, hold: 3, span: 3, clear: 1 };
   const PMETERS = [
     ["amb", "Background lines", 0, 20, 1, ""], ["pspeed", "Process speed", 80, 600, 10, "px/s"], ["ppause", "Pause at each step", 0, 3, 0.1, "s"],
     ["band", "Photo height (0 anywhere · 100 centred on headline)", 0, 100, 5, "%"], ["phold", "Result stays", 0.5, 8, 0.5, "s"], ["psize", "Person photo size", 0.5, 2, 0.25, "×"], ["pphoto", "Photo at person step", 0, 1, 1, ""],
@@ -969,6 +969,7 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
   ];
   let C = Object.assign({}, DEF);
   try { const s = JSON.parse(localStorage.getItem("nx-hc") || "null"); if (s) Object.assign(C, s); } catch (e) {}
+  if (C.mode !== "centered" && C.mode !== "chaos") C.mode = "centered";   // Process mode removed (round 13)
   document.documentElement.setAttribute("data-hmode", C.mode);
   window.__hc = C;
   const save = () => { try { localStorage.setItem("nx-hc", JSON.stringify(C)); } catch (e) {} };
@@ -984,7 +985,7 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
     try { if (localStorage.getItem("nx-hc-open") === "1") panel.classList.add("open"); } catch (e) {}
     const inputs = {};
     const mrow = document.createElement("div"); mrow.className = "hcm-m";
-    ["process", "centered", "chaos"].forEach((m) => { const b = document.createElement("button"); b.type = "button"; b.dataset.m = m; b.textContent = m === "process" ? "Process" : m === "centered" ? "Centered" : "Chaos";
+    ["centered", "chaos"].forEach((m) => { const b = document.createElement("button"); b.type = "button"; b.dataset.m = m; b.textContent = m === "process" ? "Process" : m === "centered" ? "Centered" : "Chaos";
       b.addEventListener("click", () => { C.mode = m; save(); sync(); }); mrow.appendChild(b); });
     body.appendChild(mrow);
     const sync = () => { mrow.querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.m === C.mode)); body.dataset.mode = C.mode; document.documentElement.setAttribute("data-hmode", C.mode); if (window.__hcRemeasure) requestAnimationFrame(window.__hcRemeasure); };
@@ -1138,165 +1139,6 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
   }
   const off = () => { cancelAnimationFrame(raf); if (panel) panel.style.display = "none"; };
   window.addEventListener("nx:page", (e) => { if (e.detail && e.detail.key === "home") requestAnimationFrame(setup); else off(); });
-  const p0 = window.__nx && window.__nx.page && window.__nx.page(); if (p0 && p0.key === "home") requestAnimationFrame(setup);
-})();
-</script>
-<script>// Home hero · Process mode (round 13). One process at a time runs as a route on the hero grid, around the headline:
-// it starts at a trigger ("Invoice received"), stops at labelled steps — an agent, a person, a system — and ends with
-// a result. At the person step a photo opens in the corner the line just turned. The route then fades and the next
-// process starts. Levels come from the Hero meters (window.__hc, mode "process"); Chaos mode leaves this layer idle.
-(function () {
-  const NS = "http://www.w3.org/2000/svg";
-  const rm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const PROCS = [
-    [["Trigger", "Invoice received"], ["Agent", "Extract fields"], ["System · SAP", "Match purchase order"], ["Person", "Approve exception"], ["System · SAP", "Post invoice"], ["Result", "Paid"]],
-    [["Trigger", "Claim email"], ["Agent", "Check coverage"], ["Person", "Approve replacement"], ["System · Oracle", "Create order"], ["Result", "Claim closed"]],
-    [["Trigger", "Non-conformance raised"], ["Agent", "Classify defect"], ["System · SAP QM", "Find batch"], ["Person", "Review batch"], ["Result", "Supplier notified"]],
-    [["Trigger", "New supplier"], ["Agent", "Verify documents"], ["Person", "Sign off"], ["System · SAP", "Create vendor"], ["Result", "Supplier active"]],
-    [["Trigger", "Service request"], ["Agent", "Triage and route"], ["System · ServiceNow", "Open incident"], ["Person", "Resolve"], ["Result", "Ticket closed"]],
-  ];
-  let raf = 0, ro = null;
-  function setup() {
-    cancelAnimationFrame(raf); if (ro) { ro.disconnect(); ro = null; }
-    const hero = document.getElementById("hero"); if (!hero || rm) return;
-    hero.querySelectorAll(".hpr,.hpr-l,.hpr-p").forEach((n) => n.remove());
-    const svg = document.createElementNS(NS, "svg"); svg.setAttribute("class", "hpr"); svg.setAttribute("aria-hidden", "true");
-    hero.appendChild(svg);
-    let G = null, cur = null, nextAt = 0, pk = Math.floor(Math.random() * PROCS.length), imgK = Math.floor(Math.random() * 20);
-    const C = () => window.__hc || {};
-    const measure = () => {
-      const z = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--nxz")) || 1;
-      const R = hero.getBoundingClientRect(), ln = hero.querySelector(".p-hlines"); if (!ln || R.width < 200) { G = null; return; }
-      const cols = [...ln.children].map((s) => Math.round((s.getBoundingClientRect().left - R.left) / z) + 0.5);
-      const W = Math.round(R.width / z), H = Math.round(R.height / z), cw = (cols[cols.length - 1] - cols[0]) / 6, f = 2, u = cw / f;
-      const xs = []; for (let k = 0; k <= 6 * f; k++) xs.push(Math.round(cols[0] + k * u) + 0.5);
-      // keep the process inside the hero: rows from one unit below the top to the button row
-      const hg = hero.querySelector(".hg h1"), btn = hero.querySelector(".hg a, .hg button");
-      const box = (el, pad) => { if (!el) return null; const r = el.getBoundingClientRect(); return { x0: (r.left - R.left) / z - pad, y0: (r.top - R.top) / z - pad, x1: (r.right - R.left) / z + pad, y1: (r.bottom - R.top) / z + pad }; };
-      const parts = [hg, hg && hg.nextElementSibling, btn].map((e) => box(e, 18)).filter(Boolean);
-      const tb = parts.length ? { x0: Math.min(...parts.map((b) => b.x0)), y0: Math.min(...parts.map((b) => b.y0)), x1: Math.max(...parts.map((b) => b.x1)), y1: Math.max(...parts.map((b) => b.y1)) } : null;
-      const yMax = btn ? (btn.getBoundingClientRect().bottom - R.top) / z : H - u;
-      const ys = []; for (let y = u; y <= yMax + 1; y += u) ys.push(Math.round(y) + 0.5);
-      svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.style.width = W + "px"; svg.style.height = H + "px";
-      G = { xs, ys, W, H, u, cw, tb };
-    };
-    measure();
-    ro = new ResizeObserver(() => { measure(); kill(true); }); ro.observe(hero);
-    const hitsText = (x0, y0, x1, y1) => { const t = G.tb; return t && x0 < t.x1 && t.x0 < x1 && y0 < t.y1 && t.y0 < y1; };
-    const segOK = (a, b) => hitsText(Math.min(a[0], b[0]) - 1, Math.min(a[1], b[1]) - 1, Math.max(a[0], b[0]) + 1, Math.max(a[1], b[1]) + 1) === false;
-    const rnd = (n) => Math.floor(Math.random() * n);
-    // plan a staircase through N nodes on grid points: right along a row, down a column, right again… — a process that
-    // reads left to right, top to bottom, turning at every step and never crossing the text block
-    const plan = (n) => {
-      const { xs, ys } = G, segs = n - 1;
-      for (let t = 0; t < 600; t++) {
-        const horizFirst = Math.random() < 0.75, hN = horizFirst ? Math.ceil(segs / 2) : Math.floor(segs / 2), vN = segs - hN;
-        const xSpan = xs.length - 1, ySpan = ys.length - 1;
-        if (hN * 2 > xSpan || vN > ySpan) continue;
-        let xi = rnd(Math.max(1, xSpan - hN * 2 + 1)), yi = rnd(Math.max(1, Math.min(2, ySpan - vN + 1)));
-        const pts = [[xs[xi], ys[yi]]]; let horiz = horizFirst, ok = true, hLeft = hN, vLeft = vN;
-        for (let k = 1; k < n; k++) {
-          if (horiz) { const room = xSpan - xi - (hLeft - 1) * 2; if (room < 2) { ok = false; break; } xi += 2 + rnd(Math.min(room - 1, 4)); hLeft--; }
-          else { const room = ySpan - yi - (vLeft - 1); if (room < 1) { ok = false; break; } yi += 1 + rnd(Math.min(room, 3)); vLeft--; }
-          const p = [xs[xi], ys[yi]]; if (!segOK(pts[pts.length - 1], p)) { ok = false; break; } pts.push(p); horiz = !horiz;
-        }
-        if (ok) return pts;
-      }
-      return null;
-    };
-    const lab = (node, pt, side) => {
-      const el = document.createElement("div"); el.className = "hpr-l k-" + node[0].split(" ")[0].toLowerCase();
-      el.innerHTML = '<span class="hpr-k"></span><span class="hpr-t"></span>'; el.firstChild.textContent = node[0]; el.lastChild.textContent = node[1];
-      hero.appendChild(el); el.style.left = pt[0] + "px"; el.style.top = pt[1] + "px"; el.dataset.side = side; return el;
-    };
-    const kill = (now) => { if (!cur) return; cur.g.remove(); cur.labs.forEach((l) => l.remove()); if (cur.ph) cur.ph.el.remove(); cur = null; };
-    const start = (t) => {
-      const proc = PROCS[pk++ % PROCS.length], piq = proc.findIndex((n) => n[0] === "Person"), band = C().band == null ? 100 : C().band;
-      const tcY = G.tb ? (G.tb.y0 + G.tb.y1) / 2 : G.H / 2, dev = (1 - band / 100) * G.H / 2 + G.u;
-      let pts = null;
-      for (let k = 0; k < 40; k++) {   // photo height meter: re-plan until the person step's photo sits near the headline's height
-        const cand = plan(proc.length); if (!cand) continue; pts = cand;
-        if (piq <= 0 || piq >= cand.length - 1) break;
-        const p = cand[piq], a = cand[piq - 1], b = cand[piq + 1], sy = Math.sign((a[1] !== p[1] ? a[1] : b[1]) - p[1]) || 1, ph = G.cw * (C().psize || 1) * 0.75;
-        if (Math.abs(p[1] + sy * ph / 2 - tcY) <= dev) break;
-      }
-      if (!pts) { nextAt = t + 1; return; }
-      const g = document.createElementNS(NS, "g"); svg.appendChild(g);
-      const d = "M" + pts.map((p) => p.join(" ")).join("L"); let L = 0; const cum = [0];
-      for (let i = 1; i < pts.length; i++) { L += Math.abs(pts[i][0] - pts[i - 1][0]) + Math.abs(pts[i][1] - pts[i - 1][1]); cum.push(L); }
-      const mk = (c) => { const p = document.createElementNS(NS, "path"); p.setAttribute("d", d); p.setAttribute("class", c); g.appendChild(p); return p; };
-      const tr = mk("hp-t"), hd = mk("hp-h");
-      const nodes = pts.map((p) => { const r = document.createElementNS(NS, "rect"); r.setAttribute("x", p[0] - 3.5); r.setAttribute("y", p[1] - 3.5); r.setAttribute("width", 7); r.setAttribute("height", 7); r.setAttribute("class", "hp-n"); g.appendChild(r); return r; });
-      // the person step opens a photo in the corner the line turned at (quadrant between its two arms)
-      let ph = null, phr = null; const pi = proc.findIndex((n) => n[0] === "Person");
-      if (C().pphoto !== 0 && pi > 0 && pi < pts.length - 1 && window.__hrImgs && window.__hrImgs.length) {
-        const p = pts[pi], a = pts[pi - 1], b = pts[pi + 1];
-        const sx = Math.sign((a[0] !== p[0] ? a[0] : b[0]) - p[0]) || 1, sy = Math.sign((a[1] !== p[1] ? a[1] : b[1]) - p[1]) || 1;
-        const w = Math.round(G.cw * (C().psize || 1)), h = Math.round(G.cw * (C().psize || 1) * 0.75);
-        const x0 = sx > 0 ? p[0] : p[0] - w, y0 = sy > 0 ? p[1] : p[1] - h;
-        if (!hitsText(x0, y0, x0 + w, y0 + h) && x0 >= G.xs[0] - 1 && x0 + w <= G.xs[G.xs.length - 1] + 1 && y0 >= 0) {
-          const el = document.createElement("div"); el.className = "hpr-p"; Object.assign(el.style, { left: x0 + "px", top: y0 + "px", width: w + "px", height: h + "px" });
-          const im = document.createElement("img"); im.alt = ""; im.src = window.__hrImgs[imgK++ % window.__hrImgs.length]; el.appendChild(im); hero.insertBefore(el, svg);
-          ph = { el }; phr = { x0, y0, x1: x0 + w, y1: y0 + h };
-        }
-      }
-      // labels: measured, then placed on the side that keeps clear of the route's own segments, the text block, the
-      // photo, the other labels and the grid's edges
-      const placed = [], hit = (r, q) => q && r.x0 < q.x1 + 8 && q.x0 < r.x1 + 8 && r.y0 < q.y1 + 6 && q.y0 < r.y1 + 6;
-      const segBoxes = pts.slice(1).map((q, k) => ({ x0: Math.min(q[0], pts[k][0]) - 2, y0: Math.min(q[1], pts[k][1]) - 2, x1: Math.max(q[0], pts[k][0]) + 2, y1: Math.max(q[1], pts[k][1]) + 2 }));
-      const labs = pts.map((p, i) => {
-        const el = lab(proc[i], p, "br"), bw = el.offsetWidth || 170, bh = el.offsetHeight || 44;
-        const rectFor = (sd) => { const dx = sd[1] === "r" ? 1 : -1, dy = sd[0] === "b" ? 1 : -1; const x0 = dx > 0 ? p[0] + 10 : p[0] - 10 - bw, y0 = dy > 0 ? p[1] + 6 : p[1] - 6 - bh; return { x0, y0, x1: x0 + bw, y1: y0 + bh }; };
-        let best = "br", bestScore = 1e9;
-        ["br", "tr", "bl", "tl"].forEach((sd, k) => {
-          const r = rectFor(sd); let sc = k;
-          if (r.x0 < G.xs[0] - 1 || r.x1 > G.xs[G.xs.length - 1] + 1 || r.y0 < 4 || r.y1 > G.H - 4) sc += 1000;
-          if (hitsText(r.x0, r.y0, r.x1, r.y1)) sc += 500;
-          if (hit(r, phr)) sc += 300;
-          sc += 200 * placed.filter((q) => hit(r, q)).length + 50 * segBoxes.filter((q) => hit(r, q)).length;
-          if (sc < bestScore) { bestScore = sc; best = sd; }
-        });
-        el.dataset.side = best; placed.push(rectFor(best)); return el;
-      });
-      cur = { g, tr, hd, nodes, labs, ph, pts, cum, L, t0: t };
-    };
-    const sm = (x) => (x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x));
-    const tick = (now) => {
-      const t = now / 1000, c = C();
-      if (!hero.isConnected) return;
-      const on = (c.mode || "process") === "process"; svg.style.display = on ? "" : "none";
-      if (!on) { kill(); raf = requestAnimationFrame(tick); return; }
-      if (G && !document.hidden && (!window.__nxIn || window.__nxIn(hero))) {
-        if (!cur && t > nextAt) start(t);
-        if (cur) {
-          const sp = c.pspeed || 220, pause = (c.ppause == null ? 0.7 : c.ppause), n = cur.pts.length;
-          // position along the route with a pause at every node
-          let el = t - cur.t0, s = 0, reached = 0;
-          for (let i = 1; i < n; i++) {
-            const segT = (cur.cum[i] - cur.cum[i - 1]) / sp, wait = pause;
-            if (el <= wait) { s = cur.cum[i - 1]; break; } el -= wait; reached = i - 1;
-            if (el <= segT) { s = cur.cum[i - 1] + el * sp; break; } el -= segT; s = cur.cum[i]; reached = i;
-          }
-          const done = s >= cur.L - 0.5; if (done) reached = n - 1;
-          if (done && cur.tDone == null) cur.tDone = t;
-          cur.tr.style.strokeDasharray = `${s} ${cur.L + 10}`;
-          const hh = Math.min(16, s); cur.hd.style.strokeDasharray = `0 ${Math.max(0, s - hh)} ${hh} ${cur.L + 10}`; cur.hd.style.opacity = done ? 0 : 1;
-          cur.nodes.forEach((r, i) => { const hit = s >= cur.cum[i] - 0.5; r.classList.toggle("on", hit); r.style.opacity = hit ? 1 : 0; });
-          cur.labs.forEach((l, i) => l.classList.toggle("on", s >= cur.cum[i] - 0.5));
-          if (cur.ph) { const pi = cur.labs.findIndex((l) => l.classList.contains("k-person")); const tIn = s >= cur.cum[pi] - 0.5; if (tIn && cur.ph.tIn == null) cur.ph.tIn = t; cur.ph.el.style.opacity = cur.ph.tIn == null ? 0 : sm((t - cur.ph.tIn) / 0.9).toFixed(3); }
-          const hold = c.phold == null ? 2.5 : c.phold;
-          if (cur.tDone != null) {
-            const fv = 1 - sm((t - cur.tDone - hold) / 1.2);
-            cur.g.style.opacity = fv; cur.labs.forEach((l) => (l.style.opacity = fv)); if (cur.ph) cur.ph.el.style.opacity = Math.min(+cur.ph.el.style.opacity, fv);
-            if (fv <= 0) { kill(); nextAt = t + (c.pgap == null ? 0.8 : c.pgap); }
-          }
-        }
-      }
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-  }
-  window.addEventListener("nx:page", (e) => { if (e.detail && e.detail.key === "home") requestAnimationFrame(setup); else cancelAnimationFrame(raf); });
   const p0 = window.__nx && window.__nx.page && window.__nx.page(); if (p0 && p0.key === "home") requestAnimationFrame(setup);
 })();
 </script>
