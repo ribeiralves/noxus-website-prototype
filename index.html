@@ -1364,8 +1364,8 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
 </script>
 <script>// Home · "Map, build, run and govern" (round 13): the three platform rows become one list + one card, in the style of
 // the Sovereign layer deployment section — topics on the left (square marker, hairlines, the open one shows its text
-// and link), the open topic's visual in a framed card on the right. Rotates every 6s while on screen; hover or click
-// picks a topic.
+// and link), the open topic's visual in a framed card on the right. Rotates every 6s while on screen; a click picks a
+// topic and stops the rotation (hover changes nothing).
 (function () {
   function setup() {
     const sec = document.querySelector("#pageroot #f14"); if (!sec || sec.__fl) return;
@@ -1388,8 +1388,8 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
     box.append(list, card); wrap.insertBefore(box, rows[0]);
     let a = 0, hold = false;
     const set = (i) => { a = i; [...list.children].forEach((li, k) => li.classList.toggle("on", k === i)); [...card.children].forEach((c, k) => c.classList.toggle("on", k === i)); };
-    [...list.children].forEach((li, i) => ["mouseenter", "click", "focusin"].forEach((ev) => li.addEventListener(ev, () => { hold = true; set(i); })));
-    list.addEventListener("mouseleave", () => { hold = false; });
+    // only a click (or Enter/Space on the button) changes the topic; it then stays there — hover does nothing
+    [...list.children].forEach((li, i) => li.querySelector("button").addEventListener("click", () => { hold = true; set(i); }));
     set(0);
     if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const iv = setInterval(() => { if (!sec.isConnected) { clearInterval(iv); return; } if (hold || document.hidden || (window.__nxIn && !window.__nxIn(sec))) return; set((a + 1) % rows.length); }, 6000);
@@ -1416,6 +1416,9 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
 #pageroot #f14 .f14c > .qpanel.on{opacity:1;visibility:visible;transition:opacity 500ms ease 100ms,visibility 0s}
 @media (max-width: 1000px){#pageroot #f14 .f14x{grid-template-columns:minmax(0,1fr)}#pageroot #f14 .f14c{margin-top:32px;padding:20px}}
 @media (prefers-reduced-motion: reduce){#pageroot #f14 :is(.f14t,.f14d,.qpanel){transition:none !important}}
+/* Integrations tabs (Platform + solution pages): no 01 / 02 / 03 numbers */
+#pageroot section[aria-label="Integrations"] button.tab > span[style*="Geist Mono"]{display:none !important}
+#pageroot section[aria-label="Integrations"] button.tab > h3{margin-top:0 !important}
 </style>
 <script>// Title font (review): page titles (h1) and section titles (h2) in BDO Grotesk or one of several serifs (Google Fonts),
 // stepped through with ‹ › and a weight slider. Remembered per browser; visible in the share build too.
