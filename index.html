@@ -1517,6 +1517,20 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
   tag(); window.addEventListener("nx:page", () => requestAnimationFrame(() => requestAnimationFrame(tag))); setInterval(tag, 1000);
 })();
 </script>
+<script>// Title font (review): switch page titles (h1) and section titles (h2) between BDO Grotesk and Martel (Google Fonts),
+// remembered per browser. Visible in the share build too.
+(function () {
+  const V = [["bdo", "BDO Grotesk"], ["martel", "Martel"], ["martel-l", "Martel Light"]];
+  const root = document.documentElement;
+  const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "https://fonts.googleapis.com/css2?family=Martel:wght@300;400;600&display=swap"; document.head.appendChild(l);
+  let v = "bdo"; try { const s = localStorage.getItem("nx-tf"); if (V.some((x) => x[0] === s)) v = s; } catch (e) {}
+  root.setAttribute("data-tf", v);
+  const bar = document.createElement("div"); bar.className = "shsw tfsw"; bar.setAttribute("role", "group"); bar.setAttribute("aria-label", "Title font");
+  bar.innerHTML = "<span>Titles</span>" + V.map((x) => '<button type="button" data-v="' + x[0] + '">' + x[1] + "</button>").join("");
+  bar.addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; root.setAttribute("data-tf", b.dataset.v); try { localStorage.setItem("nx-tf", b.dataset.v); } catch (er) {} });
+  document.body.appendChild(bar);
+})();
+</script>
 <style>/* Section headers · variants (html[data-shv]) */
 .shsw{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:70;display:inline-flex;align-items:center;border:1px solid #161616;background:#FFFFFF;font:11px/1 'Geist Mono',ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 12px 30px -16px rgba(0,0,0,.4)}
 .shsw span{padding:0 12px;color:#6B6B69}
@@ -1535,6 +1549,12 @@ html[data-shv="stack"] #pageroot .shx > p{margin:24px 0 0 !important;max-width:5
 html[data-shv="cur"] #pageroot .shx{align-items:center !important}
 /* Hero subtitles: the same 18px as the section intros, their own tighter line height */
 html:not(.nx-before):not(#nx1):not(#nx2) body #pageroot :is(h1 + p, h1 ~ p:first-of-type){font-size:18px !important;line-height:26px !important}
+/* Title font switch (html[data-tf]) */
+.tfsw{bottom:56px}
+html[data-tf="bdo"] .tfsw [data-v="bdo"],html[data-tf="martel"] .tfsw [data-v="martel"],html[data-tf="martel-l"] .tfsw [data-v="martel-l"]{background:#161616;color:#FFFFFF}
+html:is([data-tf="martel"],[data-tf="martel-l"]):not(#nx1):not(#nx2) #pageroot :is(h1,h2):not([style*="Geist Mono"]){font-family:'Martel',Georgia,'Times New Roman',serif !important;letter-spacing:-0.012em !important;line-height:1.16 !important}
+html[data-tf="martel"]:not(#nx1):not(#nx2) #pageroot :is(h1,h2):not([style*="Geist Mono"]){font-weight:400 !important}
+html[data-tf="martel-l"]:not(#nx1):not(#nx2) #pageroot :is(h1,h2):not([style*="Geist Mono"]){font-weight:300 !important}
 </style>
 <script>// Getting started · photo versions: A/B switch (remembered per browser) and the meters/bar drawing in when the
 // section first comes into view.
