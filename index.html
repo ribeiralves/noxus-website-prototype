@@ -1432,6 +1432,17 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
   }
   addEventListener("nx:page", () => requestAnimationFrame(setup)); setInterval(setup, 800); setup();
 })();
+// Steady height for the step lists (Getting started and "Map, build, run and govern"): the list keeps the height it has
+// with its longest step open, so switching steps never moves the content below it.
+(function () {
+  const fit = () => document.querySelectorAll("#pageroot :is(#gsv3,#f14) .f14l").forEach((l) => {
+    let base = 0, top = 0;
+    [...l.children].forEach((li) => { const d = li.querySelector(".f14d"); if (!d) return; base += li.offsetHeight - d.offsetHeight; top = Math.max(top, d.scrollHeight); });
+    if (top) l.style.minHeight = base + top + "px";
+  });
+  addEventListener("resize", fit); addEventListener("nx:page", () => setTimeout(fit, 300));
+  if (document.fonts) document.fonts.ready.then(fit); setInterval(fit, 1500); fit();
+})();
 </script>
 <script>// Timer style switch (review): the time-left indicator on rotating lists as a horizontal line under the open item or
 // a vertical rail beside it. html[data-tmr]; remembered per browser.
