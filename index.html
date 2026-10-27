@@ -1513,7 +1513,7 @@ document.addEventListener("click", (e) => {
   if (document.readyState !== "loading") requestAnimationFrame(play); else document.addEventListener("DOMContentLoaded", () => requestAnimationFrame(play));
 })();
 </script>
-<style>/* Idle mode (idle.js): after 60s without input the page rests behind a warm veil with the site's travelling column lines and the logo */
+<style>/* Idle mode (idle.js): after 120s without input the page rests behind a warm veil with the site's travelling column lines and the logo */
 #nx-idle{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:rgba(244,243,240,.94);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity 1200ms ease,visibility 0s linear 1200ms;cursor:pointer}
 #nx-idle.on{opacity:1;visibility:visible;transition:opacity 1600ms ease,visibility 0s}
 #nx-idle svg.nxi-l{position:absolute;inset:0;width:100%;height:100%}
@@ -1527,9 +1527,9 @@ svg.nxlogo{overflow:visible}
 #nx-idle .nxi-m span{font-family:'Geist Mono',ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#6B6B69}
 @media (prefers-reduced-motion: reduce){#nx-idle,#nx-idle.on{transition:none}}
 </style>
-<script>// Idle mode (idle.js): 60s without mouse, touch, keys or scroll -> calm screen; a click, tap or key brings the page back (moving does not)
+<script>// Idle mode (idle.js): 120s without mouse, touch, keys or scroll -> calm screen; a click, tap or key brings the page back (moving does not)
 (function () {
-  const IDLE_MS = 60000, NS = "http://www.w3.org/2000/svg";
+  const IDLE_MS = 120000, NS = "http://www.w3.org/2000/svg";
   const rm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   const el = document.createElement("div"); el.id = "nx-idle"; el.setAttribute("aria-hidden", "true");
   const svg = document.createElementNS(NS, "svg"); svg.setAttribute("class", "nxi-l"); el.appendChild(svg);
@@ -1813,11 +1813,8 @@ html:not(#m1):not(#m2):not(#m3):not(#m4):not(#m5):not(#m6) #pageroot h1{font-siz
       if (!mq.matches) { q.style.removeProperty("zoom"); q.style.removeProperty("width"); q.style.removeProperty("height"); return; }
       const box = q.parentElement, cb = getComputedStyle(box), w = box.clientWidth - parseFloat(cb.paddingLeft) - parseFloat(cb.paddingRight);
       q.style.setProperty("width", "620px", "important"); q.style.setProperty("height", "540px", "important"); q.style.zoom = Math.min(1, w / 620).toFixed(3); });
-    // Solution workflow visuals render at a narrower desktop width, scaled to the column (the deployment diagram stacks instead: nx-mob-pw)
-    [["#pageroot .wvis", 540]].forEach(([sel, W]) => document.querySelectorAll(sel).forEach((v) => {
-      if (!mq.matches) { v.style.removeProperty("zoom"); v.style.removeProperty("width"); return; }
-      const box = v.parentElement, cb = getComputedStyle(box), w = box.clientWidth - parseFloat(cb.paddingLeft) - parseFloat(cb.paddingRight);
-      v.style.setProperty("width", W + "px", "important"); v.style.zoom = Math.min(1, w / W).toFixed(3); }));
+    // Solution workflow visuals are no longer scaled down on phones: nx-mob-pw lays them out at full size. Clear what earlier builds set.
+    document.querySelectorAll("#pageroot .wvis").forEach((v) => { v.style.removeProperty("zoom"); v.style.removeProperty("width"); });
   };
   addEventListener("nx:page", () => setTimeout(fit, 80)); addEventListener("resize", fit); setInterval(fit, 2000); fit();
 })();
@@ -2246,7 +2243,9 @@ html.nx-author #pageroot section[aria-labelledby="ft-h"]{display:none !important
 }
 @media (prefers-reduced-motion: reduce){[data-nxacc-anim] [data-nxacc-vis]{animation:none !important}}
 </style>
-<script>// Phones: those step lists only change when a step is tapped. Each section runs its own timer, so an auto-advance is
+<script>// Phones: those step lists only change when a step is tapped. Every list opens on its first step; tapping the open step's title
+// closes it (data-nxacc-closed on the container hides its text and visual) and tapping any step opens it again.
+// Phones: those step lists only change when a step is tapped. Each section runs its own timer, so an auto-advance is
 // put straight back to the step the reader last tapped (the first step until then); desktop keeps its rotation. At most one
 // revert per 400ms: in Safari a revert click can re-trigger the observer synchronously, which looped and froze the page. The open
 // step's number goes on the list's container (data-nxacc-at) so the CSS above can place the visual under it.
@@ -2266,7 +2265,7 @@ html.nx-author #pageroot section[aria-labelledby="ft-h"]{display:none !important
   const isOn = (it) => it.matches(".on") || !!it.querySelector(":scope > button.on");
   let tapT = 0, tapEl = null;
   const mark = (e) => { tapT = Date.now(); tapEl = e.target;
-    S.forEach((st, el) => { if (!mq.matches || !el.contains(e.target)) return; const it = [...el.querySelectorAll(st.sel)].find((i) => i.contains(e.target)); const c = st.cont === ":scope" ? el : el.querySelector(st.cont);
+    S.forEach((st, el) => { st.prevLock = st.lock; st.tapIdx = -1; if (!mq.matches || !el.contains(e.target)) return; st.tapIdx = [...el.querySelectorAll(st.sel)].findIndex((i) => i.contains(e.target)); const it = [...el.querySelectorAll(st.sel)].find((i) => i.contains(e.target)); const c = st.cont === ":scope" ? el : el.querySelector(st.cont);
       st.pre = it && c ? { it, top: it.getBoundingClientRect().top, h: c.getBoundingClientRect().height, c } : null; }); };
   document.addEventListener("pointerdown", mark, true); document.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") mark(e); }, true);
   const S = new Map();
@@ -2297,12 +2296,33 @@ html.nx-author #pageroot section[aria-labelledby="ft-h"]{display:none !important
           const k2 = its().findIndex(isOn); at(el, sel, cont, k2 < 0 ? k : k2);
         });
         st.mo.observe(el, { subtree: true, attributes: true, attributeFilter: ["class"] });
-        const k0 = its().findIndex(isOn); st.lock = k0 < 0 ? 0 : k0;
+        // arrive on the first step, whatever the section's own timer has reached
+        const k0 = its().findIndex(isOn); st.lock = 0;
+        if (mq.matches && k0 > 0) { const t = its()[0], b = t && (t.matches("button") ? t : t.querySelector("button")); if (b) { st.busy = true; b.click(); st.busy = false; } }
       }
       const k = its().findIndex(isOn); if (k >= 0) at(el, sel, cont, k);
+      const c = cont === ":scope" ? el : el.querySelector(cont);
+      if (c) {
+        // the visual(s): the container's children that hold no step and no heading
+        [...c.children].forEach((ch) => { const v = !its().some((i) => ch.contains(i)) && !ch.querySelector("h2") && !ch.matches("h2,.gprt"); if (v !== ch.hasAttribute("data-nxacc-v")) ch.toggleAttribute("data-nxacc-v", v); });
+        const want = !!st.closed && mq.matches; if (want !== c.hasAttribute("data-nxacc-closed")) c.toggleAttribute("data-nxacc-closed", want);
+      }
     }));
     S.forEach((st, el) => { if (!el.isConnected) { st.mo.disconnect(); S.delete(el); } });
   }
+  // a tap on the step that was already open closes it (or opens it again); a tap on another step opens that one
+  document.addEventListener("click", (e) => {
+    // only real taps: the script's own clicks (holding a list on its step) must not open or close anything. The tapped step is
+    // the one noted on pointerdown, since some lists re-render their buttons during the click
+    if (!mq.matches || !e.isTrusted || Date.now() - tapT > 1500) return;
+    S.forEach((st, el) => { if (st.tapIdx == null || st.tapIdx < 0) return;
+      const list = [...el.querySelectorAll(st.sel)], it = list[st.tapIdx]; st.tapIdx = -1; if (!it) return;
+      const c = st.cont === ":scope" ? el : el.querySelector(st.cont); if (!c) return;
+      const same = list.indexOf(it) === st.prevLock;
+      st.closed = same ? !st.closed : false;
+      c.toggleAttribute("data-nxacc-closed", st.closed);
+      if (same && st.pre && st.pre.it === it) ease(st, it); });
+  });
   addEventListener("nx:page", () => setTimeout(setup, 120)); setInterval(setup, 1000); setup();
 })();
 </script>
@@ -2399,6 +2419,88 @@ html.nx-author #pageroot section[aria-labelledby="ft-h"]{display:none !important
   html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6) #pageroot svg.nxhl{z-index:0 !important}
   html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6) #pageroot section > :is(.hlines,.p-hlines) ~ div a.obtn{background-color:#FFFFFF !important}
 }
+
+/* Getting started (#gsv3) on phones: same 48px between the header and the step box as the Platform section above it */
+@media (max-width:760px){
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6) #pageroot #gsv3 .f14h{margin-bottom:48px !important}
+}
+
+/* Article header on phones stays centred (title, standfirst, author and date row), the one exception to the left-aligned headings */
+@media (max-width:760px){
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot section[aria-labelledby="ar-h"] > div{align-items:center !important;text-align:center !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot section[aria-labelledby="ar-h"] :is(h1,p){text-align:center !important;margin-left:auto !important;margin-right:auto !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot section[aria-labelledby="ar-h"] > div > div:last-child{justify-content:center !important;gap:10px 14px !important;font-size:14px !important}
+  /* author on its own line, then date | read time under it, so no separator is left hanging at a line end */
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot section[aria-labelledby="ar-h"] > div > div:last-child > a.nxau{flex-basis:100%;display:flex !important;justify-content:center}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot section[aria-labelledby="ar-h"] > div > div:last-child > a.nxau + span[aria-hidden="true"]{display:none !important}
+}
+
+/* Platform dashboard, Observability tab on phones: trimmed to the height of Monitoring and Audit (three figures in one row like the
+   Monitoring stats, tighter department rows, same 16px inset as the other tabs) */
+@media (max-width:760px){
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot #perf .dpane > .pg2{padding:0 !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot #perf .pg2 > div:first-child{display:grid !important;grid-template-columns:max-content max-content minmax(0,1fr) !important;gap:0 !important;padding:0 !important;border-bottom:1px solid #ECEAE6 !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot #perf .pg2 > div:first-child > div{display:block !important;padding:12px 8px 12px 16px !important;border-bottom:0 !important;min-width:0}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot #perf .pg2 > div:first-child > div + div{border-left:1px solid #ECEAE6 !important;padding-left:12px !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot #perf .pg2 > div:first-child > div > div:first-child{font-size:12px !important;line-height:16px !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot #perf .pg2 > div:first-child > div > div:last-child{font-size:16px !important;line-height:22px !important;margin-top:4px !important;white-space:nowrap}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot #perf .pg2 > div:nth-child(2){padding:14px 16px 16px !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot #perf .pg2 > div:nth-child(2) > div:first-child{margin:0 0 6px !important;font-size:12px !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot #perf .pg2 > div:nth-child(2) > div:nth-child(2){gap:2px !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot #perf [style*="grid-template-columns: 120px minmax(0,1fr) 80px"]{padding:5px 0 !important;gap:4px 12px !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot #perf [style*="grid-template-columns: 120px minmax(0,1fr) 80px"] > span:nth-child(2){height:4px !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot #perf .mwrap{margin-top:14px !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot #perf .mwrap > div:first-child{margin-bottom:8px !important;font-size:12px !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot #perf .mwrap > div:last-child{gap:6px 16px !important;margin-top:10px !important}
+}
+
+/* Solution tiles: the line under the tile title is quieter than the title (66% white, was 90%) */
+html body #pageroot .m3tsub{color:rgba(255,255,255,.66) !important}
+
+/* Step lists on phones (with mobile_accordion.html):
+   - a closed list (tap on the open step's title) shows only the step titles, each with a "+"
+   - step text starts under the square marker, not indented to the title
+   - 48px between a section's intro and its step card everywhere */
+@media (max-width:760px){
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot [data-nxacc-closed] > :is([data-nxacc-v],.dmv){display:none !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot [data-nxacc-closed] :is(.f14d,.sbd,.shd,.ctd,.ld,.dmd,.tab > p){display:none !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot [data-nxacc-closed] :is(li.on,li:has(> button.on),button.li.on)::after{content:"+" !important;color:#8A8986 !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot :is(#f14,#gsv3) .f14d{padding-left:0 !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot #tour .sbd{padding-left:0 !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot #tour .sbd > p{margin-left:0 !important;padding-left:16px !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot :is(#ship .shd,section.s-db .ld,section.s-ma .ld,#deploy .dmd){display:block !important;position:relative !important;left:-24px !important;margin-right:-24px !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot section.x3 .g3 > ul > li .ctd{padding-left:16px !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot :is(#ship .g2,section.x3 .g3){margin-top:48px !important}
+}
+
+/* Two-up feature blocks (.s2, e.g. Agent execution "Independent execution pools") on phones: one column, so the 40px side inset only
+   squeezed the text and charts; they now use the full content width */
+@media (max-width:760px){
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .s2 > article{padding:32px 0 !important;border-right:0 !important}
+}
+
+/* Solution pages on phones (round with the image-first cards):
+   - the hero keeps its photo and process diagram under the text, at full size: the frame is narrower, so it crops the picture
+     (like an image changing aspect ratio) instead of shrinking it
+   - each use-case card leads with its visual (cropped the same way, never scaled down), then the title, then the steps
+   - step numbers sit beside the step text, as on desktop */
+@media (max-width:760px){
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot section.nxsp-b:has(> .hg > .rv){overflow:hidden !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .hg > .rv{display:block !important;grid-column:1 / -1 !important;grid-row:auto !important;width:auto !important;height:560px !important;max-width:none !important;margin:40px 0 0 !important}
+  /* node labels keep their size but may wrap onto two lines, so the outer ones stay inside the frame */
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .hg > .rv .nx > span{white-space:normal !important;width:max-content !important;max-width:96px !important;text-align:center !important;height:auto !important;line-height:1.35 !important;padding-top:4px !important;padding-bottom:4px !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .wrow{display:flex !important;flex-direction:column !important;overflow:hidden !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .wrow > .wvis{order:-1;flex:none;width:auto !important;height:auto !important;min-height:440px !important;zoom:1 !important;margin:0 !important;max-width:none !important}
+  /* visuals at full size, laid out for the phone instead of shrunk: the step / email columns fill the card with a smaller inset, */
+  /* and the document + steps visuals keep their overlap with the document on the left and the steps in front on the right */
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .wrow > .wvis > div[style*="flex-direction: column"][style*="height: 100%"]{padding:32px 20px !important;height:auto !important;min-height:440px !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .wrow > .wvis:has(> div[style*="left: 68px"]){height:500px !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .wrow > .wvis > div[style*="left: 68px"]{left:16px !important;top:24px !important;bottom:24px !important;width:66% !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .wrow > .wvis > div[style*="right: 64px"]{right:16px !important;width:64% !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .wrow > .wvis > .wglass{inset:12px !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .wtext li[style*="grid-template-columns: 28px"]{display:grid !important;grid-template-columns:28px minmax(0,1fr) !important;gap:0 12px !important}
+  html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .wtext li[style*="grid-template-columns: 28px"] > span:first-child{padding-top:3px !important;margin:0 !important}
+}
 </style>
 <script id="nx-mob-pw-js">
 (function () {
@@ -2420,6 +2522,7 @@ html.nx-author #pageroot section[aria-labelledby="ft-h"]{display:none !important
   });
   addEventListener("nx:page", () => setTimeout(label, 120)); setInterval(label, 1500); label();
 })();
+
 </script>
 <script>// Review options in one corner: the Hero meters, Timer, Titles, How we work and Headers switches are gathered into a small
 // "Options" button beside Pages and the colour swatch (bottom right). It opens a panel that stacks them; the choice of open/closed is remembered.
