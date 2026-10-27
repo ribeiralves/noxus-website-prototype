@@ -2501,6 +2501,9 @@ html body #pageroot .m3tsub{color:rgba(255,255,255,.66) !important}
   html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .wtext li[style*="grid-template-columns: 28px"]{display:grid !important;grid-template-columns:28px minmax(0,1fr) !important;gap:0 12px !important}
   html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .wtext li[style*="grid-template-columns: 28px"] > span:first-child{padding-top:3px !important;margin:0 !important}
 }
+
+/* Company page: hide "How we work" on phones */
+@media (max-width: 760px){html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot section[aria-labelledby="sd-h"]{display:none !important}}
 </style>
 <script id="nx-mob-pw-js">
 (function () {
