@@ -194,18 +194,14 @@ html:not(.nx-before) :is(.metric,dd,td,[class*="num"]){font-variant-numeric:tabu
   go();
 })();
 </script>
-<style id="nxp-css">/* ---- palette switch (bottom centre) */
+<style id="nxp-css">/* ---- lab switch popovers (Hero, Reveal, Section, Topics) */
 .nx-dock{position:fixed;left:50%;bottom:16px;z-index:215;transform:translateX(-50%);display:flex;gap:8px;align-items:center}
 .nx-dock>[hidden]{display:none !important}
-.nxp,.nxh,.nxp-pop,.nxp-toast{font-family:'BDO Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
-.nxp *,.nxp *::before,.nxp *::after,.nxh *,.nxh *::before,.nxh *::after{box-sizing:border-box}
-.nxp,.nxh{position:relative}
-.nxp-btn{display:inline-flex;align-items:center;gap:10px;min-height:36px;padding:0 12px 0 10px;background:#161616;color:#FFFFFF;border:0;cursor:pointer;font:12px/1 'Geist Mono',ui-monospace,Menlo,monospace;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 8px 24px -12px rgba(22,22,22,.6)}
-.nxp-btn:hover{background:#2A2A28}.nxp-btn:focus-visible{outline:2px solid var(--nxp,#8A5A2B);outline-offset:2px}
-.nxp-dot{width:16px;height:16px;border:1px solid rgba(255,255,255,.5)}
+.nxh,.nxp-pop{font-family:'BDO Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.nxh *,.nxh *::before,.nxh *::after{box-sizing:border-box}
+.nxh{position:relative}
 .nxp-l{color:rgba(255,255,255,.65)}
 .nxp-n{font-family:'BDO Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;letter-spacing:0;text-transform:none}
-.nxp-k{padding:3px 5px;border:1px solid rgba(255,255,255,.3);font-size:10.5px;color:rgba(255,255,255,.65)}
 .nxp-pop{position:fixed;left:50%;bottom:64px;margin-left:calc(min(400px, 100vw - 32px) / -2);width:min(400px,calc(100vw - 32px));max-height:min(640px,calc(100vh - 96px));display:flex;flex-direction:column;background:#FFFFFF;color:#161616;border:1px solid #E2E0DC;box-shadow:0 30px 60px -30px rgba(22,22,22,.45);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity 200ms ease,transform 260ms cubic-bezier(.2,.7,.2,1),visibility 0s linear 260ms}
 .nxp-pop.on{opacity:1;visibility:visible;transform:none;transition:opacity 200ms ease,transform 260ms cubic-bezier(.2,.7,.2,1),visibility 0s}
 .nxp-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:16px 16px 12px}
@@ -214,18 +210,6 @@ html:not(.nx-before) :is(.metric,dd,td,[class*="num"]){font-variant-numeric:tabu
 .nxp-s{margin:4px 0 0;font-size:14px;color:#4A4A48}
 .nxp-x{flex:none;width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:none;border:1px solid #E2E0DC;color:#161616;cursor:pointer;font-size:18px;line-height:1}
 .nxp-x:hover{border-color:#161616}
-.nxp-cur{padding:0 16px 14px;border-bottom:1px solid #ECEAE6}
-.nxp-sw{display:inline-flex;flex:none}
-.nxp-sw i{display:block;width:14px;height:14px}
-.nxp-sw i:first-child{width:22px}
-.nxp-sw.big{display:flex;width:100%}
-.nxp-sw.big i{flex:1;height:28px}.nxp-sw.big i:first-child{flex:3}
-.nxp-note{margin:12px 0 0;font-size:14px;line-height:1.5;color:#161616}
-.nxp-tag{display:inline-block;margin-right:8px;padding:3px 6px;font:12px/1 'Geist Mono',ui-monospace,Menlo,monospace;font-weight:400;letter-spacing:.04em;text-transform:uppercase;vertical-align:1px}
-.nxp-c{margin:8px 0 0;font:12px/1.5 'Geist Mono',ui-monospace,Menlo,monospace;color:#6B6B69}
-.nxp-flt{display:flex;gap:6px;padding:12px 16px 4px}
-.nxp-flt button{min-height:28px;padding:0 10px;border:1px solid #E2E0DC;background:#FFFFFF;font:inherit;font-size:12px;color:#4A4A48;cursor:pointer}
-.nxp-flt button[aria-pressed="true"]{border-color:#161616;color:#161616}
 .nxp-list{overflow:auto;overscroll-behavior:contain;padding:0 16px 8px}
 .nxp-gh{margin:14px 0 6px;font:12px/1 'Geist Mono',ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#6B6B69}
 .nxp-opt{display:flex;align-items:center;gap:12px;width:100%;min-height:40px;padding:6px 8px;border:1px solid transparent;background:none;font:inherit;font-size:14px;color:#161616;text-align:left;cursor:pointer}
@@ -234,17 +218,11 @@ html:not(.nx-before) :is(.metric,dd,td,[class*="num"]){font-variant-numeric:tabu
 .nxp-opt:focus-visible{outline:2px solid #161616;outline-offset:-2px}
 .nxp-opt .nm{flex:1}
 .tg{font:12px/1 'Geist Mono',ui-monospace,Menlo,monospace;letter-spacing:.04em;text-transform:uppercase}
-.nxp .tg.shortlist,.nxp-tag.shortlist{color:#2F6B3A}.nxp-tag.shortlist{background:#EAF3EC}
-.nxp .tg.maybe,.nxp-tag.maybe{color:#6B6B69}.nxp-tag.maybe{background:#F1F0EE}
-.nxp .tg.drop,.nxp-tag.drop{color:#A3302A}.nxp-tag.drop{background:#FBEFED}
-.nxp .tg.control,.nxp-tag.control{color:#161616}.nxp-tag.control{background:#ECEAE6}
-.nxp .tg.current,.nxp-tag.current{color:#6E4522}.nxp-tag.current{background:#F7F1E8}
 .nxp-foot{margin:0;padding:10px 16px 14px;border-top:1px solid #ECEAE6;font-size:12px;line-height:1.5;color:#6B6B69}
-.nxp-toast{position:fixed;left:50%;bottom:64px;z-index:220;transform:translate(-50%,6px);padding:8px 12px;background:#161616;color:#FFFFFF;font-size:14px;opacity:0;transition:opacity 180ms ease,transform 180ms ease;pointer-events:none;text-transform:none}
-.nxp-toast.on{opacity:1;transform:translate(-50%,0)}
-@media (prefers-reduced-motion: reduce){.nxp-pop,.nxp-toast{transition:none}}
+@media (prefers-reduced-motion: reduce){.nxp-pop{transition:none}}
+.nxp-opt{min-height:44px}
 
-/* ---- palette roles on the site (only when a non-amber palette is active) */
+/* ---- Ink roles on the site */
 /* amber prototype: every photo graded toward the primary, keeping part of its own colour */
 html[data-nxpal] #pageroot img{filter:url(#nx-tone) !important}
 html[data-nxpal] #pageroot .thumb img{filter:url(#nx-tone) blur(10px) !important}
@@ -255,8 +233,6 @@ html[data-nxpal] #hdr .wrap>a:last-child{background:var(--nxp) !important;border
 html[data-nxpal] #hdr .wrap>a:last-child:hover{background:var(--nxpd) !important;border-color:var(--nxpd) !important}
 html[data-nxpal] .node[style*="rgb(141, 181, 212)"]{border-color:var(--nxl) !important}
 
-.nxp-chev{transition:transform 200ms ease}.nxp-btn[aria-expanded="true"] .nxp-chev{transform:rotate(180deg)}
-.nxp-opt{min-height:44px}
 
 /* hero animation switch */
 .nxh-bar{display:flex;align-items:stretch;box-shadow:0 8px 24px -12px rgba(22,22,22,.6)}
@@ -273,7 +249,7 @@ html[data-nxpal] .node[style*="rgb(141, 181, 212)"]{border-color:var(--nxl) !imp
 
 /* ---- button hover: colour sweeps across from the left, arrow nudges forward */
 :root{--nxsw:#161616}
-html[data-nxpal="ink"],html[data-nxpal="graphite"]{--nxsw:#4A4A48}html[data-nxpal="midnight"],html[data-nxpal="espresso"],html[data-nxpal="navy"],html[data-nxpal="deep-indigo"],html[data-nxpal="plum"],html[data-nxpal="bottle"],html[data-nxpal="olive"]{--nxsw:var(--nxm)}
+html[data-nxpal="ink"]{--nxsw:#4A4A48}
 html:not(.nx-before) .btn,html:not(.nx-before) .nav-cta,#hdr .wrap>a:last-child{position:relative;overflow:hidden;isolation:isolate;transition:color 300ms ease,border-color 300ms ease}
 html:not(.nx-before) .btn::before,html:not(.nx-before) .nav-cta::before,#hdr .wrap>a:last-child::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--nxsw);transform:scaleX(0);transform-origin:right center;transition:transform 450ms cubic-bezier(.2,.7,.2,1)}
 html:not(.nx-before) .btn:hover::before,html:not(.nx-before) .btn:focus-visible::before,html:not(.nx-before) .nav-cta:hover::before,html:not(.nx-before) .nav-cta:focus-visible::before,#hdr .wrap>a:last-child:hover::before{transform:scaleX(1);transform-origin:left center}
@@ -284,13 +260,6 @@ html:not(.nx-before) .btn:hover svg,html:not(.nx-before) .btn:focus-visible svg{
 /* buttons keep white text on hover (generic a:hover rules were turning it grey, invisible on the sweep) */
 html:not(.nx-before) .btn:hover,html:not(.nx-before) .btn:focus-visible,html:not(.nx-before) .btn:hover *{color:#FFFFFF !important}
 
-/* colour picker as an icon button at the bottom right, beside Pages */
-.nxp{position:fixed;right:88px;bottom:16px;z-index:215}
-.nxp-btn{width:32px;min-height:32px;height:32px;padding:0;justify-content:center;gap:0}
-.nxp-btn .nxp-dot{width:14px;height:14px}
-.nxp-pop{left:auto;right:16px;margin-left:0;bottom:56px}
-.nxp-ico{display:grid;grid-template-columns:7px 7px;grid-template-rows:7px 7px;gap:1px;padding:1px;background:rgba(255,255,255,.55)}
-.nxp-ico i{display:block}
 /* logo strip: the story photos behind the logos keep their own colour (not graded) */
 html[data-nxpal] #pageroot #lgrid .thumb img{filter:blur(8px) saturate(1.8) brightness(1.05) !important}
 html[data-nxpal] #pageroot #lgrid .cell:hover .thumb img,html[data-nxpal] #pageroot #lgrid .cell:focus-within .thumb img{filter:blur(0px) saturate(1.8) brightness(1.05) !important}
@@ -302,30 +271,9 @@ html[data-nxpal] #pageroot #hero .hap img{filter:url(#nx-ink) !important}
 html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
 </style>
 <script>(function () {
-  // Palettes from the colour studies. hex = primary; mid / tint / light = the three small swatches (read from the study images).
-  const OCHRE = "#9A6B1F", INK = "#161616", BURNT = "#B5561C", DEEP_RED = "#7E1D1D";
+  // The site's colour is Ink. The amber values in the page templates are mapped to it at runtime.
   const P = [
-    { id: "amber", set: "Current", name: "Amber", sub: "Today's palette", hex: "#8A5A2B", mid: "#A9824F", tint: "#F7F1E8", light: "#C9A06A", tag: "current", note: "What the site ships with today." },
-    { id: "dusk", set: "Ten primaries", name: "Dusk", sub: "From the product blue #8DB5D4", hex: "#26445C", mid: "#4E6E8E", tint: "#EEF2F6", light: "#8DB5D4", tag: "shortlist", c: ["10.2", "5.3", "8.4"], status: { "#3E6E92": OCHRE }, note: "Ties straight to the product blue, so site and app read as one brand. Risk: the most expected B2B colour. Progress status moves to ochre." },
-    { id: "petrol", set: "Ten primaries", name: "Petrol", sub: "Industrial, calm", hex: "#1F5560", mid: "#3F7A85", tint: "#E8F0F0", light: "#8FC2C6", tag: "shortlist", c: ["8.3", "4.9", "9.2"], note: "The most distinctive of the blues and it suits industrial clients. Slightly cold; the warm greys keep it human." },
-    { id: "verdigris", set: "Ten primaries", name: "Verdigris", sub: "Oxidised copper; between petrol and green", hex: "#2C6A60", mid: "#4E8D80", tint: "#E9F2EF", light: "#98CDC0", tag: "maybe", c: ["6.3", "4.0", "10.0"], status: { "#2F6B3A": INK }, note: "Unusual and calm, but it drifts toward success green. Done states have to switch to ink." },
-    { id: "cobalt", set: "Ten primaries", name: "Cobalt", sub: "Bold, technical blue", hex: "#2445A8", mid: "#4A68C8", tint: "#EDF1FB", light: "#A8BBF0", tag: "shortlist", c: ["8.4", "5.3", "9.6"], status: { "#3E6E92": OCHRE }, note: "Strongest call to action of the set. Sits close to SAP and IBM blue, so it competes with partner logos." },
-    { id: "indigo", set: "Ten primaries", name: "Indigo", sub: "Blue with a violet lean", hex: "#3B3A8C", mid: "#6461B4", tint: "#EFEFF7", light: "#B3B1E8", tag: "maybe", c: ["9.7", "5.6", "9.0"], note: "Avoids the SAP blue clash, but it can read fintech or crypto." },
-    { id: "aubergine", set: "Ten primaries", name: "Aubergine", sub: "Dark violet, editorial", hex: "#5A2D58", mid: "#8A5A88", tint: "#F4EEF3", light: "#D4ABCF", tag: "drop", c: ["10.8", "6.1", "8.9"], note: "Most editorial and rare in the category, but it reads consumer or luxury and the buttons go quiet." },
-    { id: "oxblood", set: "Ten primaries", name: "Oxblood", sub: "Confident, European", hex: "#7A2E2A", mid: "#A5534D", tint: "#F7EEEC", light: "#E2A79C", tag: "maybe", c: ["9.3", "5.6", "8.6"], status: { "#A3302A": BURNT, "#F5B5AE": "#F2B98F" }, note: "Confident and European. Reads close to error red, so exceptions move to burnt orange." },
-    { id: "terracotta", set: "Ten primaries", name: "Terracotta", sub: "Clay; warmer, less brown than amber", hex: "#9A462B", mid: "#B86C4E", tint: "#F8F0EA", light: "#E8A88C", tag: "drop", c: ["6.4", "4.4", "9.0"], status: { "#A3302A": DEEP_RED }, note: "Keeps amber's warmth but lands in error-red territory; exceptions need a deeper red that is hard to tell apart." },
-    { id: "signal", set: "Ten primaries", name: "Signal orange", sub: "Loud; one colour people remember", hex: "#B4440C", mid: "#C95D27", tint: "#FCF0E8", light: "#F2A577", tag: "drop", c: ["5.6", "4.3", "9.3"], note: "Highest recall, lowest contrast (5.6:1). Feels start-up and collides with UiPath orange." },
-    { id: "ink", set: "Ten primaries", name: "Ink", sub: "Control: no accent at all", hex: "#161616", mid: "#8A8986", tint: "#F1F0EE", light: "#D9D7D2", tag: "control", c: ["18.1", "3.5", "12.6"], note: "Cleanest and most restrained, but no brand moment. The photography has to carry everything." },
-    { id: "midnight", set: "Darker set", name: "Midnight", sub: "Product blue, taken to night", hex: "#1B2A3A", mid: "#46607E", tint: "#EEF1F5", light: "#8DB5D4", tag: "shortlist", c: ["14.6", "6.5", "8.4"], status: { "#3E6E92": OCHRE }, note: "Keeps the product-blue link while reading serious and quiet. The safest dark option." },
-    { id: "deep-petrol", set: "Darker set", name: "Deep petrol", sub: "Petrol with the light taken out", hex: "#163F47", mid: "#3B6E76", tint: "#E8F0F0", light: "#8FC2C6", tag: "shortlist", c: ["11.4", "6.0", "9.2"], note: "Still the most distinctive blue-green; darker, it feels engineered rather than friendly." },
-    { id: "bottle", set: "Darker set", name: "Bottle green", sub: "Dark, almost black green", hex: "#1F3D33", mid: "#4C6E62", tint: "#EAF1EE", light: "#9CC7B4", tag: "maybe", c: ["11.8", "5.9", "9.4"], status: { "#2F6B3A": INK }, note: "Rich and calm, but it still sits near success green, so done states move to ink." },
-    { id: "navy", set: "Darker set", name: "Navy", sub: "Classic, institutional", hex: "#1E2E5C", mid: "#4A5C92", tint: "#EEF0F6", light: "#A8BBF0", tag: "maybe", c: ["13.1", "6.5", "9.6"], status: { "#3E6E92": OCHRE }, note: "Institutional and trustworthy. Also the colour of most banks and consultancies, KPMG included." },
-    { id: "deep-indigo", set: "Darker set", name: "Deep indigo", sub: "Indigo at its darkest", hex: "#2A2860", mid: "#5655A0", tint: "#EFEFF6", light: "#B3B1E8", tag: "maybe", c: ["13.4", "6.6", "9.0"], note: "Avoids SAP blue and looks premium; the violet lean only shows on large areas." },
-    { id: "plum", set: "Darker set", name: "Plum", sub: "Aubergine, quieter", hex: "#3E2240", mid: "#6E4E70", tint: "#F3EEF2", light: "#D4ABCF", tag: "drop", c: ["13.9", "7.3", "8.9"], note: "Quiet and unusual, but reads cosmetic or hospitality at this depth." },
-    { id: "bordeaux", set: "Darker set", name: "Bordeaux", sub: "Oxblood, deeper", hex: "#5A1F22", mid: "#8A4848", tint: "#F6EEEE", light: "#E2A79C", tag: "shortlist", c: ["12.7", "6.6", "8.6"], status: { "#A3302A": BURNT, "#F5B5AE": "#F2B98F" }, note: "The darkest warm option that is clearly not an error state. European, confident." },
-    { id: "espresso", set: "Darker set", name: "Espresso", sub: "Amber, roasted dark", hex: "#4A3020", mid: "#7A5C48", tint: "#F3F1EC", light: "#C9A06A", tag: "shortlist", c: ["12.1", "5.7", "7.5"], note: "Amber's continuity at a serious depth; the smallest change from today." },
-    { id: "olive", set: "Darker set", name: "Olive drab", sub: "Dark, earthy, industrial", hex: "#3D3F26", mid: "#6B6C4C", tint: "#F1F1EA", light: "#C9C78E", tag: "drop", c: ["10.8", "5.1", "10.1"], note: "Earthy and industrial, but muddy on screens and in the photo grade." },
-    { id: "graphite", set: "Darker set", name: "Graphite", sub: "Blue-black; near ink with a hint of cool", hex: "#2B3036", mid: "#5F666E", tint: "#EEF0F2", light: "#C9CDD3", tag: "control", c: ["13.3", "5.8", "11.4"], note: "Ink with a cool cast. Almost no brand colour; works only if imagery carries the identity." },
+    { id: "ink", name: "Ink", hex: "#161616", mid: "#8A8986", tint: "#F1F0EE", light: "#D9D7D2" },
   ];
   const BY = Object.fromEntries(P.map((p) => [p.id, p]));
 
@@ -364,7 +312,6 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
   // shadows toward the primary, mid-tones toward a tinted grey, highlights toward the tint.
   const GRADE = {
     ink: { sat: 0.85, k: 0.55, lo: "#17252D", md: "#8A867E", hi: "#F3E4CD" },       // split tone: cool slate shadows, warm cream highlights
-    graphite: { sat: 0.75, k: 0.5, lo: "#162230", md: "#848B93", hi: "#EEEDE8" },   // cooler shadows, neutral highlights
   };
   function grade(p) {
     const g = GRADE[p.id] || { sat: 0.65, k: 0.5 };
@@ -378,96 +325,20 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
 
   // ---- apply
   const root = document.documentElement;
-  let current = "amber";
-  current = "ink";
+  const current = "ink";
 
-  function apply(id, quiet) {
-    const p = BY[id] || BY.amber; current = p.id;
-    
-    const isAmber = p.id === "amber";
-    if (isAmber) root.removeAttribute("data-nxpal"); else root.setAttribute("data-nxpal", p.id);
+  function apply() {
+    const p = BY[current];
+    root.setAttribute("data-nxpal", p.id);
     root.style.setProperty("--nxp", p.hex); root.style.setProperty("--nxpd", mix(p.hex, "#000000", 0.2));
     root.style.setProperty("--nxm", p.mid); root.style.setProperty("--nxl", p.light); root.style.setProperty("--nxt", p.tint);
-    if (!isAmber) grade(p);
-    if (window.__nx && window.__nx.setPalette) window.__nx.setPalette(isAmber ? null : p.id, isAmber ? null : mapFor(p));
-    render();
-    if (!quiet) say(p.name + (p.tag && p.tag !== "current" ? " · " + p.tag : ""));
+    grade(p);
+    if (window.__nx && window.__nx.setPalette) window.__nx.setPalette(p.id, mapFor(p));
   }
 
-  // ---- UI
-  const h = (tag, attrs, kids) => {
-    const el = document.createElement(tag);
-    for (const k in attrs || {}) {
-      if (k === "text") el.textContent = attrs[k];
-      else if (k.startsWith("on")) el.addEventListener(k.slice(2), attrs[k]);
-      else el.setAttribute(k, attrs[k]);
-    }
-    (kids || []).forEach((c) => c != null && el.append(c));
-    return el;
-  };
-  const st = { open: false, filter: "all" };
-  const inView = (x) => st.filter === "all" || ["shortlist", "current", "control"].includes(x.tag);
-  const wrap = h("div", { class: "nxp" });
-  const btn = h("button", { type: "button", class: "nxp-btn", "aria-expanded": "false", "aria-controls": "nxp-pop" });
-  const pop = h("div", { id: "nxp-pop", class: "nxp-pop", role: "dialog", "aria-label": "Colour palette" });
-  const toast = h("div", { class: "nxp-toast", role: "status", "aria-live": "polite" });
-  wrap.append(pop, btn);
-  const dock = document.querySelector(".nx-dock") || (() => { const d = document.createElement("div"); d.className = "nx-dock"; document.body.append(d); return d; })();
-  document.body.append(wrap, toast);
-  function say(m) { toast.textContent = m; toast.classList.add("on"); clearTimeout(say.t); say.t = setTimeout(() => toast.classList.remove("on"), 1600); }
-
-  const sw = (p, big) => h("span", { class: "nxp-sw" + (big ? " big" : "") }, [h("i", { style: "background:" + p.hex }), h("i", { style: "background:" + p.mid }), h("i", { style: "background:" + p.tint }), h("i", { style: "background:" + p.light })]);
-
-  function render() {
-    const p = BY[current];
-    // 2×2 swatch (main, mid, tint, light) so the icon reads on the black button for every palette, Ink included
-    btn.replaceChildren(h("span", { class: "nxp-ico" }, [p.hex, p.mid, p.tint, p.light].map((c) => h("i", { style: "background:" + c }))));
-    btn.setAttribute("aria-label", "Colour: " + p.name); btn.title = "Colour: " + p.name;
-    btn.setAttribute("aria-expanded", String(st.open));
-    pop.classList.toggle("on", st.open);
-    if (!st.open) return;
-    const list = P.filter(inView);
-    const groups = {};
-    list.forEach((x) => (groups[x.set] = groups[x.set] || []).push(x));
-    const flt = (id, label) => h("button", { type: "button", "aria-pressed": String(st.filter === id), onclick: () => { st.filter = id; render(); } }, [label]);
-    pop.replaceChildren(
-      h("div", { class: "nxp-hd" }, [
-        h("div", {}, [h("p", { class: "nxp-eye", text: "Primary colour study" }), h("p", { class: "nxp-t", text: p.name }), h("p", { class: "nxp-s", text: p.sub + " · " + p.hex })]),
-        h("button", { type: "button", class: "nxp-x", "aria-label": "Close palette", onclick: () => toggle(false) }, ["×"]),
-      ]),
-      h("div", { class: "nxp-cur" }, [
-        sw(p, true),
-        h("p", { class: "nxp-note" }, [p.tag ? h("b", { class: "nxp-tag " + p.tag, text: p.tag }) : null, p.note]),
-        p.c ? h("p", { class: "nxp-c", text: "White on colour " + p.c[0] + ":1 · Emphasis on white " + p.c[1] + ":1 · Accent on ink " + p.c[2] + ":1" }) : null,
-      ]),
-      h("div", { class: "nxp-flt", role: "group", "aria-label": "Filter" }, [flt("all", "All 21"), flt("short", "Shortlist + controls")]),
-      h("div", { class: "nxp-list" }, Object.keys(groups).map((g) => h("div", { class: "nxp-g" }, [
-        h("p", { class: "nxp-gh", text: g }),
-        ...groups[g].map((x) => h("button", { type: "button", class: "nxp-opt", "aria-pressed": String(x.id === current), onclick: () => apply(x.id) }, [
-          sw(x), h("span", { class: "nm", text: x.name }), h("span", { class: "tg " + x.tag, text: x.tag }),
-        ])),
-      ]))),
-      h("p", { class: "nxp-foot", text: "Photos keep part of their own colour and are graded toward the palette. A preview, not a production grade." })
-    );
-  }
-  function toggle(on) { st.open = on == null ? !st.open : on; render(); if (st.open) { const f = pop.querySelector(".nxp-opt[aria-pressed=true]"); if (f) f.focus(); } }
-  btn.addEventListener("click", () => toggle());
-  document.addEventListener("keydown", (e) => {
-    const typing = /^(INPUT|TEXTAREA|SELECT)$/.test((e.target && e.target.tagName) || "");
-    if (typing) return;
-    if (e.key === "Escape" && st.open) { toggle(false); btn.focus(); return; }
-    if (e.key === "[" || e.key === "]") {
-      e.preventDefault();
-      const ids = P.filter(inView).map((x) => x.id);
-      const i = ids.indexOf(current);
-      apply(ids[(i + (e.key === "]" ? 1 : -1) + ids.length) % ids.length]);
-    }
-  });
-  document.addEventListener("click", (e) => { if (st.open && !wrap.contains(e.target)) toggle(false); });
-
-  window.__nxPalette = { apply: (id) => apply(id, true), ids: P.map((x) => x.id), current: () => current };
-  // Apply the saved palette once the page has rendered
-  const start = () => apply(current, true);
+  window.__nxPalette = { current: () => current };
+  // Apply Ink once the page has rendered
+  const start = () => apply();
   if (window.__nx) setTimeout(start, 0); else if (document.readyState === "complete") start(); else window.addEventListener("load", start);
 })();
 </script>
@@ -2501,6 +2372,9 @@ html body #pageroot .m3tsub{color:rgba(255,255,255,.66) !important}
   html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .wtext li[style*="grid-template-columns: 28px"]{display:grid !important;grid-template-columns:28px minmax(0,1fr) !important;gap:0 12px !important}
   html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .wtext li[style*="grid-template-columns: 28px"] > span:first-child{padding-top:3px !important;margin:0 !important}
 }
+
+/* How we work: in the grid layout, the phone accordion must not show as well */
+html[data-hww="grid"]:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .hws{display:none !important}
 </style>
 <script id="nx-mob-pw-js">
 (function () {
@@ -2525,7 +2399,7 @@ html body #pageroot .m3tsub{color:rgba(255,255,255,.66) !important}
 
 </script>
 <script>// Review options in one corner: the Hero meters, Timer, Titles, How we work and Headers switches are gathered into a small
-// "Options" button beside Pages and the colour swatch (bottom right). It opens a panel that stacks them; the choice of open/closed is remembered.
+// "Options" button beside Pages (bottom right). It opens a panel that stacks them; the choice of open/closed is remembered.
 (function () {
   const css = `#nx-opts{position:fixed;bottom:16px;right:104px;z-index:205;font:12px 'Geist Mono',ui-monospace,Menlo,monospace}
 #nx-opts > summary{list-style:none;cursor:pointer;padding:8px 12px;background:#FFFFFF;color:#161616;border:1px solid #161616;letter-spacing:.04em;text-transform:uppercase;line-height:14px}
