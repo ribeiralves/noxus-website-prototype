@@ -896,9 +896,9 @@ html[data-nxpal] #pageroot #hero .hpr-p img{filter:url(#nx-ink) !important}
       const R = hero.getBoundingClientRect(), ln = hero.querySelector(".p-hlines");
       if (!ln || R.width < 200) { G = null; return; }
       const cols = [...ln.children].map((s) => Math.round((s.getBoundingClientRect().left - R.left) / z) + 0.5);
-      const W = Math.round(R.width / z), H = Math.round(R.height / z), cw = (cols[cols.length - 1] - cols[0]) / 6 || 200;
+      const W = Math.round(R.width / z), H = Math.round(R.height / z), NC = matchMedia("(max-width: 760px)").matches ? 4 : 6, cw = (cols[cols.length - 1] - cols[0]) / NC || 200;
       const f = Math.max(1, Math.round(C.fine)), u = cw / f;
-      const xs = []; for (let k = 0; k <= 6 * f; k++) xs.push(Math.round(cols[0] + k * u) + 0.5);
+      const xs = []; for (let k = 0; k <= NC * f; k++) xs.push(Math.round(cols[0] + k * u) + 0.5);
       const ys = []; for (let y = u; y < H - 8; y += u) ys.push(Math.round(y) + 0.5);
       svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.style.width = W + "px"; svg.style.height = H + "px";
       const btn = hero.querySelector(".hg a, .hg button"), Hq = btn ? Math.round((btn.getBoundingClientRect().bottom - R.top) / z) : H;
@@ -2386,6 +2386,21 @@ html[data-hww="grid"]:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(
 @media (max-width: 760px){html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot #hero{padding-top:40px !important}html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot #hero .hg{height:max(300px, calc(100svh - 300px)) !important;padding-bottom:24px !important}}
 /* Platform pages on phones: hero centred */
 @media (max-width: 760px){html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot :is(section[aria-label="Process Orchestration"],section[aria-label="Agent Execution"],section.hero[aria-label="Sovereignty layer"]) :is(h1,h1 + p,p){text-align:center !important;margin-left:auto !important;margin-right:auto !important}html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot :is(section[aria-label="Process Orchestration"],section[aria-label="Agent Execution"],section.hero[aria-label="Sovereignty layer"]) :is(div,.hin):has(> h1){align-items:center !important;text-align:center !important}html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot :is(section[aria-label="Process Orchestration"],section[aria-label="Agent Execution"],section.hero[aria-label="Sovereignty layer"]) div:has(> a.btn, > a.obtn){justify-content:center !important;align-items:center !important}}
+
+/* Step lists on phones: one even rhythm (16px card padding; 10 title-description, 16 description-link, 16 link-visual), visual sits on the card, not a beige band */
+@media (max-width: 760px){html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot ul.f14l > li.on > button{padding-bottom:16px !important}html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .f14p{margin-top:10px !important}html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .f14a{margin-top:16px !important}html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot .f14c[data-nxacc-v]{background:transparent !important;padding:0 16px 16px !important}}
+
+/* Footer on phones: one column, everything stacked */
+@media (max-width: 760px){html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot footer .fgrid{grid-template-columns:minmax(0,1fr) !important}html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot footer .fgrid > *{grid-column:1 / -1 !important}}
+
+/* Footer on phones: the copyright and legal links stack too */
+@media (max-width: 760px){html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot footer div:has(> a.flink){flex-direction:column !important;align-items:flex-start !important;gap:12px !important}html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot footer div:has(> div > a.flink){flex-direction:column !important;align-items:flex-start !important}html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot footer div:has(> a.flink > svg){flex-direction:row !important;align-items:center !important;gap:16px !important}}
+
+/* Blog, process library, events and reports cards on phones: smaller descriptions */
+@media (max-width: 760px){html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot :is(article.feat, ul.egrid > li.card, ul.evg > li.evc, ul.rpg > li.rpc) p:not([class]){font-size:14px !important;line-height:21px !important}}
+
+/* Phones: the background column grid has 4 columns instead of 6 (by position: 7-line grids and 4-line frames) */
+@media (max-width: 760px){html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot :is(.hlines,.p-hlines) > span:nth-child(2):nth-last-child(6){left:25% !important}html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot :is(.hlines,.p-hlines) > span:nth-child(3):nth-last-child(5){left:50% !important}html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot :is(.hlines,.p-hlines) > span:nth-child(4):nth-last-child(4){left:75% !important}html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot :is(.hlines,.p-hlines) > span:nth-child(5):nth-last-child(3),html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot :is(.hlines,.p-hlines) > span:nth-child(6):nth-last-child(2){display:none !important}html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot :is(.hlines,.p-hlines) > span:nth-child(2):nth-last-child(3){left:25% !important}html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7) #pageroot :is(.hlines,.p-hlines) > span:nth-child(3):nth-last-child(2){left:75% !important}}
 </style>
 <script id="nx-mob-pw-js">
 (function () {
