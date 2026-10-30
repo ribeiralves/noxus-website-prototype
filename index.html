@@ -1866,7 +1866,7 @@ html[data-lgv="tabs"] #pageroot .lgstrip li{position:relative;height:83px;border
 // Getting started film: the open step and its line follow the film's time; a click on a step jumps the film to that step.
 // Plays only on screen; a still at each step's start with reduced motion.
 (function () {
-  const SRC = "assets/video/getting-started/getting-started-step-cards-in-3d.mp4?v=2", T = [0, 3.2, 6.4, 9.6], END = 16;
+  const SRC = "assets/video/getting-started/getting-started-step-cards-in-3d.mp4?v=2", T = [0, 3.2, 6.4, 9.6], END = 16; const PH = matchMedia("(max-width: 1000px)");
   function mount() {
     const sec = document.querySelector("#pageroot #gsv3"), card = sec && sec.querySelector(".f14c"); if (!card || card.__gv) return; card.__gv = 1;
     const box = sec.querySelector(".f14x"), lis = [...sec.querySelectorAll(".f14l > li")];
@@ -1884,8 +1884,10 @@ html[data-lgv="tabs"] #pageroot .lgstrip li{position:relative;height:83px;border
     const frame = () => {
       if (!card.isConnected) { requestAnimationFrame(mount); return; }
       const t = v.currentTime || 0; let i = 0; for (let k = 0; k < T.length; k++) if (t >= T[k]) i = k;
+      // phones: the steps are an accordion the reader controls, so the film loops the open step's part instead of moving on
+      if (PH.matches) { const o = Math.max(0, lis.findIndex((li) => li.classList.contains("on"))); if (i !== o) { try { v.currentTime = T[o]; } catch (e) {} i = o; cur = o; } else if (t >= (T[o + 1] || END) - 0.05) { try { v.currentTime = T[o]; } catch (e) {} } }
       const p = rm ? 1 : Math.min(1, (t - T[i]) / ((T[i + 1] || END) - T[i]));
-      if (i !== cur) { cur = i; lis.forEach((li, k) => li.classList.toggle("on", k === i)); card.className = card.className.replace(/\bk\d\b/g, "").trim() + " k" + i; }
+      if (i !== cur && !PH.matches) { cur = i; lis.forEach((li, k) => li.classList.toggle("on", k === i)); card.className = card.className.replace(/\bk\d\b/g, "").trim() + " k" + i; }
       lis.forEach((li, k) => li.style.setProperty("--nxp", k === i ? p.toFixed(4) : 0));
       requestAnimationFrame(frame);
     };
@@ -1901,7 +1903,7 @@ html[data-lgv="tabs"] #pageroot .lgstrip li{position:relative;height:83px;border
 #pageroot #gsv3 .f14l::before{content:"First process live in eight weeks";position:absolute;left:48px;top:40px;font:400 24px/32px 'BDO Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:-.01em;color:#161616;white-space:nowrap}
 @media (min-width: 1001px){#pageroot #gsv3 .f14l{padding-top:104px !important}}
 
-@media (max-width: 1000px){#pageroot #gsv3 .f14l::before{position:static;display:block;padding:20px 16px 0}}
+@media (max-width: 1000px){#pageroot #gsv3 .f14l::before{display:none}}
 </style>
 <template id="nx-int2"><style>@property --n { syntax: "<integer>"; inherits: false; initial-value: 0; }
 
@@ -2101,10 +2103,16 @@ html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not
 html.nx-aerial #pageroot #sec-stories img{filter:none !important}
 html.nx-aerial #pageroot #sec-stories [style*="linear-gradient(to top, rgba(10, 13, 13"]{background:linear-gradient(to top, rgba(10,13,13,.78) 0%, rgba(10,13,13,.42) 32%, rgba(10,13,13,0) 62%) !important}
 </style>
+<style id="nx-highkey-css">
+/* High-key photo set: keep the photos bright - no tone filter, a short soft scrim only behind the labels */
+html.nx-pho-highkey #pageroot :is(#sol-sec img.m3timg, #sec-stories img){filter:none !important}
+html.nx-pho-highkey #pageroot #sol-sec .m3tscr{background:linear-gradient(rgba(10,13,13,.42) 0%, rgba(10,13,13,.12) 30%, rgba(10,13,13,0) 48%) !important}
+html.nx-pho-highkey #pageroot #sec-stories [style*="linear-gradient(to top, rgba(10, 13, 13"]{background:linear-gradient(to top, rgba(10,13,13,.62) 0%, rgba(10,13,13,.2) 34%, rgba(10,13,13,0) 55%) !important}
+</style>
 <script id="nx-aerial">// Home photos · "Aerial order": customer stories and industry/function tiles swapped for one graded set of overhead shots
 // (assets/photos/home-aerial, credits in CREDITS.json). Home only; a "Photos" switch in the review dock flips back to the originals.
 (function () {
-  const SETS = [["aerial", "Aerial"], ["daylight", "Daylight"], ["material", "Material"], ["orig", "Current"]], V = "?v=5";
+  const SETS = [["highkey", "High-key"], ["aerial", "Aerial"], ["daylight", "Daylight"], ["material", "Material"], ["night", "After hours"], ["orig", "Current"]], V = "?v=11";
   let set = "aerial"; try { const s = localStorage.getItem("nx-pho"); if (SETS.some((x) => x[0] === s)) set = s; } catch (e) {}
   const P = () => "assets/photos/home-" + set + "/";
   const STORY = { "Santander": "story-santander", "Carlsberg": "story-carlsberg", "randstad": "story-randstad", "edp": "story-edp", "KIRCHHOFF": "story-kirchhoff", "José de Mello Saúde": "story-josedemello", "Brisa": "story-brisa", "sata": "story-sata" };
@@ -2115,7 +2123,7 @@ html.nx-aerial #pageroot #sec-stories [style*="linear-gradient(to top, rgba(10, 
   const put = (img, url) => { if (!img.dataset.nxo) img.dataset.nxo = img.getAttribute("src") || ""; const want = set !== "orig" ? url : img.dataset.nxo; if (want && img.getAttribute("src") !== want) img.setAttribute("src", want); };
   function apply() {
     if (!isHome()) return;
-    root.classList.toggle("nx-aerial", set !== "orig");
+    root.classList.toggle("nx-aerial", set !== "orig"); SETS.forEach((x) => root.classList.toggle("nx-pho-" + x[0], x[0] === set));
     document.querySelectorAll("#lgrid .cell").forEach((c) => {
       const btn = c.querySelector(".cell-btn"), th = c.querySelector(".thumb img"); if (!btn || !th) return;
       const name = (btn.getAttribute("aria-label") || "").split(" — ")[0], f = STORY[name]; if (!f) return;
@@ -2134,9 +2142,29 @@ html.nx-aerial #pageroot #sec-stories [style*="linear-gradient(to top, rgba(10, 
   const go = (d) => { const k = SETS.findIndex((x) => x[0] === set); set = SETS[(k + d + SETS.length) % SETS.length][0]; try { localStorage.setItem("nx-pho", set); } catch (e) {} render(); apply(); };
   const wrap = h("div", { class: "nxh" }, [h("div", { class: "nxh-bar" }, [h("button", { type: "button", class: "nxh-a", "aria-label": "Switch photos", onclick: () => go(-1) }, ["‹"]), btn, h("button", { type: "button", class: "nxh-a", "aria-label": "Switch photos", onclick: () => go(1) }, ["›"])])]);
   btn.addEventListener("click", () => go(1));
-  function render() { btn.replaceChildren(h("span", { class: "nxp-l", text: "Photos" }), h("span", { class: "nxp-n", text: "ABCD"[SETS.findIndex((x) => x[0] === set)] + " " + SETS.find((x) => x[0] === set)[1] })); }
+  function render() { btn.replaceChildren(h("span", { class: "nxp-l", text: "Photos" }), h("span", { class: "nxp-n", text: "ABCDEF"[SETS.findIndex((x) => x[0] === set)] + " " + SETS.find((x) => x[0] === set)[1] })); }
   dock.prepend(wrap); render();
   const vis = () => { wrap.hidden = !isHome(); }; addEventListener("nx:page", vis); vis();
+})();
+</script>
+<style id="nx-wvis-scale">
+/* Solution-page workflow visuals on phones: drawn at their desktop size (557 x 600) and scaled down as one picture, so the
+   document, chips and labels keep their layout instead of reflowing (zoom set per panel by the script below) */
+@media (max-width: 1000px){
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .wrow .wvis{width:557px !important;min-width:557px !important;max-width:none !important;height:600px !important;min-height:600px !important;flex:none !important;}
+}
+</style>
+<script>
+// sets --wz on each workflow visual so 557px fits the column it sits in (phones only)
+(function () {
+  const fit = () => {
+    const ph = matchMedia("(max-width: 1000px)").matches;
+    document.querySelectorAll("#pageroot .wrow .wvis").forEach((v) => {
+      if (!ph) { v.style.transform = v.style.transformOrigin = ""; v.style.removeProperty("margin-bottom"); v.style.removeProperty("margin-right"); return; }
+      const w = v.parentElement.clientWidth; if (w) { const z = Math.min(1, w / 557); v.style.transformOrigin = "0 0"; v.style.transform = "scale(" + z.toFixed(4) + ")"; v.style.setProperty("margin-bottom", (-600 * (1 - z)).toFixed(1) + "px", "important"); v.style.setProperty("margin-right", (-557 * (1 - z)).toFixed(1) + "px", "important"); }
+    });
+  };
+  addEventListener("resize", fit); addEventListener("nx:page", () => setTimeout(fit, 80)); setInterval(fit, 1000); fit();
 })();
 </script>
 <style id="nx-lgv-quiet2">/* Quiet (default): no photo in the tiles at all, so the story photo only appears once, in the story card below.
@@ -2825,13 +2853,12 @@ html.nx-author #pageroot section[aria-labelledby="ft-h"]{display:none !important
   // then the opened step glides up under the header, so what it opened is on screen without the reader scrolling
   function glide(it, opening, was) {
     // some lists re-render a few frames later: for the first frames keep the step under the finger before each paint, then glide
-    let f = 0;
+    const t0 = performance.now();
     const hold = () => {
       const d = it.getBoundingClientRect().top - was; if (Math.abs(d) > 1) window.scrollBy(0, d);
-      if (++f < 8) { requestAnimationFrame(hold); return; }
+      if (performance.now() - t0 < 650) { requestAnimationFrame(hold); return; }   // until the step above has finished closing
       if (!opening || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      const hd = document.querySelector(".gnav"), top = (hd ? hd.getBoundingClientRect().bottom : 72) + 12, y = it.getBoundingClientRect().top;
-      if (y > innerHeight * 0.3 || y < top) window.scrollTo({ top: Math.max(0, scrollY + y - top), behavior: "smooth" });
+      // no glide to the header: on phones the page stays where the reader is
     };
     requestAnimationFrame(hold);
   }

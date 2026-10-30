@@ -1,0 +1,135 @@
+[
+ {
+  "name": "story-santander",
+  "src": "https://images.unsplash.com/photo-1661023794080-fe48f35bf58c",
+  "href": "https://unsplash.com/photos/a-building-with-columns-c0mCixLJd5Y",
+  "w": 2400,
+  "h": 816
+ },
+ {
+  "name": "story-carlsberg",
+  "src": "/plusdl/story-carlsberg.jpg",
+  "href": "https://unsplash.com/photos/industrial-pipes-in-food-processing-facility-SfLZSASeH0Q  (Unsplash+ licence)",
+  "w": 2400,
+  "h": 816
+ },
+ {
+  "name": "story-randstad",
+  "src": "https://images.unsplash.com/photo-1555421689-3f034debb7a6",
+  "href": "https://unsplash.com/photos/mens-blue-collared-top-near-silver-macbook-97HfVpyNR1M",
+  "w": 2400,
+  "h": 816
+ },
+ {
+  "name": "story-edp",
+  "src": "/plusdl/story-edp.jpg",
+  "href": "https://unsplash.com/photos/a-wind-turbine-is-shown-against-a-cloudy-sky-6EijSNfWcMI  (Unsplash+ licence)",
+  "w": 2400,
+  "h": 816
+ },
+ {
+  "name": "story-kirchhoff",
+  "src": "https://images.unsplash.com/photo-1589320012458-ce28bd1c86b1",
+  "href": "https://unsplash.com/photos/white-sedan-on-a-parking-lot-Spq4fuFM4Kw",
+  "w": 2400,
+  "h": 816
+ },
+ {
+  "name": "story-josedemello",
+  "src": "https://images.unsplash.com/photo-1635151925170-de5e89c3f03f",
+  "href": "https://unsplash.com/photos/a-long-hallway-with-white-walls-and-doors-DBB4mcKRcCs",
+  "w": 2400,
+  "h": 816
+ },
+ {
+  "name": "story-brisa",
+  "src": "/plusdl/story-brisa.jpg",
+  "href": "https://unsplash.com/photos/aerial-view-car-on-highway-road-traffic-for-transportation-concept-background-MLWrnn_UofY  (Unsplash+ licence)",
+  "w": 2400,
+  "h": 816
+ },
+ {
+  "name": "story-sata",
+  "src": "https://images.unsplash.com/photo-1655919640606-28088c64edb0",
+  "href": "https://unsplash.com/photos/a-person-walking-in-a-large-building-m5PcPzOIfTw",
+  "w": 2400,
+  "h": 816
+ },
+ {
+  "name": "tile-manufacturing",
+  "src": "https://images.unsplash.com/photo-1786472861878-973bbd048eb7",
+  "href": "https://unsplash.com/photos/glass-greenhouse-roof-with-metal-grid-1S_kb1q2zco",
+  "w": 1490,
+  "h": 620
+ },
+ {
+  "name": "tile-financial-services",
+  "src": "https://images.unsplash.com/photo-1496307653780-42ee777d4833",
+  "href": "https://unsplash.com/photos/bottom-view-of-glass-building-JI01fn0U7Cg",
+  "w": 750,
+  "h": 620
+ },
+ {
+  "name": "tile-logistics",
+  "src": "https://images.unsplash.com/photo-1622030360273-a8d1377be08b",
+  "href": "https://unsplash.com/photos/white-metal-frame-on-white-wall-95L645IAwEM",
+  "w": 740,
+  "h": 440
+ },
+ {
+  "name": "tile-energy",
+  "src": "/plusdl/tile-energy.jpg",
+  "href": "https://unsplash.com/photos/power-lines-and-a-metal-tower-stretch-into-the-sky-r5argEFExJM  (Unsplash+ licence)",
+  "w": 740,
+  "h": 440
+ },
+ {
+  "name": "tile-healthcare",
+  "src": "https://images.unsplash.com/photo-1735448214728-4fa20162d297",
+  "href": "https://unsplash.com/photos/a-large-white-building-with-a-skylight-above-it-Vdqn25rn_Kg",
+  "w": 740,
+  "h": 440
+ },
+ {
+  "name": "tile-finance",
+  "src": "https://images.unsplash.com/photo-1567505477286-9c7269119db7",
+  "href": "https://unsplash.com/photos/white-building-facade-bmsBrWulJdE",
+  "w": 1110,
+  "h": 540
+ },
+ {
+  "name": "tile-risk",
+  "src": "https://images.unsplash.com/photo-1524230572899-a752b3835840",
+  "href": "https://unsplash.com/photos/white-archway-corridor-with-stairs-7y4858E8PfA",
+  "w": 560,
+  "h": 540
+ },
+ {
+  "name": "tile-support",
+  "src": "https://images.unsplash.com/photo-1560264280-88b68371db39",
+  "href": "https://unsplash.com/photos/people-working-at-desks-in-open-office-kN_kViDchA0",
+  "w": 560,
+  "h": 540
+ },
+ {
+  "name": "tile-quality",
+  "src": "https://images.unsplash.com/photo-1581093577421-f561a654a353",
+  "href": "https://unsplash.com/photos/scientist-using-laptop-in-laboratory-8yS04veb1TQ",
+  "w": 560,
+  "h": 510
+ },
+ {
+  "name": "tile-it",
+  "src": "/plusdl/tile-it.jpg",
+  "href": "https://unsplash.com/photos/a-server-room-with-rows-of-data-servers-_ov9HrXs9ms  (Unsplash+ licence)",
+  "w": 560,
+  "h": 510
+ },
+ {
+  "name": "tile-operations",
+  "src": "/plusdl/tile-operations.jpg",
+  "href": "https://unsplash.com/photos/a-crane-that-is-standing-in-the-air-CTpGrgtKGes  (Unsplash+ licence)",
+  "w": 1110,
+  "h": 510
+ }
+]

@@ -1,0 +1,135 @@
+[
+ {
+  "name": "story-santander",
+  "src": "/assets/photos/originals/santander-original.jpg",
+  "href": "(original site photo)",
+  "w": 2400,
+  "h": 816
+ },
+ {
+  "name": "story-carlsberg",
+  "src": "https://images.unsplash.com/photo-1542835497-a6813df96ed9",
+  "href": "https://unsplash.com/photos/brown-pizza-oven-EHbtjmz7hvw",
+  "w": 2400,
+  "h": 816
+ },
+ {
+  "name": "story-randstad",
+  "src": "https://images.unsplash.com/photo-1791481512258-db981df780ae",
+  "href": "https://unsplash.com/photos/person-wearing-headset-in-dim-room-VOl7Yzf_86s",
+  "w": 2400,
+  "h": 816
+ },
+ {
+  "name": "story-edp",
+  "src": "https://images.unsplash.com/photo-1758545760408-754dddae1d09",
+  "href": "https://unsplash.com/photos/power-lines-and-bridge-with-light-trails-at-dusk-TijCy_qHxLQ",
+  "w": 2400,
+  "h": 816
+ },
+ {
+  "name": "story-kirchhoff",
+  "src": "https://images.unsplash.com/photo-1788253052498-953f03a56c8b",
+  "href": "https://unsplash.com/photos/police-car-drifting-in-industrial-warehouse-TWphxj02PNw",
+  "w": 2400,
+  "h": 816
+ },
+ {
+  "name": "story-josedemello",
+  "src": "https://images.unsplash.com/photo-1686916058141-a04d7f501ba8",
+  "href": "https://unsplash.com/photos/a-dark-hallway-with-a-blue-door-and-white-walls-RYs4g_FFlAo",
+  "w": 2400,
+  "h": 816
+ },
+ {
+  "name": "story-brisa",
+  "src": "https://images.unsplash.com/photo-1517953377824-516f2dca803b",
+  "href": "https://unsplash.com/photos/time-lapse-photography-of-lighted-road-at-night-YTk8tO3PGdA",
+  "w": 2400,
+  "h": 816
+ },
+ {
+  "name": "story-sata",
+  "src": "https://images.unsplash.com/photo-1547312667-da746e5a78c7",
+  "href": "https://unsplash.com/photos/planes-at-airport-during-daytime-a80xLtm_tMQ",
+  "w": 2400,
+  "h": 816
+ },
+ {
+  "name": "tile-manufacturing",
+  "src": "https://images.unsplash.com/photo-1565954786194-d22abeaac3ae",
+  "href": "https://unsplash.com/photos/mens-blue-denim-shirt-hTUdXgbhd3o",
+  "w": 1490,
+  "h": 620
+ },
+ {
+  "name": "tile-financial-services",
+  "src": "https://images.unsplash.com/photo-1665360786492-ace5845fe817",
+  "href": "https://unsplash.com/photos/a-man-sitting-at-a-desk-with-a-laptop-wafnDgZU66k",
+  "w": 750,
+  "h": 620
+ },
+ {
+  "name": "tile-logistics",
+  "src": "https://images.unsplash.com/photo-1588715750061-b5a21aa459f9",
+  "href": "https://unsplash.com/photos/man-in-brown-jacket-standing-on-brown-wooden-dock-during-night-time-tB9TZpUa2lI",
+  "w": 740,
+  "h": 440
+ },
+ {
+  "name": "tile-energy",
+  "src": "https://images.unsplash.com/photo-1667690707353-008c272272d0",
+  "href": "https://unsplash.com/photos/a-man-wearing-a-helmet-and-goggles-holding-a-pair-of-ski-poles-sXTuzIk0HlY",
+  "w": 740,
+  "h": 440
+ },
+ {
+  "name": "tile-healthcare",
+  "src": "/assets/photos/originals/healthcare-original.jpg",
+  "href": "(original site photo)",
+  "w": 740,
+  "h": 440
+ },
+ {
+  "name": "tile-finance",
+  "src": "https://images.unsplash.com/photo-1622295023876-0cdf583c41f6",
+  "href": "https://unsplash.com/photos/man-in-black-dress-shirt-using-laptop-computer-MSX3O-Sqa8U",
+  "w": 1110,
+  "h": 540
+ },
+ {
+  "name": "tile-risk",
+  "src": "https://images.unsplash.com/photo-1758520145147-c30bc656f314",
+  "href": "https://unsplash.com/photos/man-working-late-at-a-dimly-lit-office-desk-l12wb6pAzuQ",
+  "w": 560,
+  "h": 540
+ },
+ {
+  "name": "tile-support",
+  "src": "https://images.unsplash.com/photo-1790597035289-15317670b9f7",
+  "href": "https://unsplash.com/photos/woman-talking-on-phone-at-workspace-ZLTu6aKI0ug",
+  "w": 560,
+  "h": 540
+ },
+ {
+  "name": "tile-quality",
+  "src": "https://images.unsplash.com/photo-1578496481449-cf2e845cc00c",
+  "href": "https://unsplash.com/photos/woman-in-white-long-sleeved-top-s9WLlvDlbx4",
+  "w": 560,
+  "h": 510
+ },
+ {
+  "name": "tile-it",
+  "src": "https://images.unsplash.com/photo-1484253292651-6e940b0a0e26",
+  "href": "https://unsplash.com/photos/man-holding-black-dslr-camera-RBWDrxW3xog",
+  "w": 560,
+  "h": 510
+ },
+ {
+  "name": "tile-operations",
+  "src": "https://images.unsplash.com/photo-1761141535640-c78744c4f369",
+  "href": "https://unsplash.com/photos/control-room-with-electrical-panels-and-gauges-KvG756qL6jI",
+  "w": 1110,
+  "h": 510
+ }
+]
