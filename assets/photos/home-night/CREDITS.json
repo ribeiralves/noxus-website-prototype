@@ -15,10 +15,11 @@
  },
  {
   "name": "story-randstad",
-  "src": "https://images.unsplash.com/photo-1791481512258-db981df780ae",
-  "href": "https://unsplash.com/photos/person-wearing-headset-in-dim-room-VOl7Yzf_86s",
   "w": 2400,
-  "h": 816
+  "h": 816,
+  "unsplash": "https://unsplash.com/photos/thoughtful-hipster-businessman-in-his-office-working-late-at-night-at-desk-with-computer-and-laptop--ue88zJ-4kk",
+  "plus": true,
+  "redo": "2026-10-30"
  },
  {
   "name": "story-edp",
@@ -29,17 +30,19 @@
  },
  {
   "name": "story-kirchhoff",
-  "src": "https://images.unsplash.com/photo-1788253052498-953f03a56c8b",
-  "href": "https://unsplash.com/photos/police-car-drifting-in-industrial-warehouse-TWphxj02PNw",
   "w": 2400,
-  "h": 816
+  "h": 816,
+  "unsplash": "https://unsplash.com/photos/people-welding-the-metal-during-work-in-metal-processing-plant-wDAxVOyHuJo",
+  "plus": true,
+  "redo": "2026-10-30"
  },
  {
   "name": "story-josedemello",
-  "src": "https://images.unsplash.com/photo-1686916058141-a04d7f501ba8",
-  "href": "https://unsplash.com/photos/a-dark-hallway-with-a-blue-door-and-white-walls-RYs4g_FFlAo",
   "w": 2400,
-  "h": 816
+  "h": 816,
+  "unsplash": "https://unsplash.com/photos/usa-california-hawthorne-ITmT4ivEp8w",
+  "plus": true,
+  "redo": "2026-10-30"
  },
  {
   "name": "story-brisa",
@@ -131,5 +134,37 @@
   "href": "https://unsplash.com/photos/control-room-with-electrical-panels-and-gauges-KvG756qL6jI",
   "w": 1110,
   "h": 510
+ },
+ {
+  "name": "story-lusiadas",
+  "w": 2400,
+  "h": 816,
+  "unsplash": "https://unsplash.com/photos/a-building-that-has-a-bunch-of-glass-doors-giqBUib5KbQ",
+  "plus": false,
+  "added": "2026-10-30"
+ },
+ {
+  "name": "story-jeronimomartins",
+  "w": 2400,
+  "h": 816,
+  "unsplash": "https://unsplash.com/photos/shopping-cart-on-wet-pavement-at-night-KlTKaW6s8nY",
+  "plus": false,
+  "added": "2026-10-30"
+ },
+ {
+  "name": "story-frulact",
+  "w": 2400,
+  "h": 816,
+  "unsplash": "https://unsplash.com/photos/a-building-with-two-doors-and-a-ramp-leading-to-it-QA3l1dajFbk",
+  "plus": false,
+  "added": "2026-10-30"
+ },
+ {
+  "name": "story-kuantokusta",
+  "w": 2400,
+  "h": 816,
+  "unsplash": "https://unsplash.com/photos/warm-light-glows-through-a-large-industrial-window-at-night-e4Tr3gRDnd0",
+  "plus": false,
+  "added": "2026-10-30"
  }
 ]

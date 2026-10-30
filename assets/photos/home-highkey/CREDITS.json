@@ -15,10 +15,11 @@
  },
  {
   "name": "story-randstad",
-  "src": "https://images.unsplash.com/photo-1555421689-3f034debb7a6",
-  "href": "https://unsplash.com/photos/mens-blue-collared-top-near-silver-macbook-97HfVpyNR1M",
   "w": 2400,
-  "h": 816
+  "h": 816,
+  "unsplash": "https://unsplash.com/photos/white-open-office-with-narrow-tall-windows-white-computer-tables-and-black-office-chairs-a-wooden-floor-corner-3d-rendering-mock-up-IdE5tUw6wT8",
+  "plus": true,
+  "redo": "2026-10-30"
  },
  {
   "name": "story-edp",
@@ -120,10 +121,11 @@
  },
  {
   "name": "tile-it",
-  "src": "/plusdl/tile-it.jpg",
-  "href": "https://unsplash.com/photos/a-server-room-with-rows-of-data-servers-_ov9HrXs9ms  (Unsplash+ licence)",
   "w": 560,
-  "h": 510
+  "h": 510,
+  "unsplash": "https://unsplash.com/photos/interior-of-a-modern-data-center-kOrfyujugQs",
+  "plus": true,
+  "redo": "2026-10-30"
  },
  {
   "name": "tile-operations",
@@ -131,5 +133,37 @@
   "href": "https://unsplash.com/photos/a-crane-that-is-standing-in-the-air-CTpGrgtKGes  (Unsplash+ licence)",
   "w": 1110,
   "h": 510
+ },
+ {
+  "name": "story-lusiadas",
+  "w": 2400,
+  "h": 816,
+  "unsplash": "https://unsplash.com/photos/modern-white-building-against-a-blue-sky-M4dUdHWhNKk",
+  "plus": true,
+  "added": "2026-10-30"
+ },
+ {
+  "name": "story-frulact",
+  "w": 2400,
+  "h": 816,
+  "unsplash": "https://unsplash.com/photos/plant-picture-clean-room-equipment-and-stainless-steel-machines-yvtxnUxz5RY",
+  "plus": true,
+  "added": "2026-10-30"
+ },
+ {
+  "name": "story-kuantokusta",
+  "w": 2400,
+  "h": 816,
+  "unsplash": "https://unsplash.com/photos/empty-modern-warehouse-interior-with-polished-concrete-floor-3lkaszxWfGc",
+  "plus": false,
+  "added": "2026-10-30"
+ },
+ {
+  "name": "story-jeronimomartins",
+  "w": 2400,
+  "h": 816,
+  "unsplash": "https://unsplash.com/photos/a-empty-shelf-in-a-store-with-a-price-tag-xpaTYbX8exs",
+  "plus": true,
+  "added": "2026-10-30"
  }
 ]

@@ -1,27 +1,39 @@
 [
  {
   "file": "story-santander.jpg",
-  "unsplash": "https://unsplash.com/photos/modern-lobby-with-marble-floors-and-decorative-ceiling-08MQb0SSUDQ"
+  "unsplash": "https://unsplash.com/photos/empty-bank-teller-counters-with-chairs-Jq6MteMFJ3U",
+  "plus": true,
+  "redo": "2026-10-30"
  },
  {
   "file": "story-carlsberg.jpg",
-  "unsplash": "https://unsplash.com/photos/stainless-steel-brewery-fermentation-tanks-JfIGAxiLtJE"
+  "unsplash": "https://unsplash.com/photos/specialist-with-document-looking-at-glass-of-fresh-beer-to-check-the-quality-during-her-work-at-brewing-plant-f2mJXK8TtLY",
+  "plus": true,
+  "redo": "2026-10-30"
  },
  {
   "file": "story-randstad.jpg",
-  "unsplash": "https://unsplash.com/photos/mens-blue-collared-top-near-silver-macbook-97HfVpyNR1M"
+  "unsplash": "https://unsplash.com/photos/a-group-of-women-sitting-around-a-table-L9IFHGgqy58",
+  "plus": true,
+  "redo": "2026-10-30"
  },
  {
   "file": "story-edp.jpg",
-  "unsplash": "https://unsplash.com/photos/a-metal-electricity-pylon-structure-against-a-clear-blue-sky-FxXoGzjCXcM"
+  "unsplash": "https://unsplash.com/photos/people-engineer-are-wearing-a-protective-helmet-on-head-using-tablet-analytics-engineering-data-_723kR8VR-c",
+  "plus": true,
+  "redo": "2026-10-30"
  },
  {
   "file": "story-kirchhoff.jpg",
-  "unsplash": "https://unsplash.com/photos/white-sedan-on-a-parking-lot-Spq4fuFM4Kw"
+  "unsplash": "https://unsplash.com/photos/automated-car-assembly-line-plant-of-automotive-industry-shop-for-production-and-assembly-of-machines-bottom-view-IWukhFBlpqI",
+  "plus": true,
+  "redo": "2026-10-30"
  },
  {
   "file": "story-josedemello.jpg",
-  "unsplash": "https://unsplash.com/photos/empty-hospital-corridor-with-benches-and-doors-Pk-KuizxQv8"
+  "unsplash": "https://unsplash.com/photos/an-empty-adjustable-bed-in-room-in-private-modern-hospital-1ErqKqfQhqs",
+  "plus": true,
+  "redo": "2026-10-30"
  },
  {
   "file": "story-brisa.jpg",
@@ -29,7 +41,9 @@
  },
  {
   "file": "story-sata.jpg",
-  "unsplash": "https://unsplash.com/photos/a-man-standing-in-front-of-an-airport-window-BRCqmRoNUio"
+  "unsplash": "https://unsplash.com/photos/welcome-back-back-view-of-airport-worker-meeting-passenger-aircraft-ePZVh7J-jek",
+  "plus": true,
+  "redo": "2026-10-30"
  },
  {
   "file": "tile-manufacturing.jpg",
@@ -74,5 +88,29 @@
  {
   "file": "tile-operations.jpg",
   "unsplash": "https://unsplash.com/photos/a-large-warehouse-filled-with-lots-of-pallets-OnbSOhz0oig"
+ },
+ {
+  "file": "story-lusiadas.jpg",
+  "unsplash": "https://unsplash.com/photos/modern-glass-building-with-curved-entrance-under-sky-JtHwupBN3to",
+  "plus": false,
+  "added": "2026-10-30"
+ },
+ {
+  "file": "story-jeronimomartins.jpg",
+  "unsplash": "https://unsplash.com/photos/a-grocery-store-aisle-filled-with-lots-of-food-cg7gpa790OA",
+  "plus": true,
+  "added": "2026-10-30"
+ },
+ {
+  "file": "story-frulact.jpg",
+  "unsplash": "https://unsplash.com/photos/ripe-tangerines-on-the-conveyor-belt-of-a-fruit-processing-plant-top-view-7a4tCrVrDv4",
+  "plus": true,
+  "added": "2026-10-30"
+ },
+ {
+  "file": "story-kuantokusta.jpg",
+  "unsplash": "https://unsplash.com/photos/interior-of-a-huge-warehouse-with-long-red-racks-and-cardboard-boxes-_yyAgpfUmfE",
+  "plus": true,
+  "added": "2026-10-30"
  }
 ]

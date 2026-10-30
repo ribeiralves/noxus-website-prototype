@@ -9,7 +9,9 @@
  },
  {
   "file": "story-randstad.jpg",
-  "unsplash": "https://unsplash.com/photos/cars-on-road-during-daytime-ybnBznISRCU"
+  "unsplash": "https://unsplash.com/photos/3d-low-poly-people-at-street-with-connections-DIhEwzv9yZY",
+  "plus": true,
+  "redo": "2026-10-30"
  },
  {
   "file": "story-edp.jpg",
@@ -17,7 +19,9 @@
  },
  {
   "file": "story-kirchhoff.jpg",
-  "unsplash": "https://unsplash.com/photos/an-aerial-view-of-a-building-with-a-lot-of-solar-panels-iDSXatl7yNo"
+  "unsplash": "https://unsplash.com/photos/open-air-parking-for-residents-of-the-area-top-aerial-view-from-high-4rj29rKkwpU",
+  "plus": true,
+  "redo": "2026-10-30"
  },
  {
   "file": "story-josedemello.jpg",
@@ -29,7 +33,9 @@
  },
  {
   "file": "story-sata.jpg",
-  "unsplash": "https://unsplash.com/photos/white-and-yellow-cross-print-textile-7YZrdk0WJ6w"
+  "unsplash": "https://unsplash.com/photos/white-airplane-disassembled-on-a-concrete-surface-PqOFxHJ9e8I",
+  "plus": true,
+  "redo": "2026-10-30"
  },
  {
   "file": "tile-manufacturing.jpg",
@@ -41,11 +47,15 @@
  },
  {
   "file": "tile-logistics.jpg",
-  "unsplash": "https://unsplash.com/photos/parked-trucks-kGoPcmpPT7c"
+  "unsplash": "https://unsplash.com/photos/a-parking-lot-filled-with-lots-of-colorful-parking-meters-cgMFvOgsbU8",
+  "plus": true,
+  "redo": "2026-10-30"
  },
  {
   "file": "tile-energy.jpg",
-  "unsplash": "https://unsplash.com/photos/an-aerial-view-of-a-field-with-a-clock-on-it-YFgRCfqUkMo"
+  "unsplash": "https://unsplash.com/photos/a-large-metal-structure-with-a-clock-on-top-of-it-N5YFJ9s1Sew",
+  "plus": true,
+  "redo": "2026-10-30"
  },
  {
   "file": "tile-healthcare.jpg",
@@ -61,7 +71,9 @@
  },
  {
   "file": "tile-support.jpg",
-  "unsplash": "https://unsplash.com/photos/workspace-with-computer-monitor-and-tablet-hBtegFEbH0A"
+  "unsplash": "https://unsplash.com/photos/aerial-view-of-headphones-and-keyboard-on-wooden-table-NXzWTPFES8o",
+  "plus": true,
+  "redo": "2026-10-30"
  },
  {
   "file": "tile-quality.jpg",
@@ -74,5 +86,29 @@
  {
   "file": "tile-operations.jpg",
   "unsplash": "https://unsplash.com/photos/a-group-of-people-climbing-a-mountain-YClOaKQrrK0"
+ },
+ {
+  "file": "story-lusiadas.jpg",
+  "unsplash": "https://unsplash.com/photos/an-aerial-view-of-a-building-with-multiple-floors-4s3L24L-QMU",
+  "plus": true,
+  "added": "2026-10-30"
+ },
+ {
+  "file": "story-jeronimomartins.jpg",
+  "unsplash": "https://unsplash.com/photos/fruits-and-vegetables-stall-in-a-market-WL3hAA-Pyzs",
+  "plus": true,
+  "added": "2026-10-30"
+ },
+ {
+  "file": "story-frulact.jpg",
+  "unsplash": "https://unsplash.com/photos/an-aerial-view-of-a-dirt-road-in-a-field-k9v_fJqpaB4",
+  "plus": true,
+  "added": "2026-10-30"
+ },
+ {
+  "file": "story-kuantokusta.jpg",
+  "unsplash": "https://unsplash.com/photos/big-corporate-shipment-center-with-many-cargo-semi-trucks-unloading-and-uploading-retail-products-for-further-retail-shipment-global-market-concept-2O2RZfPI26Y",
+  "plus": true,
+  "added": "2026-10-30"
  }
 ]
