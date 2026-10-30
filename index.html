@@ -33,7 +33,7 @@ html:not(.nx-before) :is(.metric,dd,td,[class*="num"]){font-variant-numeric:tabu
 #proto-pages nav{position:absolute;right:0;bottom:100%;margin-bottom:6px;min-width:220px;background:#FFFFFF;border:1px solid #E2E0DC;box-shadow:0 12px 32px -16px rgba(22,22,22,.35)}
 #proto-pages a{display:block;padding:9px 12px;color:#161616;text-decoration:none;border-top:1px solid #ECEAE6}#proto-pages a:first-child{border-top:0}#proto-pages a:hover,#proto-pages a.on{background:#F7F1E8;color:#8A5A2B}</style>
 <style id="nx-zoom">:root{--nxz:0.9}#navroot,#pageroot{zoom:0.9}</style>
-<style>.nx-dock,.nxp,.nxp-toast,#nxr,.nxr,#nx-opts{display:none !important}</style>
+<style>.nx-dock > :not(.nxh-pho),.nxp,.nxp-toast,#nxr,.nxr,#nx-opts{display:none !important}@media (max-width: 760px){html body > .nx-dock{display:flex !important}}</style>
 </head><body>
 <div id="navroot"></div><div id="pageroot"></div>
 <details id="proto-pages"><summary>Pages</summary><nav id="proto-list"></nav></details>
@@ -2140,7 +2140,7 @@ html.nx-pho-highkey #pageroot #sec-stories [style*="linear-gradient(to top, rgba
   const dock = document.querySelector(".nx-dock") || (() => { const d = h("div", { class: "nx-dock" }); document.body.append(d); return d; })();
   const btn = h("button", { type: "button", class: "nxh-btn" });
   const go = (d) => { const k = SETS.findIndex((x) => x[0] === set); set = SETS[(k + d + SETS.length) % SETS.length][0]; try { localStorage.setItem("nx-pho", set); } catch (e) {} render(); apply(); };
-  const wrap = h("div", { class: "nxh" }, [h("div", { class: "nxh-bar" }, [h("button", { type: "button", class: "nxh-a", "aria-label": "Switch photos", onclick: () => go(-1) }, ["‹"]), btn, h("button", { type: "button", class: "nxh-a", "aria-label": "Switch photos", onclick: () => go(1) }, ["›"])])]);
+  const wrap = h("div", { class: "nxh nxh-pho" }, [h("div", { class: "nxh-bar" }, [h("button", { type: "button", class: "nxh-a", "aria-label": "Switch photos", onclick: () => go(-1) }, ["‹"]), btn, h("button", { type: "button", class: "nxh-a", "aria-label": "Switch photos", onclick: () => go(1) }, ["›"])])]);
   btn.addEventListener("click", () => go(1));
   function render() { btn.replaceChildren(h("span", { class: "nxp-l", text: "Photos" }), h("span", { class: "nxp-n", text: "ABCDEF"[SETS.findIndex((x) => x[0] === set)] + " " + SETS.find((x) => x[0] === set)[1] })); }
   dock.prepend(wrap); render();
@@ -2167,6 +2167,37 @@ html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not
   addEventListener("resize", fit); addEventListener("nx:page", () => setTimeout(fit, 80)); setInterval(fit, 1000); fit();
 })();
 </script>
+<style id="nx-kv-mobile">
+/* Platform · "Apply controls" cards on phones: one shared layout for both mock-ups - wider card (16px inset), 13px text,
+   each case row as label over value, the status badge under the title, buttons sharing the width */
+@media (max-width: 760px){
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv{padding:16px !important}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv > :is(.ka,.kg){width:100% !important;max-width:none !important;font-size:13px !important}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv :is(.kah,.kgh){flex-wrap:wrap;align-items:center !important;gap:8px 12px;padding:14px 16px !important}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv .kam,html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv .kgh > span{font-size:14px !important;line-height:20px}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv .kar{grid-template-columns:1fr !important;gap:6px !important;padding:12px 16px !important}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv .kar > span:not(.kal),html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv .kwho{font-size:13px !important;line-height:19px}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv .kal{font-size:12px !important}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv .kwho{display:flex !important;align-items:center;gap:10px}html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv .kwho em{margin-left:auto;white-space:nowrap}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv .kab{padding:12px 16px !important;gap:8px}html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv .kab .kbt{flex:1 1 auto;white-space:nowrap;padding:0 12px !important;justify-content:center;font-size:13px !important;min-height:36px}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv .kgl{grid-template-columns:62px 1fr 14px !important;padding:12px 16px !important;column-gap:10px}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv :is(.kgt,.kgn,.kgd){font-size:13px !important;line-height:19px}
+}
+</style>
+<style id="nx-kv-pair">
+/* Platform · "Apply controls" pair, side by side (above 1000px): equal columns; both mock-ups fill the same panel height
+   (rows share the spare height) so they start and end on the same lines; lists sit under the description, not at the bottom */
+@media (min-width: 1001px){
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kgd2{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kgd2 .kv{align-items:stretch}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv > :is(.ka,.kg){display:flex;flex-direction:column}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv :is(.kar,.kgl){flex:1 1 auto;align-content:center}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv .kgh{padding:12px 16px}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kv .kgl{padding:8px 16px}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kgd2 .kd{min-height:calc(3 * 1.55em)}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot .kgd2 .kl{margin-top:24px !important}
+}
+</style>
 <style id="nx-lgv-quiet2">/* Quiet (default): no photo in the tiles at all, so the story photo only appears once, in the story card below.
    Story tiles carry a small corner arrow; the tile whose story is showing gets a black logo, a black arrow and the progress line. */
 html[data-lgv="quiet"]:not(#q1) #pageroot #lgrid li:has(.cell-btn) .thumb{opacity:0 !important}
