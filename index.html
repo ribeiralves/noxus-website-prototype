@@ -1659,6 +1659,8 @@ html[data-idv="5"] #nx-idle .nxi-l .nxi-t,html[data-idv="5"] #nx-idle .nxi-l .nx
 #nx-idle .nxi-n text{font:11px 'Geist Mono',ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;fill:#161616}
 @keyframes nxinode{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 #nx-idle .nxi-n.in{animation:nxinode 450ms cubic-bezier(.2,.7,.2,1) both}
+/* Flow: no logo, just the cue */
+html[data-idv="5"] #nx-idle .nxi-m > svg,html[data-idv="5"] #nx-idle .nxi-m > b{display:none !important}
 @media (prefers-reduced-motion: reduce){#nx-idle,#nx-idle.on{transition:none}#nx-idle .nxi-v i{animation:none !important}}
 </style>
 <script>// Idle mode (idle.js): 120s without mouse, touch, keys or scroll -> calm screen; a click, tap or key brings the page back (moving does not)
@@ -1902,11 +1904,11 @@ html[data-lgv="tabs"] #pageroot .lgstrip li{position:relative;height:83px;border
 @media (max-width: 1000px){#pageroot #gsv3 .f14l::before{position:static;display:block;padding:20px 16px 0}}
 </style>
 <template id="nx-int2"><style>@property --n { syntax: "<integer>"; inherits: false; initial-value: 0; }
-@media (prefers-reduced-motion: reduce){* { transition: none !important; animation: auto ease 0s 1 normal none running none !important; }}
-@media (prefers-reduced-motion: reduce){* { transition: none !important; animation: auto ease 0s 1 normal none running none !important; }}
+
+
 .lg { filter: grayscale(1); opacity: 0.55; transition: filter 300ms, opacity 300ms; }
 .mn, .tn { transition: border-color 200ms, box-shadow 200ms; cursor: default; }
-@media (prefers-reduced-motion: reduce){* { transition: none !important; animation: auto ease 0s 1 normal none running none !important; }}
+
 img[alt=""] { filter: grayscale(1) contrast(1.04) brightness(0.96); }
 .icv { position: relative; aspect-ratio: 816 / 630; background: linear-gradient(to right, rgb(241, 239, 236) 1px, transparent 1px) -1px -1px / 32px 32px, linear-gradient(rgb(241, 239, 236) 1px, transparent 1px) rgb(255, 255, 255); border: 1px solid rgb(226, 224, 220); box-shadow: rgba(22, 22, 22, 0.35) 0px 30px 60px -40px; overflow: hidden; font-family: "BDO Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif; color: rgb(22, 22, 22); }
 .stg { position: absolute; left: 0px; top: 0px; width: 816px; height: 630px; transform-origin: 0px 0px; transform: scale(var(--s,1)); }
@@ -2087,6 +2089,56 @@ html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not
 html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot #lgrid .cell:has(.cell-btn:focus-visible) .lmw{transform:scale(1.1) !important}
 @media (prefers-reduced-motion: reduce){html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot #lgrid .cell .lmw{transition:none !important}}
 </style>
+<style id="nx-partners">
+/* Getting started partners: sized by visual weight, not box - Khtml:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot #gsv3 .pwc imgMG's dense wordmark smaller, html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot #gsv3 .pwc imgwC (mostly white space)
+   and Devoteam's light lettering larger, so the three read at the same strength */
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot #gsv3 .pwc img[alt="Khtml:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot #gsv3 .pwc imgMG"]{height:23px !important}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot #gsv3 .pwc img[alt="html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot #gsv3 .pwc imgwC"]{height:44px !important}
+html:not(#x1):not(#x2):not(#x3):not(#x4):not(#x5):not(#x6):not(#x7):not(#x8):not(#x9):not(#x10) #pageroot #gsv3 .pwc img[alt="Devoteam"]{height:28px !important}
+</style>
+<style id="nx-aerial-css">
+/* Aerial photos keep their own colour: no ink-tone filter on the story images, and the scrim only where the text sits */
+html.nx-aerial #pageroot #sec-stories img{filter:none !important}
+html.nx-aerial #pageroot #sec-stories [style*="linear-gradient(to top, rgba(10, 13, 13"]{background:linear-gradient(to top, rgba(10,13,13,.78) 0%, rgba(10,13,13,.42) 32%, rgba(10,13,13,0) 62%) !important}
+</style>
+<script id="nx-aerial">// Home photos · "Aerial order": customer stories and industry/function tiles swapped for one graded set of overhead shots
+// (assets/photos/home-aerial, credits in CREDITS.json). Home only; a "Photos" switch in the review dock flips back to the originals.
+(function () {
+  const SETS = [["aerial", "Aerial"], ["daylight", "Daylight"], ["material", "Material"], ["orig", "Current"]], V = "?v=5";
+  let set = "aerial"; try { const s = localStorage.getItem("nx-pho"); if (SETS.some((x) => x[0] === s)) set = s; } catch (e) {}
+  const P = () => "assets/photos/home-" + set + "/";
+  const STORY = { "Santander": "story-santander", "Carlsberg": "story-carlsberg", "randstad": "story-randstad", "edp": "story-edp", "KIRCHHOFF": "story-kirchhoff", "José de Mello Saúde": "story-josedemello", "Brisa": "story-brisa", "sata": "story-sata" };
+  const TILE = [["Manufacturing", "tile-manufacturing"], ["Financial services", "tile-financial-services"], ["Logistics", "tile-logistics"], ["Energy", "tile-energy"], ["Healthcare", "tile-healthcare"], ["Finance", "tile-finance"], ["Risk", "tile-risk"], ["Customer support", "tile-support"], ["Quality", "tile-quality"], ["IT service", "tile-it"], ["Operations", "tile-operations"]];
+  const root = document.documentElement;
+  const isHome = () => { const p = window.__nx && window.__nx.page(); return p && p.key === "home"; };
+  // remember each image's original src the first time we touch it, so switching back restores it
+  const put = (img, url) => { if (!img.dataset.nxo) img.dataset.nxo = img.getAttribute("src") || ""; const want = set !== "orig" ? url : img.dataset.nxo; if (want && img.getAttribute("src") !== want) img.setAttribute("src", want); };
+  function apply() {
+    if (!isHome()) return;
+    root.classList.toggle("nx-aerial", set !== "orig");
+    document.querySelectorAll("#lgrid .cell").forEach((c) => {
+      const btn = c.querySelector(".cell-btn"), th = c.querySelector(".thumb img"); if (!btn || !th) return;
+      const name = (btn.getAttribute("aria-label") || "").split(" — ")[0], f = STORY[name]; if (!f) return;
+      const orig = th.dataset.nxo || th.getAttribute("src"), url = P() + f + ".jpg" + V;
+      document.querySelectorAll("#sec-stories img").forEach((i) => { if ((i.dataset.nxo || i.getAttribute("src")) === orig) put(i, url); });
+    });
+    document.querySelectorAll("#pageroot #sol-sec img.m3timg").forEach((i) => {
+      const t = i.closest("a"), txt = t ? t.textContent.trim() : ""; const hit = TILE.find(([k]) => txt.startsWith(k)); if (hit) put(i, P() + hit[1] + ".jpg" + V);
+    });
+  }
+  addEventListener("nx:page", () => setTimeout(apply, 60)); setInterval(apply, 700); apply();
+  // review switch
+  const h = (tag, attrs, kids) => { const el = document.createElement(tag); for (const k in attrs || {}) { if (k === "text") el.textContent = attrs[k]; else if (k.startsWith("on")) el.addEventListener(k.slice(2), attrs[k]); else el.setAttribute(k, attrs[k]); } (kids || []).forEach((c) => c != null && el.append(c)); return el; };
+  const dock = document.querySelector(".nx-dock") || (() => { const d = h("div", { class: "nx-dock" }); document.body.append(d); return d; })();
+  const btn = h("button", { type: "button", class: "nxh-btn" });
+  const go = (d) => { const k = SETS.findIndex((x) => x[0] === set); set = SETS[(k + d + SETS.length) % SETS.length][0]; try { localStorage.setItem("nx-pho", set); } catch (e) {} render(); apply(); };
+  const wrap = h("div", { class: "nxh" }, [h("div", { class: "nxh-bar" }, [h("button", { type: "button", class: "nxh-a", "aria-label": "Switch photos", onclick: () => go(-1) }, ["‹"]), btn, h("button", { type: "button", class: "nxh-a", "aria-label": "Switch photos", onclick: () => go(1) }, ["›"])])]);
+  btn.addEventListener("click", () => go(1));
+  function render() { btn.replaceChildren(h("span", { class: "nxp-l", text: "Photos" }), h("span", { class: "nxp-n", text: "ABCD"[SETS.findIndex((x) => x[0] === set)] + " " + SETS.find((x) => x[0] === set)[1] })); }
+  dock.prepend(wrap); render();
+  const vis = () => { wrap.hidden = !isHome(); }; addEventListener("nx:page", vis); vis();
+})();
+</script>
 <style id="nx-lgv-quiet2">/* Quiet (default): no photo in the tiles at all, so the story photo only appears once, in the story card below.
    Story tiles carry a small corner arrow; the tile whose story is showing gets a black logo, a black arrow and the progress line. */
 html[data-lgv="quiet"]:not(#q1) #pageroot #lgrid li:has(.cell-btn) .thumb{opacity:0 !important}
