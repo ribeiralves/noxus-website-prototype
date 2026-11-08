@@ -1,0 +1,125 @@
+[
+ {
+  "file": "story-santander.jpg",
+  "unsplash": "https://unsplash.com/photos/skyscrapers-reaching-toward-clear-blue-sky-a_thRbKGcGU",
+  "license": "Unsplash+"
+ },
+ {
+  "file": "story-jeronimomartins.jpg",
+  "unsplash": "https://unsplash.com/photos/boxes-fill-the-shelves-of-a-large-warehouse-9PhbyTVU9ik",
+  "license": "Unsplash+"
+ },
+ {
+  "file": "story-kuantokusta.jpg",
+  "unsplash": "https://unsplash.com/photos/boxes-move-along-conveyor-belts-in-a-warehouse-xo_-61Ckld4",
+  "license": "Unsplash+"
+ },
+ {
+  "set": "sig",
+  "tile": "finance",
+  "unsplash": "https://unsplash.com/photos/modern-building-facade-with-repeating-vertical-lines-VBf5yW1nTUM",
+  "plus": true,
+  "round": "r19"
+ },
+ {
+  "set": "sig",
+  "tile": "risk",
+  "source": "Miguel, originals/home-sig-candidates/risk-columns-mirrored.jpg",
+  "round": "r19"
+ },
+ {
+  "set": "sig",
+  "tile": "support",
+  "source": "Miguel, originals/home-sig-candidates/support-copper-office-gemini.jpg (Gemini edit of a 3D render, IdE5tUw6wT8)",
+  "round": "r19"
+ },
+ {
+  "set": "sig",
+  "tile": "quality",
+  "source": "Miguel, originals/home-sig-candidates/quality-solar-roof-gemini.jpg (Gemini edit of _WgxWB7VD_o)",
+  "round": "r19"
+ },
+ {
+  "set": "sig",
+  "tile": "it",
+  "source": "Miguel, originals/home-sig-candidates/it-server-room-white-cabinets.jpg",
+  "round": "r19"
+ },
+ {
+  "set": "sig",
+  "tile": "operations",
+  "source": "Miguel, originals/home-sig-candidates/operations-trucks.jpg",
+  "round": "r19"
+ },
+ {
+  "file": "story-randstad.jpg",
+  "unsplash": "https://unsplash.com/photos/skyscrapers-reflecting-golden-sunlight-in-city-jao-cWovJ7c",
+  "license": "Unsplash+"
+ },
+ {
+  "file": "story-edp.jpg",
+  "unsplash": "https://unsplash.com/photos/the-silhouette-of-the-high-voltage-power-lines-during-sunset-m6A6s-VR_SE",
+  "license": "Unsplash+"
+ },
+ {
+  "file": "story-lusiadas.jpg",
+  "unsplash": "https://unsplash.com/photos/healthcare-worker-overlooking-city-skyline-x9uM6nhCLHs",
+  "license": "Unsplash+"
+ },
+ {
+  "file": "story-frulact.jpg",
+  "unsplash": "https://unsplash.com/photos/heap-of-ripe-sweet-mandarin-oranges-on-citrus-crop-sorting-and-packaging-line-at-agricultural-farm-9ioX5PKnyrE",
+  "license": "Unsplash+"
+ },
+ {
+  "file": "story-brisa.jpg",
+  "unsplash": "https://unsplash.com/photos/seoul-han-rivers-urban-landscape-oPruZmNhGhk",
+  "license": "Unsplash+"
+ },
+ {
+  "file": "story-carlsberg.jpg",
+  "source": "copied from home-night/story-carlsberg.jpg (see that set's CREDITS.json)"
+ },
+ {
+  "file": "story-kirchhoff.jpg",
+  "source": "copied from home-aerial/story-kirchhoff.jpg (see that set's CREDITS.json)"
+ },
+ {
+  "file": "story-josedemello.jpg",
+  "source": "copied from home-material/story-josedemello.jpg (see that set's CREDITS.json)"
+ },
+ {
+  "file": "story-sata.jpg",
+  "source": "copied from home-material/story-sata.jpg (see that set's CREDITS.json)"
+ },
+ {
+  "set": "sig",
+  "tile": "financial-services",
+  "source": "Miguel, originals/home-sig-candidates/financial-services-towers-gemini.jpg",
+  "round": "r20"
+ },
+ {
+  "set": "sig",
+  "tile": "energy",
+  "source": "Miguel, originals/home-sig-candidates/energy-turbine-fog-gemini.jpg",
+  "round": "r20"
+ },
+ {
+  "set": "sig",
+  "tile": "healthcare",
+  "source": "Miguel, originals/home-sig-candidates/healthcare-building-gemini.jpg",
+  "round": "r20"
+ },
+ {
+  "set": "sig",
+  "tile": "logistics",
+  "source": "Miguel, originals/home-sig-candidates/logistics-ship-gemini-v2.jpg",
+  "round": "r20"
+ },
+ {
+  "set": "sig",
+  "tile": "manufacturing",
+  "source": "Miguel, originals/home-sig-candidates/manufacturing-plant-steam-gemini.jpg (Gemini edit of IAQtXdsacmc)",
+  "round": "r20"
+ }
+]

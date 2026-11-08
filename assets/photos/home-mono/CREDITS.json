@@ -1,0 +1,79 @@
+[
+ {
+  "set": "mono",
+  "tile": "manufacturing",
+  "unsplash": "https://unsplash.com/photos/people-working-in-industrial-laundry-0bXPPCmD914",
+  "plus": true,
+  "search": "black and white factory"
+ },
+ {
+  "set": "mono",
+  "tile": "financial-services",
+  "unsplash": "https://unsplash.com/photos/looking-up-at-tall-buildings-in-a-city-xBMUPhLRMF4",
+  "plus": true,
+  "search": "black and white skyscraper"
+ },
+ {
+  "set": "mono",
+  "tile": "logistics",
+  "unsplash": "https://unsplash.com/photos/lots-of-new-metallic-storage-containers-where-various-supplies-and-loads-are-kept-3UMCrUmTMUI",
+  "plus": true,
+  "search": "container stacks pattern"
+ },
+ {
+  "set": "mono",
+  "tile": "energy",
+  "unsplash": "https://unsplash.com/photos/power-line-tower-above-dark-trees-against-a-grey-sky-2tL-37GcLo8",
+  "plus": true,
+  "search": "black and white power plant"
+ },
+ {
+  "set": "mono",
+  "tile": "healthcare",
+  "unsplash": "https://unsplash.com/photos/medical-examination-room-with-surgical-equipment-_XhrVb0PY0c",
+  "plus": true,
+  "search": "black and white hospital"
+ },
+ {
+  "set": "mono",
+  "tile": "finance",
+  "unsplash": "https://unsplash.com/photos/striking-angles-and-light-create-an-interesting-contrast-V4GpCWuxLzM",
+  "plus": true,
+  "search": "black and white bank architecture"
+ },
+ {
+  "set": "mono",
+  "tile": "risk",
+  "unsplash": "https://unsplash.com/photos/view-of-court-of-assizes-in-lyon-city-france-EZDKB1gleTE",
+  "plus": true,
+  "search": "black and white courthouse"
+ },
+ {
+  "set": "mono",
+  "tile": "support",
+  "unsplash": "https://unsplash.com/photos/white-collar-workers-going-down-office-corridor-during-working-day-2xpA9B0tkmY",
+  "plus": true,
+  "search": "black and white office people"
+ },
+ {
+  "set": "mono",
+  "tile": "quality",
+  "unsplash": "https://unsplash.com/photos/handyman-occupation-craftsmanship-carpentry-concept-SY0V2DdAxtQ",
+  "plus": true,
+  "search": "black and white laboratory"
+ },
+ {
+  "set": "mono",
+  "tile": "it",
+  "unsplash": "https://unsplash.com/photos/empty-passageway-between-server-cabinets-in-a-room-of-data-retention-facility-iRaD7YgpWtU",
+  "plus": true,
+  "search": "black and white server room"
+ },
+ {
+  "set": "mono",
+  "tile": "operations",
+  "unsplash": "https://unsplash.com/photos/airship-inside-massive-industrial-hangar-GgmMu9htgW8",
+  "plus": true,
+  "search": "black and white warehouse"
+ }
+]

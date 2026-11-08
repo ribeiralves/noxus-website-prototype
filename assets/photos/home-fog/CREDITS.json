@@ -1,0 +1,79 @@
+[
+ {
+  "set": "fog",
+  "tile": "manufacturing",
+  "unsplash": "https://unsplash.com/photos/industrial-factory-in-snowy-landscape-5BpJ33Oetm0",
+  "plus": true,
+  "search": "industrial plant mist morning"
+ },
+ {
+  "set": "fog",
+  "tile": "financial-services",
+  "unsplash": "https://unsplash.com/photos/modern-skyscrapers-under-a-grey-overcast-sky-fk9-izBro1g",
+  "plus": true,
+  "search": "skyscrapers in fog"
+ },
+ {
+  "set": "fog",
+  "tile": "logistics",
+  "unsplash": "https://unsplash.com/photos/trucks-parked-in-a-snowy-landscape-under-a-pale-sky-ffk9QJXWoGg",
+  "plus": true,
+  "search": "warehouse fog trucks"
+ },
+ {
+  "set": "fog",
+  "tile": "energy",
+  "unsplash": "https://unsplash.com/photos/a-row-of-wind-turbines-in-a-mountainous-area-cHdMTdsC_KY",
+  "plus": true,
+  "search": "wind turbines fog"
+ },
+ {
+  "set": "fog",
+  "tile": "healthcare",
+  "unsplash": "https://unsplash.com/photos/group-of-doctors-wearing-surgical-gown-after-success-surgery-oAGYTVb0SCY",
+  "plus": true,
+  "search": "hospital building fog"
+ },
+ {
+  "set": "fog",
+  "tile": "finance",
+  "unsplash": "https://unsplash.com/photos/a-foggy-view-of-a-city-with-tall-buildings-WQpZ2sRwqGs",
+  "plus": true,
+  "search": "office window foggy city"
+ },
+ {
+  "set": "fog",
+  "tile": "risk",
+  "unsplash": "https://unsplash.com/photos/a-foggy-park-with-people-walking-in-the-distance-frlk2C_-IF8",
+  "plus": true,
+  "search": "office window foggy city"
+ },
+ {
+  "set": "fog",
+  "tile": "support",
+  "unsplash": "https://unsplash.com/photos/a-tall-building-shrouded-in-dense-fog-GDVYJfo0j18",
+  "plus": true,
+  "search": "skyscrapers in fog"
+ },
+ {
+  "set": "fog",
+  "tile": "quality",
+  "unsplash": "https://unsplash.com/photos/foggy-urban-canal-with-buildings-and-a-small-boat-RuNjYfhgCFI",
+  "plus": true,
+  "search": "factory in fog"
+ },
+ {
+  "set": "fog",
+  "tile": "it",
+  "unsplash": "https://unsplash.com/photos/skyscrapers-at-night-shrouded-in-fog-3AU6ioa11aw",
+  "plus": true,
+  "search": "skyscrapers in fog"
+ },
+ {
+  "set": "fog",
+  "tile": "operations",
+  "unsplash": "https://unsplash.com/photos/a-green-bus-driving-down-a-street-at-night-ze8HEEG3gew",
+  "plus": true,
+  "search": "warehouse fog trucks"
+ }
+]

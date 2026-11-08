@@ -1,0 +1,68 @@
+[
+ {
+  "file": "tile-manufacturing.jpg",
+  "hero": "hero-manufacturing.jpg",
+  "unsplash": "https://unsplash.com/photos/a-large-metal-building-sitting-next-to-a-lush-green-field-SGdRNRJrDCg",
+  "plus": true
+ },
+ {
+  "file": "tile-financial-services.jpg",
+  "hero": "hero-financial-services.jpg",
+  "unsplash": "https://unsplash.com/photos/a-large-building-with-a-clock-on-the-side-of-it-hYsf957c4yc",
+  "plus": true
+ },
+ {
+  "file": "tile-logistics.jpg",
+  "hero": "hero-logistics.jpg",
+  "unsplash": "https://unsplash.com/photos/monochrome-industrial-harbor-with-ship-and-storage-tanks-EUJBhtdesI0",
+  "plus": true
+ },
+ {
+  "file": "tile-energy.jpg",
+  "hero": "hero-energy.jpg",
+  "unsplash": "https://unsplash.com/photos/a-field-of-green-grass-with-wind-turbines-in-the-background-yHU0tczO7Xw",
+  "plus": true
+ },
+ {
+  "file": "tile-healthcare.jpg",
+  "hero": "hero-healthcare.jpg",
+  "unsplash": "https://unsplash.com/photos/modern-building-with-vertical-concrete-fins-4LdtDg7eg0o",
+  "plus": true
+ },
+ {
+  "file": "tile-finance.jpg",
+  "hero": "hero-finance.jpg",
+  "unsplash": "https://unsplash.com/photos/empty-office-cubicles-with-chairs-and-desks-ztrczl6xIVg",
+  "plus": true
+ },
+ {
+  "file": "tile-risk.jpg",
+  "hero": "hero-risk.jpg",
+  "unsplash": "https://unsplash.com/photos/rows-of-archive-boxes-on-shelves-in-a-library-T9Ogq6xODxY",
+  "plus": true
+ },
+ {
+  "file": "tile-support.jpg",
+  "hero": "hero-support.jpg",
+  "unsplash": "https://unsplash.com/photos/empty-large-call-center-with-cubicles-in-a-warehouse-aTUw7C5aGGA",
+  "plus": true
+ },
+ {
+  "file": "tile-quality.jpg",
+  "hero": "hero-quality.jpg",
+  "unsplash": "https://unsplash.com/photos/empty-modern-science-laboratory-with-equipments-sb4TirjRg7o",
+  "plus": true
+ },
+ {
+  "file": "tile-it.jpg",
+  "hero": "hero-it.jpg",
+  "unsplash": "https://unsplash.com/photos/interior-of-a-modern-data-center-kOrfyujugQs",
+  "plus": true
+ },
+ {
+  "file": "tile-operations.jpg",
+  "hero": "hero-operations.jpg",
+  "unsplash": "https://unsplash.com/photos/empty-unimproved-raw-office-space-g6uyslZ0wc4",
+  "plus": true
+ }
+]

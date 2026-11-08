@@ -1,0 +1,79 @@
+[
+ {
+  "set": "golden",
+  "tile": "manufacturing",
+  "unsplash": "https://unsplash.com/photos/industrial-factory-in-snowy-landscape-5BpJ33Oetm0",
+  "plus": true,
+  "search": "factory golden hour"
+ },
+ {
+  "set": "golden",
+  "tile": "financial-services",
+  "unsplash": "https://unsplash.com/photos/sunset-clouds-reflected-in-glass-windows-on-sixth-and-guadalupe-st-office-and-apartment-building-in-austin-texas-9yjtjGzEbb0",
+  "plus": true,
+  "search": "office tower sunset glass"
+ },
+ {
+  "set": "golden",
+  "tile": "logistics",
+  "unsplash": "https://unsplash.com/photos/container-cranes-at-shipping-port-DohdeHVHUN4",
+  "plus": true,
+  "search": "container port sunset cranes"
+ },
+ {
+  "set": "golden",
+  "tile": "energy",
+  "unsplash": "https://unsplash.com/photos/the-sun-is-setting-over-a-field-with-windmills-in-the-distance-a6Xd3gjDzb0",
+  "plus": true,
+  "search": "wind turbines sunset field"
+ },
+ {
+  "set": "golden",
+  "tile": "healthcare",
+  "unsplash": "https://unsplash.com/photos/modern-skyscraper-facade-with-striped-sunlight-and-shadow-TRKtU7Pw7JA",
+  "plus": true,
+  "search": "modern hospital building sunset"
+ },
+ {
+  "set": "golden",
+  "tile": "finance",
+  "unsplash": "https://unsplash.com/photos/classical-building-with-columns-under-a-blue-sky-9cVnJiOttdw",
+  "plus": true,
+  "search": "bank building golden hour"
+ },
+ {
+  "set": "golden",
+  "tile": "risk",
+  "unsplash": "https://unsplash.com/photos/a-close-up-of-the-top-of-a-building-with-columns-Ecxd9FEo2Kk",
+  "plus": true,
+  "search": "government building sunset columns"
+ },
+ {
+  "set": "golden",
+  "tile": "support",
+  "unsplash": "https://unsplash.com/photos/modern-cozy-loft-office-interior-3d-rendering-wu2dpFIQglk",
+  "plus": true,
+  "search": "office interior sunset light desks"
+ },
+ {
+  "set": "golden",
+  "tile": "quality",
+  "unsplash": "https://unsplash.com/photos/laboratory-desks-with-microscopes-and-lamps-cTaJvZ3YGak",
+  "plus": true,
+  "search": "laboratory sunlight windows"
+ },
+ {
+  "set": "golden",
+  "tile": "it",
+  "unsplash": "https://unsplash.com/photos/technician-inspecting-server-rack-fiber-cables-Azkgq1HUApM",
+  "plus": true,
+  "search": "server room warm light"
+ },
+ {
+  "set": "golden",
+  "tile": "operations",
+  "unsplash": "https://unsplash.com/photos/truck-reflected-in-side-mirror-at-sunset--LM3fAXIhww",
+  "plus": true,
+  "search": "truck logistics hub sunset"
+ }
+]

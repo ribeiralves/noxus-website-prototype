@@ -1,0 +1,79 @@
+[
+ {
+  "set": "inside",
+  "tile": "manufacturing",
+  "unsplash": "https://unsplash.com/photos/two-workers-planning-manufacturing-process-in-the-interior-of-an-industrial-hall--zIPqGGqXug",
+  "plus": true,
+  "search": "empty factory floor machines"
+ },
+ {
+  "set": "inside",
+  "tile": "financial-services",
+  "unsplash": "https://unsplash.com/photos/a-dimly-lit-control-room-with-multiple-computer-monitors-98HzIhLVHz0",
+  "plus": true,
+  "search": "empty control room screens"
+ },
+ {
+  "set": "inside",
+  "tile": "logistics",
+  "unsplash": "https://unsplash.com/photos/interior-of-a-huge-warehouse-with-long-red-racks-and-cardboard-boxes-_yyAgpfUmfE",
+  "plus": true,
+  "search": "warehouse aisles shelves"
+ },
+ {
+  "set": "inside",
+  "tile": "energy",
+  "unsplash": "https://unsplash.com/photos/a-row-of-television-monitors-sitting-on-top-of-a-desk-vr6d616psT0",
+  "plus": true,
+  "search": "empty control room screens"
+ },
+ {
+  "set": "inside",
+  "tile": "healthcare",
+  "unsplash": "https://unsplash.com/photos/contemporary-hospital-corridor-4ZSB0u1Ugfg",
+  "plus": true,
+  "search": "empty hospital corridor"
+ },
+ {
+  "set": "inside",
+  "tile": "finance",
+  "unsplash": "https://unsplash.com/photos/big-bright-empty-modern-office-after-work-the-interior-of-working-office-space-jos2NrUro8I",
+  "plus": true,
+  "search": "empty open plan office desks"
+ },
+ {
+  "set": "inside",
+  "tile": "risk",
+  "unsplash": "https://unsplash.com/photos/shelves-filled-with-binders-and-boxes-NhXHU6lQzVg",
+  "plus": true,
+  "search": "archive room shelves files"
+ },
+ {
+  "set": "inside",
+  "tile": "support",
+  "unsplash": "https://unsplash.com/photos/call-center-computers-and-headsets-all-in-office-telemarketing-customer-support-agent-provide-service-on-telephone-video-conference-call-u8Lsj-jcSF4",
+  "plus": true,
+  "search": "empty call center desks"
+ },
+ {
+  "set": "inside",
+  "tile": "quality",
+  "unsplash": "https://unsplash.com/photos/interior-of-modern-science-laboratory-with-no-people-lab-used-for-find-a-cure-for-dangerous-virus-kqi6UOx88ck",
+  "plus": true,
+  "search": "empty laboratory benches"
+ },
+ {
+  "set": "inside",
+  "tile": "it",
+  "unsplash": "https://unsplash.com/photos/server-rack-with-yellow-fiber-cables-CsR9Wv61kGk",
+  "plus": true,
+  "search": "server room warm light"
+ },
+ {
+  "set": "inside",
+  "tile": "operations",
+  "unsplash": "https://unsplash.com/photos/interior-of-a-huge-warehouse-with-long-red-racks-and-cardboard-boxes-_yyAgpfUmfE",
+  "plus": true,
+  "search": "distribution center interior empty"
+ }
+]

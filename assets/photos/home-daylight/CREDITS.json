@@ -112,5 +112,60 @@
   "unsplash": "https://unsplash.com/photos/interior-of-a-huge-warehouse-with-long-red-racks-and-cardboard-boxes-_yyAgpfUmfE",
   "plus": true,
   "added": "2026-10-30"
+ },
+ {
+  "file": "hero-manufacturing.jpg",
+  "same_photo_as": "tile-manufacturing.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-financial-services.jpg",
+  "same_photo_as": "tile-financial-services.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-logistics.jpg",
+  "same_photo_as": "tile-logistics.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-energy.jpg",
+  "same_photo_as": "tile-energy.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-healthcare.jpg",
+  "same_photo_as": "tile-healthcare.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-finance.jpg",
+  "same_photo_as": "tile-finance.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-risk.jpg",
+  "same_photo_as": "tile-risk.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-support.jpg",
+  "same_photo_as": "tile-support.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-quality.jpg",
+  "same_photo_as": "tile-quality.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-it.jpg",
+  "same_photo_as": "tile-it.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-operations.jpg",
+  "same_photo_as": "tile-operations.jpg",
+  "note": "solution page hero crop (1200x1240)"
  }
 ]

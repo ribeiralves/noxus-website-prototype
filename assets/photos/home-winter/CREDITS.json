@@ -1,0 +1,79 @@
+[
+ {
+  "set": "winter",
+  "tile": "manufacturing",
+  "unsplash": "https://unsplash.com/photos/natural-gas-pipeline-in-snow-Mzs4Hzi-MaI",
+  "plus": true,
+  "search": "factory snow winter"
+ },
+ {
+  "set": "winter",
+  "tile": "financial-services",
+  "unsplash": "https://unsplash.com/photos/modern-glass-buildings-with-trees-in-foreground-15o4hU1fK-w",
+  "plus": true,
+  "search": "office building snow"
+ },
+ {
+  "set": "winter",
+  "tile": "logistics",
+  "unsplash": "https://unsplash.com/photos/trucks-parked-on-a-snowy-road-during-winter-JcNnjbKQA3A",
+  "plus": true,
+  "search": "trucks snow highway"
+ },
+ {
+  "set": "winter",
+  "tile": "energy",
+  "unsplash": "https://unsplash.com/photos/a-high-voltage-power-line-with-trees-in-the-background-Ms29R52J_T4",
+  "plus": true,
+  "search": "power lines snow winter"
+ },
+ {
+  "set": "winter",
+  "tile": "healthcare",
+  "unsplash": "https://unsplash.com/photos/paramedics-in-blue-workwear-getting-stretcher-with-fixed-unconscious-man-into-ambulance-car-before-going-to-hospital-6xuyveoP0Bc",
+  "plus": true,
+  "search": "hospital snow winter"
+ },
+ {
+  "set": "winter",
+  "tile": "finance",
+  "unsplash": "https://unsplash.com/photos/a-view-of-a-city-in-the-winter-UZ-9jOMCC3E",
+  "plus": true,
+  "search": "city winter snow buildings"
+ },
+ {
+  "set": "winter",
+  "tile": "risk",
+  "unsplash": "https://unsplash.com/photos/a-red-brick-building-with-snow-falling-on-it-aRcCEkN2RFQ",
+  "plus": true,
+  "search": "stone building snow"
+ },
+ {
+  "set": "winter",
+  "tile": "support",
+  "unsplash": "https://unsplash.com/photos/young-business-woman-using-laptop-computer-while-sitting-at-cafe-table-next-to-office-windows-7AVUsHPBpWU",
+  "plus": true,
+  "search": "office window snow outside"
+ },
+ {
+  "set": "winter",
+  "tile": "quality",
+  "unsplash": "https://unsplash.com/photos/laboratory-microscope-on-white-table-nV19oLxw3IU",
+  "plus": true,
+  "search": "laboratory winter"
+ },
+ {
+  "set": "winter",
+  "tile": "it",
+  "unsplash": "https://unsplash.com/photos/a-row-of-computer-monitors-sitting-on-top-of-a-desk-CUjTmz9rpHs",
+  "plus": true,
+  "search": "cold data center"
+ },
+ {
+  "set": "winter",
+  "tile": "operations",
+  "unsplash": "https://unsplash.com/photos/aerial-view-of-plow-truck-clearing-road-on-mountain-highway-during-snowstorm-ZPB2sv9Z7_M",
+  "plus": true,
+  "search": "trucks snow highway"
+ }
+]

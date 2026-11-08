@@ -37,12 +37,10 @@
   "redo": "2026-10-30"
  },
  {
-  "name": "story-josedemello",
-  "w": 2400,
-  "h": 816,
-  "unsplash": "https://unsplash.com/photos/usa-california-hawthorne-ITmT4ivEp8w",
+  "file": "story-josedemello.jpg",
+  "unsplash": "https://unsplash.com/photos/medical-professional-walking-down-a-dark-hospital-hallway-Afx3ZyGL6Hk",
   "plus": true,
-  "redo": "2026-10-30"
+  "redo": "2026-11-03"
  },
  {
   "name": "story-brisa",
@@ -166,5 +164,60 @@
   "unsplash": "https://unsplash.com/photos/warm-light-glows-through-a-large-industrial-window-at-night-e4Tr3gRDnd0",
   "plus": false,
   "added": "2026-10-30"
+ },
+ {
+  "file": "hero-manufacturing.jpg",
+  "same_photo_as": "tile-manufacturing.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-financial-services.jpg",
+  "same_photo_as": "tile-financial-services.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-logistics.jpg",
+  "same_photo_as": "tile-logistics.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-energy.jpg",
+  "same_photo_as": "tile-energy.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-healthcare.jpg",
+  "same_photo_as": "tile-healthcare.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-finance.jpg",
+  "same_photo_as": "tile-finance.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-risk.jpg",
+  "same_photo_as": "tile-risk.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-support.jpg",
+  "same_photo_as": "tile-support.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-quality.jpg",
+  "same_photo_as": "tile-quality.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-it.jpg",
+  "same_photo_as": "tile-it.jpg",
+  "note": "solution page hero crop (1200x1240)"
+ },
+ {
+  "file": "hero-operations.jpg",
+  "same_photo_as": "tile-operations.jpg",
+  "note": "solution page hero crop (1200x1240)"
  }
 ]

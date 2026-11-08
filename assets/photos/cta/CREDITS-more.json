@@ -1,0 +1,62 @@
+[
+ {
+  "file": "customs-declarations.jpg",
+  "process": "Customs declaration processing",
+  "unsplash": "https://unsplash.com/photos/tall-gantry-cranes-at-the-end-of-terminal-wharf-YZl7SzypbhA",
+  "plus": true
+ },
+ {
+  "file": "insurance-claims.jpg",
+  "process": "Insurance claim intake and triage",
+  "unsplash": "https://unsplash.com/photos/looking-up-at-tall-buildings-in-a-city-G1KojML_ntw",
+  "plus": true
+ },
+ {
+  "file": "kyc-onboarding.jpg",
+  "process": "Customer onboarding and KYC checks",
+  "unsplash": "https://unsplash.com/photos/view-of-union-station-stairs-chicago-usa-4C-y4MK_yMg",
+  "plus": true
+ },
+ {
+  "file": "po-changes.jpg",
+  "process": "Purchase order change requests",
+  "unsplash": "https://unsplash.com/photos/boxes-are-stored-on-shelves-inside-a-warehouse-8skpsqvLSjA",
+  "plus": true
+ },
+ {
+  "file": "warranty-claims.jpg",
+  "process": "Warranty claim handling",
+  "unsplash": "https://unsplash.com/photos/photo-of-automobile-production-line-welding-car-body-modern-car-assembly-plant-auto-industry-high-tech-factory-N1JSPR3_R_U",
+  "plus": true
+ },
+ {
+  "file": "patient-referrals.jpg",
+  "process": "Patient referral triage",
+  "unsplash": "https://unsplash.com/photos/medical-professional-walking-down-a-dark-hospital-hallway-Afx3ZyGL6Hk",
+  "plus": true
+ },
+ {
+  "file": "it-access.jpg",
+  "process": "IT access request fulfilment",
+  "unsplash": "https://unsplash.com/photos/confident-businesswoman-holding-cellphone-and-looking-at-server-room-in-modern-data-center-MJpD0wdmPRM",
+  "plus": true
+ },
+ {
+  "file": "meter-exceptions.jpg",
+  "process": "Meter reading exception handling",
+  "unsplash": "https://unsplash.com/photos/metal-structure-with-glowing-light-against-twilight-sky-kDQKYWmsfEY",
+  "plus": true
+ },
+ {
+  "file": "credit-notes.jpg",
+  "process": "Credit note approvals",
+  "unsplash": "https://unsplash.com/photos/a-couple-of-tall-buildings-sitting-next-to-each-other-kDpTtbHfwQk",
+  "plus": true
+ },
+ {
+  "file": "audit-evidence.jpg",
+  "process": "Audit evidence collection",
+  "unsplash": "https://unsplash.com/photos/dark-prison-hallway-with-cells-on-both-sides-ft7LXK6GieI",
+  "plus": true
+ }
+]

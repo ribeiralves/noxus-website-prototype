@@ -1,0 +1,79 @@
+[
+ {
+  "set": "structure",
+  "tile": "manufacturing",
+  "unsplash": "https://unsplash.com/photos/a-row-of-white-buildings-with-a-blue-sky-in-the-background-ncxHfXplRm4",
+  "plus": true,
+  "search": "steel structure factory roof"
+ },
+ {
+  "set": "structure",
+  "tile": "financial-services",
+  "unsplash": "https://unsplash.com/photos/looking-up-at-skyscrapers-from-the-ground-MVnayiTmNSE",
+  "plus": true,
+  "search": "skyscraper looking up geometry"
+ },
+ {
+  "set": "structure",
+  "tile": "logistics",
+  "unsplash": "https://unsplash.com/photos/containers-are-stacked-at-a-cargo-terminal-dock-lD7e1GidiCs",
+  "plus": true,
+  "search": "container stacks pattern"
+ },
+ {
+  "set": "structure",
+  "tile": "energy",
+  "unsplash": "https://unsplash.com/photos/close-up-photograph-of-sprinkler-system-head-inside-warehouse-racking-system-of-manufacturing-plant-v6-e8bVSfgw",
+  "plus": true,
+  "search": "pylon structure looking up"
+ },
+ {
+  "set": "structure",
+  "tile": "healthcare",
+  "unsplash": "https://unsplash.com/photos/white-corrugated-metal-building-facade-38HSoJNSTWY",
+  "plus": true,
+  "search": "hospital architecture geometric"
+ },
+ {
+  "set": "structure",
+  "tile": "finance",
+  "unsplash": "https://unsplash.com/photos/geometric-pattern-of-curved-architectural-elements-DlKCwQ61K0s",
+  "plus": true,
+  "search": "bank facade pattern"
+ },
+ {
+  "set": "structure",
+  "tile": "risk",
+  "unsplash": "https://unsplash.com/photos/the-sun-is-shining-through-the-pillars-of-a-building-vnujwOX9BR0",
+  "plus": true,
+  "search": "columns architecture symmetry"
+ },
+ {
+  "set": "structure",
+  "tile": "support",
+  "unsplash": "https://unsplash.com/photos/part-of-interior-of-contemporary-business-center-or-office-building-with-elevator-moving-upwards-and-windows-lDKH3lJ93u8",
+  "plus": true,
+  "search": "office atrium geometric"
+ },
+ {
+  "set": "structure",
+  "tile": "quality",
+  "unsplash": "https://unsplash.com/photos/laboratory-microscopes-on-white-table--csA-DHLTaM",
+  "plus": true,
+  "search": "laboratory architecture minimal"
+ },
+ {
+  "set": "structure",
+  "tile": "it",
+  "unsplash": "https://unsplash.com/photos/server-rack-units-in-data-center-o2XYpqN5euw",
+  "plus": true,
+  "search": "server racks symmetry"
+ },
+ {
+  "set": "structure",
+  "tile": "operations",
+  "unsplash": "https://unsplash.com/photos/geometric-architecture-has-an-intricate-triangular-design-aFndoSrYVeA",
+  "plus": true,
+  "search": "steel structure factory roof"
+ }
+]
