@@ -121,5 +121,71 @@
   "tile": "manufacturing",
   "source": "Miguel, originals/home-sig-candidates/manufacturing-plant-steam-gemini.jpg (Gemini edit of IAQtXdsacmc)",
   "round": "r20"
+ },
+ {
+  "set": "sig",
+  "tile": "story-kirchhoff",
+  "source": "Miguel (kirchoof.jpeg, 896x1200, rotated 90°, upscaled)",
+  "round": "2026-11-08"
+ },
+ {
+  "set": "sig",
+  "tile": "story-lusiadas",
+  "source": "Miguel (Lusiada.jpeg, 2734x1536, centre crop)",
+  "round": "2026-11-08"
+ },
+ {
+  "set": "sig",
+  "tile": "story-kuantokusta",
+  "source": "Miguel (2026-11-08 drop), centre crop",
+  "round": "2026-11-08"
+ },
+ {
+  "set": "sig",
+  "tile": "story-frulact",
+  "source": "Miguel (nexture.jpeg, food bowls), rotated 90°, centre crop",
+  "round": "2026-11-08"
+ },
+ {
+  "set": "sig",
+  "tile": "story-carlsberg",
+  "source": "Miguel (carlsberg.jpeg, brewhouse), centre crop",
+  "round": "2026-11-08"
+ },
+ {
+  "set": "sig",
+  "tile": "story-jeronimomartins",
+  "source": "Miguel (jeronimo martins.jpeg), centre crop",
+  "round": "2026-11-08"
+ },
+ {
+  "set": "sig",
+  "tile": "story-josedemello",
+  "source": "Miguel (2026-11-08 drop), centre crop",
+  "round": "2026-11-08"
+ },
+ {
+  "set": "sig",
+  "tile": "story-santander",
+  "source": "Miguel (2026-11-08 drop), centre crop",
+  "round": "2026-11-08"
+ },
+ {
+  "set": "sig",
+  "tile": "story-edp",
+  "source": "Miguel (2026-11-08 drop), centre crop",
+  "round": "2026-11-08"
+ },
+ {
+  "set": "sig",
+  "tile": "story-brisa",
+  "source": "Miguel (2026-11-08 drop), centre crop",
+  "round": "2026-11-08"
+ },
+ {
+  "set": "sig",
+  "tile": "story-randstad",
+  "source": "Miguel (2026-11-08 drop), centre crop",
+  "round": "2026-11-08"
  }
 ]

@@ -2132,7 +2132,7 @@ html.nx-pho-highkey #pageroot #sec-stories [style*="linear-gradient(to top, rgba
 <script id="nx-aerial">// Home photos · "Aerial order": customer stories and industry/function tiles swapped for one graded set of overhead shots
 // (assets/photos/home-aerial, credits in CREDITS.json). Home only; a "Photos" switch in the review dock flips back to the originals.
 (function () {
-  const SETS = [["golden", "Golden hour"], ["inside", "Inside the work"], ["lightson", "Lights on"], ["places", "Places"], ["highkey", "High-key"], ["aerial", "Aerial"], ["daylight", "Daylight"], ["material", "Material"], ["night", "After hours"], ["mono", "Monochrome"], ["fog", "Fog"], ["winter", "Winter"], ["hands", "Hands at work"], ["structure", "Structure"], ["sig", "Signature"], ["orig", "Current"]], V = "?v=35";
+  const SETS = [["golden", "Golden hour"], ["inside", "Inside the work"], ["lightson", "Lights on"], ["places", "Places"], ["highkey", "High-key"], ["aerial", "Aerial"], ["daylight", "Daylight"], ["material", "Material"], ["night", "After hours"], ["mono", "Monochrome"], ["fog", "Fog"], ["winter", "Winter"], ["hands", "Hands at work"], ["structure", "Structure"], ["sig", "Signature"], ["orig", "Current"]], V = "?v=46";
   let set = "sig"; try { const s = localStorage.getItem("nx-pho2"); if (SETS.some((x) => x[0] === s)) set = s; } catch (e) {}
   const P = () => "assets/photos/home-" + set + "/";
   // Places (real places, no people) only has tiles and heroes so far: customer stories keep the Aerial photos in it
@@ -3407,6 +3407,7 @@ html:not([data-gl="d"]) #pageroot #plstory :is(.pd,.envd,.xb,svg .gd){display:no
     if (root.dataset.lt === "l" && innerWidth > 860) { const a = el.querySelector(".ps-cur article.on") || el.querySelector(".ps-cur article"); hh -= (a ? a.offsetHeight : 80) - 40; }
     if (root.dataset.lt === "g") hh -= el.querySelector(".ps-ix").offsetHeight + el.querySelector(".ps-cur").offsetHeight + 48;
     const sw = parseFloat(getComputedStyle(el).getPropertyValue("--sw")) || 900; let k = Math.min(1.8, box.clientWidth / sw, hh / 660);
+    if (root.dataset.lt === "n" && innerWidth > 860 && +el.dataset.hw > 0) k = Math.min(k, +el.dataset.hw / sw);
     const set = () => { el.querySelector(".ps-stage").style.setProperty("--k", k.toFixed(3)); inn.style.setProperty("--k", k.toFixed(3)); }; set();
     // Caption: measure the real text row and shrink the app until the button ends 72px above the frame's bottom
     if (root.dataset.lt === "g") { const z = parseFloat(getComputedStyle(root).getPropertyValue("--nxz")) || 1, cur = el.querySelector(".ps-cur");
@@ -3693,7 +3694,7 @@ html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not
     none: { sat: 1, r: "0 1", g: "0 1", b: "0 1" },
   };
   const L = [["sig", "Signature"], ["film", "Film"], ["soft", "Soft"], ["rich", "Rich"], ["dusk", "Dusk"], ["mono", "Mono"], ["warm", "Warm"], ["none", "None"]];
-  let v = "warm"; try { const s = localStorage.getItem("nx-grade"); if (G[s]) v = s; } catch (e) {}
+  let v = "none";
   const root = document.documentElement;
   // the palette script sets #nx-tone once the page has rendered, so keep re-asserting ours
   function apply() {
@@ -3724,7 +3725,7 @@ html.nx-tl-bleed #sol-sec .m3mr > div:last-child .m3tile{height:clamp(280px, 24v
 <script id="nx-tlsize">// Tile size · "Tiles" row in Options switches contained / wide / full bleed; full bleed is the default
 (function () {
   const L = [["contained", "Contained"], ["wide", "Wide"], ["bleed", "Full bleed"]];
-  let v = "bleed"; try { const s = localStorage.getItem("nx-tlsize"); if (L.some((x) => x[0] === s)) v = s; } catch (e) {}
+  let v = "bleed";
   const root = document.documentElement;
   const apply = () => L.forEach((x) => root.classList.toggle("nx-tl-" + x[0], x[0] === v));
   apply();
@@ -3737,7 +3738,7 @@ html.nx-tl-bleed #sol-sec .m3mr > div:last-child .m3tile{height:clamp(280px, 24v
 </script>
 <script id="nx-optlock">// Options cleanup · locks the settled rows to the chosen value and hides them; only Grade, Tiles and Logo grid stay in the panel
 (function () {
-  const KEEP = ["grade", "tiles", "picker", "hero", "stories", "story legibility", "platform story", "metric label"];
+  const KEEP = ["grade", "tiles", "picker", "hero", "stories", "story legibility", "platform story", "step text", "metric label", "grey tone"];
   const LOCK = { "photos": "signature", "idle style": "flow", "logo": "converge", "cta": "one process", "platform": "scroll story", "run animation": "b nodes", "story button": "a primary", "govern layout": "c settings", "story texture": "grid", "story colour": "sand" };
   const norm = (t) => (t || "").replace(/\s+/g, " ").trim().toLowerCase();
   function run() {
@@ -3782,7 +3783,7 @@ html.nx-pk-big #sol-sec [role=tablist] > button > span{height:3px !important}
 <script id="nx-picker">// Picker · "Picker" row in Options: current tabs, attached tabs, headline switch or large tabs; attached is the default
 (function () {
   const L = [["attach", "Attached"], ["head", "Headline"], ["big", "Large"], ["cur", "Current"]];
-  let v = "attach"; try { const s = localStorage.getItem("nx-picker"); if (L.some((x) => x[0] === s)) v = s; } catch (e) {}
+  let v = "head";
   const root = document.documentElement;
   const apply = () => L.forEach((x) => root.classList.toggle("nx-pk-" + x[0], x[0] === v));
   apply();
@@ -3873,7 +3874,7 @@ html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not
 // The strip uses the wide tile crop of the same photo (hero-X.jpg → tile-X.jpg); the portrait hero crop is too narrow for it
 (function () {
   const L = [["pano", "Panorama"], ["cur", "Current"]];
-  let v = "pano"; try { const s = localStorage.getItem("nx-hero"); if (L.some((x) => x[0] === s)) v = s; } catch (e) {}
+  let v = "pano";
   const root = document.documentElement;
   function apply() {
     L.forEach((x) => root.classList.toggle("nx-hp-" + x[0], x[0] === v));
@@ -4260,7 +4261,7 @@ html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not
     [/E-commerce|15,000/, "Retail brands enrich product listings every day.", "Classification, enrichment and pricing recommendations.", "", [["15,000+", "Products processed each day."], ["94%", "Reported precision."]]]
   ];
   const root = document.documentElement;
-  let v = "current";
+  let v = "card";
   const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
   function build() {
     const cells = document.querySelectorAll("#sec-stories #lgrid .cell");
@@ -4287,14 +4288,14 @@ html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not
       if (!sl.querySelector(":scope > .nxm-veil")) { const vl = document.createElement("span"); vl.className = "nxm-veil"; vl.setAttribute("aria-hidden", "true"); sl.insertBefore(vl, box); }
     });
   }
-  const set = () => { root.classList.toggle("nx-stm", v === "metrics"); root.classList.toggle("nx-sto", v === "original"); root.classList.toggle("nx-stlg", v === "logo"); mark(); };
+  const set = () => { root.classList.toggle("nx-stm", v === "metrics"); root.classList.toggle("nx-sto", v === "original"); root.classList.toggle("nx-stlg", v === "logo"); root.classList.toggle("nx-stc", v === "card"); mark(); };
   const bar = document.createElement("div"); bar.className = "shsw idst stmsw"; bar.setAttribute("role", "group"); bar.setAttribute("aria-label", "Customer stories");
-  bar.innerHTML = '<span>Stories</span><button type="button" data-v="original">Original</button><button type="button" data-v="current">Before</button><button type="button" data-v="metrics">After</button><button type="button" data-v="logo">Logo + title</button>';
+  bar.innerHTML = '<span>Stories</span><button type="button" data-v="original">Original</button><button type="button" data-v="current">Before</button><button type="button" data-v="metrics">After</button><button type="button" data-v="logo">Logo + title</button><button type="button" data-v="card">Story card</button>';
   const mark = () => bar.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.v === v)));
   bar.addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; v = b.dataset.v; try { localStorage.setItem("nx-stm", v); } catch (e) {} set(); });
   document.body.appendChild(bar);
   // legibility: three ways to keep the text readable on any photo (Options › Story legibility)
-  let L = "scrim"; try { const s = localStorage.getItem("nx-stl"); if (["scrim", "dim", "side"].includes(s)) L = s; } catch (e) {}
+  let L = "side";
   const lb = document.createElement("div"); lb.className = "shsw idst stlsw"; lb.setAttribute("role", "group"); lb.setAttribute("aria-label", "Story legibility");
   lb.innerHTML = '<span>Story legibility</span><button type="button" data-v="scrim">Top and bottom shade</button><button type="button" data-v="dim">Dimmed photo</button><button type="button" data-v="side">Side shade</button>';
   const lmark = () => { root.setAttribute("data-stl", L); lb.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.v === L))); };
@@ -4539,7 +4540,7 @@ html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not
 <script id="nx-mtl">// Options › Metric label: four ways to set the result label against its number
 (function () {
   const root = document.documentElement, V = [["a", "Side"], ["b", "Under"], ["c", "Eyebrow"], ["d", "One line"]];
-  let v = "b"; try { const s = localStorage.getItem("nx-mtl"); if (V.some((x) => x[0] === s)) v = s; } catch (e) {}
+  let v = "b";
   const bar = document.createElement("div"); bar.className = "shsw idst mtlsw"; bar.setAttribute("role", "group"); bar.setAttribute("aria-label", "Metric label");
   bar.innerHTML = "<span>Metric label</span>" + V.map((x) => '<button type="button" data-v="' + x[0] + '">' + x[1] + "</button>").join("");
   const set = () => { root.dataset.mtl = v; bar.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.v === v))); };
@@ -4817,9 +4818,9 @@ html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not
 @media (min-width:861px){
 html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .ps-in{padding-top:72px !important}
 html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .ps-in{row-gap:16px !important}
-html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .ps-ix div{padding-top:16px !important;gap:14px !important;font-size:22px !important;letter-spacing:-0.01em !important}
-html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .ps-ix div::before{font-size:13px !important}
-html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .ps-ix i{height:3px !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .ps-ix div{padding-top:12px !important;gap:10px !important;font-size:15px !important;letter-spacing:-0.005em !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .ps-ix div::before{font-size:11px !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .ps-ix i{height:2px !important}
 html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .ps-ix div::after{width:9px;height:9px;top:-3px}
 html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .ps-ix div:not(.on):not(.done){color:#8A8986 !important}
 html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .ps-cur article{padding:20px 22px 20px 28px !important;gap:0 40px !important}
@@ -4831,13 +4832,15 @@ html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not
 
 /* one text band under the step bar: the current step's title, description and link; it swaps as the scroll moves between steps */
 @media (min-width:861px){
-html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .nx-psb{grid-column:1/-1;display:grid;margin-top:26px;padding-top:24px;border-top:1px solid rgba(22,22,22,.12)}
-html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .nx-psb > section{grid-area:1/1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) 280px;align-items:start;gap:0 56px;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease,visibility 0s linear .3s}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .nx-psb{grid-column:1/-1;display:grid;margin-top:28px;padding-top:0;border-top:0}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .nx-psb > section{grid-area:1/1;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:48px;align-items:end;grid-template-rows:auto auto;align-content:start;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease,visibility 0s linear .3s}
 html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .nx-psb > section.on{opacity:1;visibility:visible;transform:none;transition:opacity .45s ease .12s,transform .6s cubic-bezier(.2,.7,.2,1) .12s,visibility 0s}
-html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .nx-psb h4{margin:0;font-weight:400;font-size:28px;line-height:1.14;letter-spacing:-0.02em;color:#161616;text-wrap:balance;max-width:22ch}
-html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .nx-psb p{margin:4px 0 0;font-size:17px;line-height:1.5;letter-spacing:-0.005em;color:#4A4A48;max-width:52ch}
-html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .nx-psb a{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 20px;background:#161616;color:#FFFFFF;font-size:15px;text-decoration:none;white-space:nowrap;justify-self:end;transition:background .2s ease}
-html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .nx-psb a:hover{background:#3A3A38}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .nx-psb h4{grid-column:1;grid-row:1;align-self:start;margin:0;font-weight:400;font-size:30px;line-height:1.12;letter-spacing:-0.02em;color:#161616;white-space:nowrap;max-width:none}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .nx-psb p{grid-column:1;grid-row:2;align-self:start;margin:12px 0 0;font-size:17px;line-height:1.5;letter-spacing:-0.005em;color:#4A4A48;max-width:62ch}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .nx-psb a{grid-column:2;grid-row:1/span 2;align-self:end;justify-self:end;margin-bottom:0;display:inline-flex;align-items:center;gap:10px;min-height:40px;padding:0 16px;background:transparent;color:#161616;font-size:14px;text-decoration:none;white-space:nowrap;border:1px solid #161616;transition:background .2s ease,color .2s ease}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .nx-psb a:hover{background:#161616;color:#FFFFFF}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .nx-psb a svg{width:12px;height:12px;transition:transform .25s ease}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .nx-psb a:hover svg{transform:translateX(3px)}
 html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .ps-ix div{cursor:default}
 }
 @media (max-width:860px){html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14) #pageroot #plstory .nx-psb{display:none !important}}
@@ -4851,8 +4854,9 @@ html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not
     if (!band) { const ar = s.querySelectorAll(".ps-cur article"); if (!ar.length) return;
       band = document.createElement("aside"); band.className = "nx-psb";
       ar.forEach((a) => { const d = document.createElement("section"), h = a.querySelector("h3"), p = a.querySelector("p"), l = a.querySelector("a.bt");
+        const ey = document.createElement("small"); ey.textContent = String(band.children.length + 1).padStart(2, "0") + " · " + ((a.querySelector(".e") || {}).textContent || "").trim(); d.appendChild(ey);
         const h4 = document.createElement("h4"); h4.textContent = h ? h.textContent : ""; d.appendChild(h4);
-        const pp = document.createElement("p"); pp.textContent = p ? p.textContent : ""; d.appendChild(pp);
+        const pp = document.createElement("p"); pp.className = "nx-p"; pp.textContent = p ? p.textContent : ""; d.appendChild(pp);
         if (l) { const c = l.cloneNode(true); c.className = ""; d.appendChild(c); } else d.appendChild(document.createElement("span"));
         band.appendChild(d); });
       ix.appendChild(band); dispatchEvent(new Event("resize")); }
@@ -4883,8 +4887,7 @@ html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not
     if (!isFinite(l)) return;
     const cur = new DOMMatrix(getComputedStyle(cz).transform).m41 * k; l -= cur; r -= cur;   // untranslated extent
     let a = cr.left, z = cr.right; const cs = s.querySelector(".cs"), dp = s.querySelector(".dpn");
-    if (cs && cs.classList.contains("in")) { const b = cs.getBoundingClientRect(); if (b.width && b.right > a && b.left <= a + 4) a = b.right; }
-    if (dp && dp.classList.contains("in")) { const b = dp.getBoundingClientRect(); if (b.width && b.left < z && b.right >= z - 4) z = b.left; }
+    // centred in the full canvas; drawers open over it without moving the flow
     const t = Math.round(((a + z) / 2 - (l + r) / 2) / k);
     if (Math.abs(t - tx) > 1) { tx = t; cz.style.transform = "translateX(" + t + "px)"; }
   };
@@ -4900,17 +4903,195 @@ html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not
 html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14):not(.nx-stm):not(.nx-sto):not(.nx-stlg) #sslot .nxb-m{align-items:flex-start !important}
 }
 </style>
-<style id="nx-ctacenter-css">/* Footer CTA: title, process name and button centred in the band (2026-11-08); the shade evens out so centred text stays legible */
-html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14) .nx-cta__body{align-content:center !important;justify-items:center !important;text-align:center !important}
-html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14) .nx-cta__body > *{margin-left:auto !important;margin-right:auto !important;justify-self:center !important;text-align:center !important}
-html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14) .nx-cta__names{justify-items:center !important;text-align:center !important}
-html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14) .nx-cta__names > li{justify-self:center !important;text-align:center !important}
-html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14) .nx-cta__scrim{background:radial-gradient(ellipse 70% 80% at 50% 52%,rgba(12,12,12,.72) 0%,rgba(12,12,12,.55) 60%,rgba(12,12,12,.4) 100%) !important}
-html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14) #nxcta .nx-cta .nx-cta__body .nx-cta__row.nx-cta__row{display:flex !important;justify-content:center !important;width:100% !important;margin-left:0 !important;margin-right:0 !important;padding-left:0 !important;padding-right:0 !important}
-html #nxcta .nx-cta .nx-cta__body .nx-cta__row .nx-cta__btn.nx-cta__btn{margin-left:auto !important;margin-right:auto !important}
+<style id="nx-ctacenter-css">/* Footer CTA (2026-11-08): title, process name and button top-left, on the page's left edge; arrow on the button */
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14) #nxcta .nx-cta .nx-cta__body.nx-cta__body.nx-cta__body{align-content:start !important;padding-top:clamp(56px,7vw,104px) !important}
 html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14) .nx-cta__btn{gap:12px !important}
 html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14) .nx-cta__btn svg{display:block !important;width:13px !important;height:13px !important;flex:none;transition:transform .25s ease}
 html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14) .nx-cta__btn:hover svg{transform:translateX(3px)}
+</style>
+<style id="nx-stc-css">/* Stories · "Story card" (2026-11-08): logo, title and a "Read the story" link top-left; a hairline, then the results as large light numbers
+   with their label beside, split by hairlines. Taller banner. Built as its own layer on each slide (.nx-sc); the other versions' text is hidden. */
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc #sslot > span > .nx-stm-box,html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc #sslot > span > .nxm-veil,html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc #sslot > span > span[style*="top: 28px"]{display:none !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc #sslot > span > span[style*="linear-gradient"]{background:linear-gradient(to top,rgba(10,13,13,.93) 0%,rgba(10,13,13,.84) 28%,rgba(10,13,13,.6) 50%,rgba(10,13,13,.22) 74%,rgba(10,13,13,.38) 100%),linear-gradient(to right,rgba(10,13,13,.55) 0%,rgba(10,13,13,.22) 50%,rgba(10,13,13,0) 78%) !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14) .nx-sc{display:none}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:flex-end;gap:24px;padding:28px 32px 32px;color:#FFFFFF;font-family:'BDO Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;text-shadow:0 1px 16px rgba(0,0,0,.3)}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-lg{display:block;height:26px;width:calc(var(--lw,120px) * 1.25);max-width:60%}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-lg img{display:block;width:100%;height:100%;object-fit:contain;object-position:left center}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-lg img:not([src]){visibility:hidden}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-t{display:block;margin-top:18px;max-width:660px;font-size:clamp(28px,2.5vw,34px);line-height:1.15;letter-spacing:-0.015em;text-wrap:balance}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-a{position:absolute;top:28px;right:32px;display:inline-flex;align-items:center;gap:10px;margin:0;font-size:14px;border-bottom:1px solid rgba(255,255,255,.75);padding-bottom:4px;text-shadow:none}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-a svg{width:13px;height:13px;transition:transform .25s ease}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc #sslot:hover .nx-sc-a svg{transform:translate(2px,-2px)}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-r{display:flex;align-items:stretch;padding-top:20px;border-top:1px solid rgba(255,255,255,.3)}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-m{display:flex;align-items:center;gap:18px;min-width:0;padding-right:40px}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-m + .nx-sc-m{padding-left:40px;border-left:1px solid rgba(255,255,255,.3)}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-n{flex:none;font-size:clamp(44px,4.4vw,60px);line-height:.9;letter-spacing:-0.03em;font-weight:300}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-l{max-width:240px;font-size:15px;line-height:1.4;color:rgba(255,255,255,.84)}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-l b{display:block;margin-bottom:6px;font:400 11px 'Geist Mono',ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+@media (max-width:860px){
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc #sec-stories #sslot{height:660px !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc{padding:28px 24px 30px}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-lg{height:24px}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-t{font-size:26px;margin-top:16px}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-a{top:26px;right:24px;margin:0;font-size:14px}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-r{flex-direction:column;gap:18px;padding-top:20px}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-m,html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-m + .nx-sc-m{padding:0;border:0;flex-direction:column;align-items:flex-start;gap:6px}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-n{font-size:48px}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14).nx-stc .nx-sc-l{font-size:14px}
+}</style>
+<script id="nx-stc">// Stories · "Story card": build the card layer on each slide (title in sentence case, results, the logo from the logo grid).
+(function () {
+  const D = [
+    [/^Santander/, "Santander adopts Noxus as a core platform for process transformation", [[">95%", "Less time to answer in the initial knowledge-management use case"], ["7+", "Regions adopting Noxus as a core platform"]]],
+    [/Carlsberg/, "How a Carlsberg brand processes 1,000+ financial documents a month with Noxus", [["1,000+", "Financial documents processed per month at one site"], ["4", "Full-time roles of capacity recovered"]]],
+    [/Randstad/, "How Randstad cut average handle time by 28% on support calls", [["28%", "Lower average handle time across the nine-operator pilot", "Pilot result"]]],
+    [/^EDP/, "EDP adopts Noxus to transform 30+ processes across Portugal and Brazil", [["30+", "Processes in the adoption programme"]]],
+    [/Lusíadas/, "Vivalto Santé expands Noxus adoption across healthcare operations at Lusíadas", [["4", "Documented processes in the adoption programme"]]],
+    [/Kirchhoff/, "How Kirchhoff Automotive automated 2,000+ monthly supplier quality documents at 97% precision", [["2,000+", "Supplier quality documents a month"], ["97%", "Precision on document checks"]]],
+    [/Jerónimo Martins/, "How Jerónimo Martins saves €120,000 a year on product label localisation across three markets", [["€120k", "Saved a year on product label localisation"]]],
+    [/José de Mello/, "José de Mello transforms patient care and efficiency with AI-driven automation", [["600+", "Hours of manual work saved each month"]]],
+    [/Frulact/, "How Frulact is on track to save €150,000 a year on order intake", [["€150k", "A year in savings on order intake", "On track"], ["1,000", "Orders a month processed automatically"]]],
+    [/Brisa/, "How Brisa cleared a 4,000-ticket backlog in its first month with Noxus", [["4,000", "Ticket backlog cleared in month one"], ["<20s", "To classify and route each ticket"]]],
+    [/SATA/, "How SATA cut flight-disruption compensation time by over 90%", [[">90%", "Less time to handle compensation claims"]]],
+    [/E-commerce|15,000/, "Retail platforms automate and enrich over 15,000 products a day", [["15,000+", "Products processed each day"], ["94%", "Reported precision"]]]
+  ];
+  const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  const ARR = '<svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 10 10 3M4.5 3H10v5.5"/></svg>';
+  const run = () => {
+    const cells = document.querySelectorAll("#sec-stories #lgrid .cell");
+    document.querySelectorAll("#sec-stories #sslot > span").forEach((sl, si) => {
+      const col = sl.querySelector(".nx-stm-orig") || sl.querySelector('[style*="max-width: 620px"]'); if (!col) return;
+      const title = (col.querySelector(":scope > span:not(.nxb):not(.nxb-lg)") || col.firstElementChild || col).textContent.trim();
+      const hit = D.find((d) => d[0].test(title)); if (!hit) return;
+      let sc = sl.querySelector(":scope > .nx-sc");
+      if (!sc || sc.dataset.t !== hit[1]) {
+        if (sc) sc.remove(); sc = document.createElement("span"); sc.className = "nx-sc"; sc.dataset.t = hit[1];
+        sc.innerHTML = '<span><span class="nx-sc-lg"><img alt=""></span><span class="nx-sc-t">' + esc(hit[1]) + '</span><span class="nx-sc-a">Read the story' + ARR + "</span></span>" +
+          '<span class="nx-sc-r">' + hit[2].map((x) => '<span class="nx-sc-m"><span class="nx-sc-n">' + esc(x[0]) + '</span><span class="nx-sc-l">' + (x[2] ? "<b>" + esc(x[2]) + "</b>" : "") + esc(x[1]) + "</span></span>").join("") + "</span>";
+        sl.appendChild(sc);
+      }
+      const c = cells[si], src = c && c.querySelector("img.lmk") && c.querySelector("img.lmk").getAttribute("src"), w = c && c.querySelector(".lmw"), im = sc.querySelector(".nx-sc-lg img");
+      if (src && im.getAttribute("src") !== src) { im.setAttribute("src", src); if (w) im.parentElement.style.setProperty("--lw", w.style.width.replace(/min\(([^,]+),.*$/, "$1")); }
+    });
+  };
+  addEventListener("nx:page", () => setTimeout(run, 80)); setInterval(run, 400); run();
+})();
+</script>
+<script id="nx-ctafn">// Footer CTA · temporary (2026-11-08): each process shows the photo of its function tile (Finance, Risk, Support, Quality, IT, Operations).
+(function () {
+  const FN = { "ap-invoices": "finance", "credit-notes": "finance", "finance-documents": "finance", "contractor-invoices": "finance",
+    "kyc-onboarding": "risk", "loan-documents": "risk", "dsar": "risk", "audit-evidence": "risk", "insurance-claims": "risk", "customs-declarations": "risk",
+    "billing-disputes": "support", "shipment-enquiries": "support", "patient-referrals": "support", "warranty-claims": "support",
+    "ppap": "quality", "capa": "quality", "supplier-quality-docs": "quality", "batch-release": "quality", "quality-claims": "quality", "automotive-claims": "quality",
+    "it-access": "it", "freight-claims": "operations", "field-scheduling": "operations", "meter-exceptions": "operations", "po-changes": "operations" };
+  const run = () => {
+    const m = (document.documentElement.className.match(/\bnx-pho-(\w+)/) || [])[1] || "aerial";
+    const set = /^(places|golden|inside|lightson|mono|fog|winter|hands|structure|orig)$/.test(m) ? "aerial" : m;
+    document.querySelectorAll(".nx-cta__photo").forEach((im) => {
+      const s = im.getAttribute("src") || "", k = (s.match(/photos\/cta\/([\w-]+)\.jpg/) || [])[1];
+      if (k && FN[k]) im.setAttribute("src", "assets/photos/home-" + set + "/tile-" + FN[k] + ".jpg?v=46");
+    });
+  };
+  addEventListener("nx:page", () => setTimeout(run, 60)); setInterval(run, 600); run();
+})();
+</script>
+<style id="nx-stt-css">/* Platform story · Steps + text: five plain treatments for the text band (Options › Step text, 2026-11-08) */
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .nx-psb small{display:none}
+@media (min-width:861px){
+/* B · Bigger: a larger title and a darker, larger description */
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"][data-stt="b"] #pageroot #plstory .nx-psb h4{font-size:40px !important;line-height:1.08 !important;letter-spacing:-0.025em !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"][data-stt="b"] #pageroot #plstory .nx-psb p{font-size:19px !important;color:#3A3A38 !important;margin-top:14px !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"][data-stt="b"] #pageroot #plstory .nx-psb{margin-top:36px !important}
+/* C · Eyebrow: a mono label names the product above the title */
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"][data-stt="c"] #pageroot #plstory .nx-psb small{display:block;grid-column:1;grid-row:1;margin:0 0 12px;font:400 12px 'Geist Mono',ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:#6B6B69}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"][data-stt="c"] #pageroot #plstory .nx-psb > section{grid-template-rows:auto auto auto !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"][data-stt="c"] #pageroot #plstory .nx-psb h4{grid-row:2 !important;font-size:34px !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"][data-stt="c"] #pageroot #plstory .nx-psb p{grid-row:3 !important;color:#3A3A38 !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"][data-stt="c"] #pageroot #plstory .nx-psb a{grid-row:1/span 3 !important}
+/* D · Clear backdrop: the step bar and text sit on solid section colour, so the grid lines stop behind the words */
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"][data-stt="d"] #pageroot #plstory .ps-ix{position:relative;z-index:2;background:#ECE8E1;box-shadow:0 0 0 28px #ECE8E1}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"][data-stt="d"] #pageroot #plstory .nx-psb h4{font-size:34px !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"][data-stt="d"] #pageroot #plstory .nx-psb p{color:#3A3A38 !important}
+/* E · Split: a large title on the left; the description and button stacked on the right */
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"][data-stt="e"] #pageroot #plstory .nx-psb > section{grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;grid-template-rows:auto auto !important;column-gap:64px !important;align-items:start !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"][data-stt="e"] #pageroot #plstory .nx-psb h4{grid-column:1 !important;grid-row:1/span 2 !important;white-space:normal !important;max-width:16ch !important;font-size:40px !important;line-height:1.08 !important;letter-spacing:-0.025em !important;text-wrap:balance}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"][data-stt="e"] #pageroot #plstory .nx-psb p{grid-column:2 !important;grid-row:1 !important;margin:6px 0 0 !important;color:#3A3A38 !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"][data-stt="e"] #pageroot #plstory .nx-psb a{grid-column:2 !important;grid-row:2 !important;justify-self:start !important;align-self:start !important;margin-top:20px !important}
+}
+/* the description matches the section intro text (16px / 28px, grey) in every variant */
+@media (min-width:861px){html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14)[data-lt="n"] #pageroot #plstory .nx-psb > section > p.nx-p{font-size:16px !important;line-height:28px !important;color:#6B6B69 !important;letter-spacing:-0.014em !important;max-width:62ch}}
+</style>
+<script id="nx-stt">// Options › Step text: A as built · B bigger · C eyebrow · D clear backdrop · E split
+(function () {
+  const root = document.documentElement, V = [["a", "As built"], ["b", "Bigger"], ["c", "Eyebrow"], ["d", "Clear backdrop"], ["e", "Split"]];
+  let v = "b";
+  const bar = document.createElement("div"); bar.className = "shsw idst sttsw"; bar.setAttribute("role", "group"); bar.setAttribute("aria-label", "Step text");
+  bar.innerHTML = "<span>Step text</span>" + V.map((x) => '<button type="button" data-v="' + x[0] + '">' + x[1] + "</button>").join("");
+  const set = () => { root.dataset.stt = v; bar.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.v === v))); dispatchEvent(new Event("resize")); };
+  bar.addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; v = b.dataset.v; try { localStorage.setItem("nx-stt", v); } catch (e) {} set(); });
+  document.body.appendChild(bar); set();
+})();
+</script>
+<script id="nx-greytone">// Options › Grey tone (2026-11-08): Original, or the greys nudged very slightly toward copper, stone or a cooler grey. Ink #161616 stays as is.
+// Greys are hard-coded across the site, so a tone remaps them in the stylesheets and inline styles; Original puts them back.
+(function () {
+  const G = ["236,232,225", "74,74,72", "107,107,105", "138,138,135", "138,137,134", "226,224,220", "169,165,158", "244,243,240", "214,212,207", "58,58,56", "233,231,226", "247,246,243", "239,238,235"];
+  const T = { hint: [2, -1, -3], stone: [2, 1, -4], cool: [-2, 0, 3] };
+  const hex = (s) => "#" + s.split(",").map((n) => (+n).toString(16).padStart(2, "0")).join("");
+  const cl = (n) => Math.max(0, Math.min(255, n));
+  let tone = "hint";
+  let R = [], RA = [];
+  const build = () => { const d = T[tone]; R = []; RA = []; if (!d) return;
+    G.forEach((a) => { const [r, g, bl] = a.split(",").map(Number), to = [cl(r + d[0]), cl(g + d[1]), cl(bl + d[2])].join(", ");
+      R.push([new RegExp("rgb\\(\\s*" + r + ",\\s*" + g + ",\\s*" + bl + "\\s*\\)|" + hex(a), "gi"), "rgb(" + to + ")"]);
+      RA.push([new RegExp("rgba\\(\\s*" + r + ",\\s*" + g + ",\\s*" + bl + "\\s*,", "gi"), "rgba(" + to + ","]); }); };
+  const swap = (t) => { let o = t; R.forEach(([re, to]) => (o = o.replace(re, to))); RA.forEach(([re, to]) => (o = o.replace(re, to))); return o; };
+  const hit = (t) => R.some(([re]) => { re.lastIndex = 0; return re.test(t); }) || RA.some(([re]) => { re.lastIndex = 0; return re.test(t); });
+  const done = []; let seen = new WeakSet();
+  const rules = (list) => { for (const r of list) { if (r.cssRules && !r.style) rules(r.cssRules); else if (r.style) {
+      for (let i = 0; i < r.style.length; i++) { const p = r.style[i], v = r.style.getPropertyValue(p); if (v && hit(v)) { const pr = r.style.getPropertyPriority(p); done.push([r.style, p, v, pr]); r.style.setProperty(p, swap(v), pr); } } } } };
+  const sheets = () => { for (const s of document.styleSheets) { if (seen.has(s)) continue; seen.add(s); try { rules(s.cssRules); } catch (e) {} } };
+  const inline = () => document.querySelectorAll("[style]:not([data-nxgo])").forEach((el) => { const st = el.getAttribute("style"); if (st && hit(st)) { el.setAttribute("data-nxgo", st); el.setAttribute("style", swap(st)); } });
+  const apply = () => { if (tone === "orig") return; sheets(); inline(); };
+  const revert = () => { done.splice(0).reverse().forEach(([s, p, v, pr]) => s.setProperty(p, v, pr)); document.querySelectorAll("[data-nxgo]").forEach((el) => { el.setAttribute("style", el.getAttribute("data-nxgo")); el.removeAttribute("data-nxgo"); }); seen = new WeakSet(); };
+  let t; const soon = () => { clearTimeout(t); t = setTimeout(apply, 60); };
+  new MutationObserver(soon).observe(document.documentElement, { childList: true, subtree: true });
+  addEventListener("nx:page", soon);
+  const V = [["orig", "Original"], ["hint", "Copper hint"], ["stone", "Stone"], ["cool", "Cool grey"]];
+  const bar = document.createElement("div"); bar.className = "shsw idst greysw"; bar.setAttribute("role", "group"); bar.setAttribute("aria-label", "Grey tone");
+  bar.innerHTML = "<span>Grey tone</span>" + V.map((x) => '<button type="button" data-v="' + x[0] + '">' + x[1] + "</button>").join("");
+  const mark = () => bar.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.v === tone)));
+  bar.addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b || b.dataset.v === tone) return; revert(); tone = b.dataset.v; build();
+    try { localStorage.setItem("nx-grey", tone); } catch (e) {} apply(); mark(); });
+  build();
+  const add = () => { if (document.body) { document.body.appendChild(bar); mark(); apply(); } else setTimeout(add, 50); };
+  add(); addEventListener("load", () => setTimeout(apply, 300));
+})();
+</script>
+<script id="nx-stepwidth">// Steps + text: the step bar and text span exactly the section header's width (title's left edge to the intro text's right edge);
+// the app scales inside that width and is never wider.
+(function () {
+  let last = 0;
+  const tick = () => { const el = document.querySelector("#pageroot #plstory"); if (!el) return; const ix = el.querySelector(".ps-ix");
+    if (!ix || document.documentElement.dataset.lt !== "n" || innerWidth <= 860) { if (ix) ix.style.removeProperty("width"); return; }
+    const hd = el.querySelector(".ps-head"); if (!hd) return;
+    const leaf = [...hd.querySelectorAll("*")].filter((x) => x.childElementCount === 0 && x.textContent.trim().length > 20);
+    if (!leaf.length) return; let l = Infinity, r = -Infinity; leaf.forEach((x) => { const b = x.getBoundingClientRect(); if (b.width) { l = Math.min(l, b.left); r = Math.max(r, b.right); } });
+    const z = ix.getBoundingClientRect().width / (ix.offsetWidth || 1) || 1, w = Math.round((r - l) / z);
+    if (!(w > 200)) return;
+    ix.style.setProperty("width", w + "px", "important"); el.dataset.hw = w;
+    if (Math.abs(w - last) > 1) { last = w; dispatchEvent(new Event("resize")); }
+  };
+  addEventListener("resize", () => setTimeout(tick, 30)); addEventListener("nx:page", () => setTimeout(tick, 120)); setInterval(tick, 500); tick();
+})();
+</script>
+<style id="nx-lgblur-css">/* Customer logo grid: much softer photo backgrounds (2026-11-08); scaled up so the blurred edges stay inside each cell */
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14) #pageroot #lgrid#lgrid#lgrid .thumb img{filter:saturate(0.9) blur(16px) brightness(0.72) contrast(0.92) !important;transform:scale(1.25) !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14) #pageroot #lgrid#lgrid#lgrid li:has(.cell-btn[aria-pressed="true"]) .thumb img{filter:saturate(0.95) blur(10px) brightness(0.8) contrast(0.95) !important;transform:scale(1.3) !important}
+</style>
+<style id="nx-selection-css">/* Text selection in copper instead of the browser blue (2026-11-08) */
+::selection{background:rgba(184,115,51,.26);color:inherit}
+::-moz-selection{background:rgba(184,115,51,.26);color:inherit}
 </style>
 <style id="nx-lgv-quiet2">/* Quiet (was the default; Photos is the default since 2026-11-02): no photo in the tiles at all, so the story photo only appears once, in the story card below.
    Story tiles carry a small corner arrow; the tile whose story is showing gets a black logo, a black arrow and the progress line. */
