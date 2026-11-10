@@ -3784,7 +3784,7 @@ html.nx-tl-bleed #sol-sec .m3mr > div:last-child .m3tile{height:clamp(280px, 24v
 </script>
 <script id="nx-optlock">// Options cleanup · locks the settled rows to the chosen value and hides them; only Grade, Tiles and Logo grid stay in the panel
 (function () {
-  const KEEP = ["platform story", "step text", "grey tone", "logo blur", "step desc", "inside", "hero photo", "logo label", "idle screen", "idle style", "idle layout"];
+  const KEEP = ["platform story", "step title", "step text", "grey tone", "logo blur", "step desc", "inside", "hero photo", "logo label", "idle screen", "idle style", "idle layout"];
   const LOCK = { "photos": "signature", "idle style": "flow", "logo": "converge", "cta": "one process", "platform": "scroll story", "run animation": "b nodes", "story button": "a primary", "govern layout": "c settings", "story texture": "grid", "story colour": "sand" };
   const norm = (t) => (t || "").replace(/\s+/g, " ").trim().toLowerCase();
   function run() {
@@ -6080,7 +6080,7 @@ html:not(#z1):not(#z2):not(#z3):not(#z4):not(#z5):not(#z6):not(#z7):not(#z8):not
 <script id="nx-optscope">// Options only show what exists on the page you're on: each row is tied to the section it changes (2026-11-09).
 // Grey tone works on every page, so it always shows. With nothing to show, the Options button hides.
 (function () {
-  const SCOPE = { "platform story": "#pageroot #plstory", "step text": "#pageroot #plstory", "step desc": "#pageroot #plstory", "logo blur": "#pageroot #lgrid", "inside": "#pg-wp .nxr-insec", "hero photo": "#pageroot .pg-sol", "logo label": "#pageroot #lgrid", "grey tone": "*" };
+  const SCOPE = { "platform story": "#pageroot #plstory", "step title": "#pageroot #plstory", "step text": "#pageroot #plstory", "step desc": "#pageroot #plstory", "logo blur": "#pageroot #lgrid", "inside": "#pg-wp .nxr-insec", "hero photo": "#pageroot .pg-sol", "logo label": "#pageroot #lgrid", "grey tone": "*" };
   const norm = (t) => (t || "").replace(/\s+/g, " ").trim().toLowerCase();
   const run = () => { let shown = 0;
     document.querySelectorAll(".shsw").forEach((row) => { if (row.classList.contains("nx-opt-off")) return; const lab = norm(row.querySelector("span") && row.querySelector("span").textContent), sel = SCOPE[lab];
@@ -6270,6 +6270,33 @@ html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not
     const vb = svg.viewBox.baseVal, w = vb.width, h = vb.height; const cx = b.x + b.width / 2, cy = b.y + b.height / 2;
     svg.setAttribute("viewBox", (cx - w / 2).toFixed(1) + " " + (cy - h / 2).toFixed(1) + " " + w + " " + h); svg.dataset.ctr = "1"; });
   addEventListener("nx:page", () => setTimeout(run, 150)); addEventListener("hashchange", () => setTimeout(run, 300)); setInterval(run, 800); run();
+})();
+</script>
+<style id="nx-sttl-css">/* Platform story · Options › Step title (2026-11-10): Top = under the step bar (as built); Bottom = the step bar stays on top and the
+   step title moves under the app, above its description (Steps + text layout) */
+#pageroot #plstory .nx-pslink h4.nx-lh{display:none}
+@media (min-width:861px){
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14):not(#a15):not(#a16):not(#a17):not(#a18):not(#a19):not(#a20):not(#a21):not(#a22)[data-lt="n"][data-sttl="bottom"] #pageroot #plstory .nx-psb h4{display:none !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14):not(#a15):not(#a16):not(#a17):not(#a18):not(#a19):not(#a20):not(#a21):not(#a22)[data-lt="n"][data-sttl="bottom"] #pageroot #plstory .nx-psb{display:none !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14):not(#a15):not(#a16):not(#a17):not(#a18):not(#a19):not(#a20):not(#a21):not(#a22)[data-lt="n"][data-sttl="bottom"] #pageroot #plstory .ps-ix{margin-bottom:0 !important;padding-bottom:0 !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14):not(#a15):not(#a16):not(#a17):not(#a18):not(#a19):not(#a20):not(#a21):not(#a22)[data-lt="n"][data-sttl="bottom"] #pageroot #plstory .nx-pslink section{flex-wrap:wrap !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14):not(#a15):not(#a16):not(#a17):not(#a18):not(#a19):not(#a20):not(#a21):not(#a22)[data-lt="n"][data-sttl="bottom"] #pageroot #plstory .nx-pslink h4.nx-lh{display:block;flex:0 0 100%;margin:0 0 -8px;font-weight:400;font-size:clamp(22px,1.75vw,28px);line-height:1.2;letter-spacing:-0.015em;color:#161616}
+}
+</style>
+<script id="nx-sttl">// Options › Step title: Top / Bottom, remembered in nx-sttl (2026-11-10)
+(function () {
+  const root = document.documentElement, V = [["top", "Top"], ["bottom", "Bottom"]];
+  let v = "bottom";
+  root.setAttribute("data-sttl", v);
+  const bar = document.createElement("div"); bar.className = "shsw idst sttlsw"; bar.setAttribute("role", "group"); bar.setAttribute("aria-label", "Step title");
+  bar.innerHTML = "<span>Step title</span>" + V.map((x) => '<button type="button" data-v="' + x[0] + '">' + x[1] + "</button>").join("");
+  const mark = () => bar.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.v === v)));
+  bar.addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; v = b.dataset.v; root.setAttribute("data-sttl", v); try { localStorage.setItem("nx-sttl", v); } catch (e) {} mark(); dispatchEvent(new Event("resize")); });
+  const add = () => { if (document.body) { document.body.appendChild(bar); mark(); } else setTimeout(add, 50); }; add();
+  // copy each step's title into its row under the app (hidden unless Bottom)
+  const sync = () => { const s = document.querySelector("#pageroot #plstory"); if (!s) return; const src = s.querySelectorAll(".nx-psb section"), dst = s.querySelectorAll(".nx-pslink section");
+    dst.forEach((d, i) => { const h = src[i] && src[i].querySelector("h4"); if (!h) return; let c = d.querySelector(":scope > h4.nx-lh"); if (!c) { c = document.createElement("h4"); c.className = "nx-lh"; d.prepend(c); } if (c.textContent !== h.textContent) c.textContent = h.textContent; }); };
+  addEventListener("nx:page", () => setTimeout(sync, 300)); setInterval(sync, 800); sync();
 })();
 </script>
 <style id="nx-lgv-quiet2">/* Quiet (was the default; Photos is the default since 2026-11-02): no photo in the tiles at all, so the story photo only appears once, in the story card below.
