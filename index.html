@@ -33,7 +33,7 @@ html:not(.nx-before) :is(.metric,dd,td,[class*="num"]){font-variant-numeric:tabu
 #proto-pages nav{position:absolute;right:0;bottom:100%;margin-bottom:6px;min-width:220px;background:#FFFFFF;border:1px solid #E2E0DC;box-shadow:0 12px 32px -16px rgba(22,22,22,.35)}
 #proto-pages a{display:block;padding:9px 12px;color:#161616;text-decoration:none;border-top:1px solid #ECEAE6}#proto-pages a:first-child{border-top:0}#proto-pages a:hover,#proto-pages a.on{background:#F7F1E8;color:#8A5A2B}</style>
 <style id="nx-zoom">:root{--nxz:0.9}#navroot,#pageroot{zoom:0.9}</style>
-<style>.nx-dock > :not(.nxh-pho),.nxp,.nxp-toast,#nxr,.nxr,html body #nx-opts .nxo-p > :not(.phsw){display:none !important}html body #nx-opts{display:block !important;right:16px !important}</style>
+<style>.nx-dock > :not(.nxh-pho),.nxp,.nxp-toast,#nxr,.nxr,html body #nx-opts .nxo-p > :not(.phsw){display:none !important}html body #nx-opts{display:none !important}</style>
 </head><body>
 <div id="navroot"></div><div id="pageroot"></div>
 <details id="proto-pages"><summary>Pages</summary><nav id="proto-list"></nav></details>
@@ -7023,6 +7023,8 @@ html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not
 }
 /* phones: customer logos in the grid 22% bigger */
 @media (max-width:760px){html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14):not(#a15):not(#a16):not(#a17):not(#a18):not(#a19):not(#a20):not(#a21):not(#a22) #pageroot #lgrid img.lmk{transform:scale(1.22) !important;transform-origin:50% 50% !important}}
+/* phones: Lusíadas, SATA and KuantoKusta read larger than the rest, so they grow less */
+@media (max-width:760px){html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14):not(#a15):not(#a16):not(#a17):not(#a18):not(#a19):not(#a20):not(#a21):not(#a22) #pageroot #lgrid :is([aria-label^="Lusíadas"],[aria-label^="sata"],[aria-label^="KuantoKusta"]) img.lmk{transform:scale(1.04) !important}}
 </style>
 <style id="nx-solibmob-css">/* Phones (2026-11-10): the solution pages' process visual grows with its flow (PPAP has five steps and two outcomes), so
    nothing is cut under the process name bar; less empty padding above and below the flow */
