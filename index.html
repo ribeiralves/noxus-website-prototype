@@ -1579,8 +1579,9 @@ document.addEventListener("click", (e) => {
 #pageroot section#hero.hin h1{animation:nxhFade 900ms ease both;animation-delay:100ms}
 #pageroot section#hero.hin h1 + p{animation:nxhFade 900ms ease both;animation-delay:300ms}
 #pageroot section#hero.hin h1 ~ a.btn{animation:nxhFade 900ms ease both;animation-delay:450ms}
+#pageroot section#hero.hin h1 ~ a.nx-hero2{animation:nxhFade 900ms ease both;animation-delay:450ms}  /* 2026-11-10: the second button fades in with the first */
 #pageroot section#hero.hin .hcl{animation:nxhFade 1200ms ease both;animation-delay:200ms}
-@media (prefers-reduced-motion: reduce){#pageroot section#hero.hin :is(h1,h1 + p,h1 ~ a.btn,.hcl){animation:none !important}}
+@media (prefers-reduced-motion: reduce){#pageroot section#hero.hin :is(h1,h1 + p,h1 ~ a.btn,h1 ~ a.nx-hero2,.hcl){animation:none !important}}
 </style>
 <script>// Home hero entrance (hero_in.js): tag the column lines and replay the entrance on every visit to Home (text is never touched)
 (function () {
@@ -6240,6 +6241,8 @@ html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not
 <style id="nx-sbanm-css">/* Customer-story banner on process pages (2026-11-10): the description runs wider, and the results under it look like the
    results row on the story page itself (boxed cells on hairlines, attached to the photo) */
 @media (min-width:861px){html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14):not(#a15):not(#a16):not(#a17):not(#a18):not(#a19):not(#a20) #pageroot a.sban .sbc{max-width:680px !important} html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14):not(#a15):not(#a16):not(#a17):not(#a18):not(#a19):not(#a20) #pageroot a.sban .sbp{max-width:620px !important}}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14):not(#a15):not(#a16):not(#a17):not(#a18):not(#a19):not(#a20) #pageroot a.sban .sbp{font-size:16px !important;line-height:1.55 !important}
+html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14):not(#a15):not(#a16):not(#a17):not(#a18):not(#a19):not(#a20) #pageroot a.sban .sblogo{zoom:1.35}  /* 2026-11-10: bigger text and logo */
 html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14):not(#a15):not(#a16):not(#a17):not(#a18):not(#a19):not(#a20) #pageroot a.sban + dl.nxpm{margin-top:0 !important;gap:0 !important;border-left:1px solid #E2E0DC;border-bottom:1px solid #E2E0DC}
 html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14):not(#a15):not(#a16):not(#a17):not(#a18):not(#a19):not(#a20) #pageroot a.sban + dl.nxpm > div{padding:28px 28px 24px !important;border-top:0 !important;border-right:1px solid #E2E0DC;display:flex;flex-direction:column;gap:10px}
 html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not(#a9):not(#a10):not(#a11):not(#a12):not(#a13):not(#a14):not(#a15):not(#a16):not(#a17):not(#a18):not(#a19):not(#a20) #pageroot a.sban + dl.nxpm dt{font-size:40px !important;font-weight:400 !important;line-height:1 !important;letter-spacing:-0.02em !important;color:#161616;margin:0}
