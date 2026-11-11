@@ -2211,7 +2211,7 @@ html.nx-pho-highkey #pageroot #sec-stories [style*="linear-gradient(to top, rgba
 <script id="nx-aerial">// Home photos · "Aerial order": customer stories and industry/function tiles swapped for one graded set of overhead shots
 // (assets/photos/home-aerial, credits in CREDITS.json). Home only; a "Photos" switch in the review dock flips back to the originals.
 (function () {
-  const SETS = [["golden", "Golden hour"], ["inside", "Inside the work"], ["lightson", "Lights on"], ["places", "Places"], ["highkey", "High-key"], ["aerial", "Aerial"], ["daylight", "Daylight"], ["material", "Material"], ["night", "After hours"], ["mono", "Monochrome"], ["fog", "Fog"], ["winter", "Winter"], ["hands", "Hands at work"], ["structure", "Structure"], ["sig", "Signature"], ["orig", "Current"]], V = "?v=48";
+  const SETS = [["golden", "Golden hour"], ["inside", "Inside the work"], ["lightson", "Lights on"], ["places", "Places"], ["highkey", "High-key"], ["aerial", "Aerial"], ["daylight", "Daylight"], ["material", "Material"], ["night", "After hours"], ["mono", "Monochrome"], ["fog", "Fog"], ["winter", "Winter"], ["hands", "Hands at work"], ["structure", "Structure"], ["sig", "Signature"], ["orig", "Current"]], V = "?v=50";
   let set = "sig"; try { const s = localStorage.getItem("nx-pho2"); if (SETS.some((x) => x[0] === s)) set = s; } catch (e) {}
   const P = () => "assets/photos/home-" + set + "/";
   // Places (real places, no people) only has tiles and heroes so far: customer stories keep the Aerial photos in it
