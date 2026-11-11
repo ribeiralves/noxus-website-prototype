@@ -3500,6 +3500,9 @@ html:not([data-gl="d"]) #pageroot #plstory :is(.pd,.envd,.xb,svg .gd){display:no
       const kh = Math.min(1.8, hh / 660), hw = +el.dataset.hw, ws = Math.round(Math.max(1240, Math.min(hw / kh, 660 * 2.6, 1240 * 1.6)));
       if (Math.abs(ws - sw) > 2) el.style.setProperty("--sw", ws + "px", "important");
       k = Math.min(kh, hw / ws, box.clientWidth / ws); }
+    // 2026-11-11: New story on tall screens: the window grows taller (up to 16:10) instead of leaving an empty band below
+    if (root.dataset.psv === "new" && innerWidth > 860) { const ws2 = parseFloat(getComputedStyle(el).getPropertyValue("--sw")) || 1240, sh = Math.round(Math.min(ws2 / 1.6, Math.max(660, hh / k)));
+      if (Math.abs((parseFloat(el.style.getPropertyValue("--sh")) || 0) - sh) > 2) el.style.setProperty("--sh", sh + "px"); } else if (el.style.getPropertyValue("--sh")) el.style.removeProperty("--sh");
     else if (el.style.getPropertyValue("--sw")) el.style.removeProperty("--sw");
     const set = () => { el.querySelector(".ps-stage").style.setProperty("--k", k.toFixed(3)); inn.style.setProperty("--k", k.toFixed(3)); }; set();
     // Caption: measure the real text row and shrink the app until the button ends 72px above the frame's bottom
@@ -7136,6 +7139,15 @@ html:not(#a1):not(#a2):not(#a3):not(#a4):not(#a5):not(#a6):not(#a7):not(#a8):not
 <style id="nx-mbr-css">/* Story step titles (2026-11-11): two-sentence titles break after the first sentence on phones only */
 #plstory br.m-br{display:none}
 @media (max-width:860px){#plstory br.m-br{display:inline}}
+</style>
+<style id="nx-talls-css">/* New story on tall screens (2026-11-11): the stage takes its height from --sh (set by nx-plstory-js, 660 to 16:10),
+   and the step bar, app and text sit centred in the pinned frame */
+@media (min-width:861px){
+html[data-psv="new"]:not(#c1):not(#c2):not(#c3):not(#c4):not(#c5):not(#c6):not(#c7):not(#c8):not(#c9):not(#c10):not(#c11):not(#c12):not(#c13):not(#c14):not(#c15):not(#c16):not(#c17):not(#c18):not(#c19):not(#c20):not(#c21):not(#c22):not(#c23):not(#c24):not(#c25) #pageroot #plstory .ps-stage{height:var(--sh,660px) !important}
+html[data-psv="new"]:not(#c1):not(#c2):not(#c3):not(#c4):not(#c5):not(#c6):not(#c7):not(#c8):not(#c9):not(#c10):not(#c11):not(#c12):not(#c13):not(#c14):not(#c15):not(#c16):not(#c17):not(#c18):not(#c19):not(#c20):not(#c21):not(#c22):not(#c23):not(#c24):not(#c25) #pageroot #plstory .aw{height:calc(var(--sh,660px) - 40px) !important}
+html[data-psv="new"]:not(#c1):not(#c2):not(#c3):not(#c4):not(#c5):not(#c6):not(#c7):not(#c8):not(#c9):not(#c10):not(#c11):not(#c12):not(#c13):not(#c14):not(#c15):not(#c16):not(#c17):not(#c18):not(#c19):not(#c20):not(#c21):not(#c22):not(#c23):not(#c24):not(#c25) #pageroot #plstory .ps-st{height:calc(var(--sh,660px) * var(--k,1)) !important}
+html[data-psv="new"]:not(#c1):not(#c2):not(#c3):not(#c4):not(#c5):not(#c6):not(#c7):not(#c8):not(#c9):not(#c10):not(#c11):not(#c12):not(#c13):not(#c14):not(#c15):not(#c16):not(#c17):not(#c18):not(#c19):not(#c20):not(#c21):not(#c22):not(#c23):not(#c24):not(#c25) #pageroot #plstory .ps-in{align-content:center !important}
+}
 </style>
 <style id="nx-lgv-quiet2">/* Quiet (was the default; Photos is the default since 2026-11-02): no photo in the tiles at all, so the story photo only appears once, in the story card below.
    Story tiles carry a small corner arrow; the tile whose story is showing gets a black logo, a black arrow and the progress line. */
